@@ -2,9 +2,10 @@ package org.usfirst.frc.team766.robot.subsystems;
 
 import org.usfirst.frc.team766.robot.Ports;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.GyroBase;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
@@ -30,12 +31,18 @@ public class Drive extends Subsystem {
 	
 	private Solenoid Shifter = new Solenoid(Ports.Sol_Shifter);
 
-	private Gyro gyro = new Gyro(Ports.GYRO);
+	private GyroBase gyro = new AnalogGyro(Ports.GYRO);
 	
 	private PowerDistributionPanel PDP = new PowerDistributionPanel();
 	
 	private boolean lock = false;
 	private Command lockCommand = null;
+	
+	/*
+	 * Todo:
+	 * 1.  Reset Commands
+	 * 2.  Power commands
+	 */
 	
 	public void lock(Command command){
 		lock = true;
