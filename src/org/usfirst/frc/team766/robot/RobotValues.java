@@ -7,9 +7,11 @@ package org.usfirst.frc.team766.robot;
  */
 public class RobotValues {
 
+	//all values in meters
 	//these values are not real!!
 	public static final int FOCALLENGTH = 1;
-	public static final int CAMERAHEIGHT = 1;
-	public static final int ROBOTBASELINE = 1;
-	public static final int TAPEWIDTH = 1;
+	public static final double CAMERAHEIGHT = 1;
+	public static final double ROBOTBASELINE = 1;
+	public static final double TAPEWIDTH = 1;
+	public static final double TOWERHEIGHT = 1;
 }
