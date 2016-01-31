@@ -1,17 +1,21 @@
 package org.usfirst.frc.team766.robot;
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
+ * The RobotValues holds all the constants used in the robot code
  */
 public class RobotValues {
 
-	//all values in meters
-	//these values are not real!!
-	public static final int FOCALLENGTH = 1;
-	public static final double CAMERAHEIGHT = 1;
-	public static final double ROBOTBASELINE = 1;
-	public static final double TAPEWIDTH = 1;
-	public static final double TOWERHEIGHT = 1;
+	//All values in meters
+	
+	// Conversion constants
+	public static final double INCHES_TO_METERS = 0.0254;
+	
+	//Auton
+	public static final String[] Autons = {"Vision Drive", "22 Points"};
+	
+	//Vision Values
+	public static final int FOCAL_LENGTH = 1;
+	public static final double CAMERA_HEIGHT = 1;
+	public static final double ROBOT_BASELINE = 1;
+	public static final double TAPE_WIDTH = 1;
+	public static final double TOWER_HEIGHT = 1;
 }

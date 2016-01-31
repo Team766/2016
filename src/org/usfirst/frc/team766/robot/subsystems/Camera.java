@@ -8,12 +8,13 @@ import edu.wpi.first.wpilibj.vision.AxisCamera;
 
 public class Camera extends Subsystem{
 	
-	//the 1 isn't real
 	Servo vertical = new Servo(1);
 	
 	AxisCamera cam = new AxisCamera("169.254.2.2");
 	
-	int pixelWidth = 0;
+	private int pixelWidth = 0;
+	private double xError = 0.0;
+	private double yError = 0.0;
 			
 	public void setPixelWidth(int w){
 		pixelWidth = w;
@@ -24,11 +25,11 @@ public class Camera extends Subsystem{
 	}
 	
 	public double getAngleDistance(){
-		return (RobotValues.CAMERAHEIGHT - RobotValues.ROBOTBASELINE) / Math.tan(vertical.getAngle());
+		return (RobotValues.CAMERA_HEIGHT - RobotValues.ROBOT_BASELINE) / Math.tan(vertical.getAngle());
 	}
 	
 	public double getFocalDistance(){
-		return (RobotValues.TAPEWIDTH * RobotValues.FOCALLENGTH) / getPixelWidth();
+		return (RobotValues.TAPE_WIDTH * RobotValues.FOCAL_LENGTH) / getPixelWidth();
 	}
 	
 	public double getDistance(){
@@ -36,5 +37,21 @@ public class Camera extends Subsystem{
 	}
 
 	protected void initDefaultCommand() {
+	}
+
+	public double getXError() {
+		return xError;
+	}
+
+	public void setXError(double xError) {
+		this.xError = xError;
+	}
+
+	public double getYError() {
+		return yError;
+	}
+
+	public void setYError(double yError) {
+		this.yError = yError;
 	}	
 }
