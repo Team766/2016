@@ -3,11 +3,17 @@ package org.usfirst.frc.team766.robot.commands.Drive;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 public class TankDrive extends CommandBase{
+	
+	public TankDrive(){
+		requires(Drive);
+	}
 
 	protected void initialize() {
 	}
 
 	protected void execute() {
+		Drive.setLeftEncoder(OI.getLeftY());
+		Drive.setRightEncoder(OI.getRightY());
 	}
 
 	protected boolean isFinished() {

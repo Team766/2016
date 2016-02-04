@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drive extends Subsystem {
     
-	private static final double WHEEL_DIAMETER = .09958, // meters
+	private static final double WHEEL_DIAMETER = 0.2032, // meters, 8 in
 			PULSES_PER_ROTATION = 256,
 			DISTANCE_PER_PULSE = (Math.PI * WHEEL_DIAMETER) / PULSES_PER_ROTATION;
 	
@@ -29,7 +29,7 @@ public class Drive extends Subsystem {
 	private Encoder leftEncoder = new Encoder(Ports.DIO_LDriveEncA,
 			Ports.DIO_LDriveEncB, false, CounterBase.EncodingType.k4X);
 	
-	private Solenoid Shifter = new Solenoid(Ports.Sol_Shifter);
+	private Solenoid shifter = new Solenoid(Ports.Sol_Shifter);
 
 	private GyroBase gyro = new AnalogGyro(Ports.GYRO);
 	
@@ -55,6 +55,27 @@ public class Drive extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
+    	
+    }
+    
+    public void resetGyro(){
+    	gyro.reset();
+    }
+    
+    public void resetRightEncoder(){
+    	rightEncoder.reset();
+    }
+    
+    public void resetLeftEncoder(){
+    	leftEncoder.reset();
+    }
+    
+    public void setLeftEncoder(double dist){
+    	leftEncoder.setDistancePerPulse(dist);
+    }
+    
+    public void setRightEncoder(double dist){
+    	rightEncoder.setDistancePerPulse(dist);
     }
 }
 

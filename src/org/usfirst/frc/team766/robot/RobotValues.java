@@ -14,8 +14,10 @@ public class RobotValues {
 	
 	//Vision Values
 	public static final int FOCAL_LENGTH = 1;
+	public static final int FOCAL_WIDTH = 1;
 	public static final double CAMERA_HEIGHT = 1;
 	public static final double ROBOT_BASELINE = 1;
-	public static final double TAPE_WIDTH = 1;
-	public static final double TOWER_HEIGHT = 1;
+	//real values
+	public static final double TAPE_WIDTH = 0.508; //with 2 in height tape
+	public static final double TOWER_HEIGHT = 2.4638;
 }
