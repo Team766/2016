@@ -22,7 +22,7 @@ public class Drive extends Subsystem {
 			DISTANCE_PER_PULSE = (Math.PI * WHEEL_DIAMETER) / PULSES_PER_ROTATION;
 	
 	private Victor leftDrive = new Victor(Ports.PWM_Left_Drive);
-	private Victor rightDrive = new Victor(Ports.PWM_Right_Drive);
+	private Victor rightDrive = new Victor(Ports.PWM_Right_Drive); 
 	
 	private Encoder rightEncoder = new Encoder(Ports.DIO_RDriveEncA,
 			Ports.DIO_RDriveEncB, false, CounterBase.EncodingType.k4X);

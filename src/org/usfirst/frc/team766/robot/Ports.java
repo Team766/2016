@@ -24,4 +24,5 @@ public class Ports {
 	
 	//Hall Effect Sensor
 	public static final int DIO_HallEffectSensorWinch = 10;
+	
 }

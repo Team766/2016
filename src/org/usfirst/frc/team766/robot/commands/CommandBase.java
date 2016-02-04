@@ -2,6 +2,7 @@ package org.usfirst.frc.team766.robot.commands;
 
 import org.usfirst.frc.team766.robot.OI;
 import org.usfirst.frc.team766.robot.subsystems.Camera;
+import org.usfirst.frc.team766.robot.subsystems.Catapult;
 import org.usfirst.frc.team766.robot.subsystems.Drive;
 import org.usfirst.frc.team766.robot.subsystems.Intake;
 
@@ -13,11 +14,13 @@ public abstract class CommandBase extends Command {
 	public static Drive Drive;
 	public static Camera Camera;
 	public static Intake Intake;
+	public static Catapult Catapult;
 	
 	public static void init(){
 		OI = new OI();
 		Drive = new Drive();
 		Camera = new Camera();
 		Intake = new Intake();
+		Catapult = new Catapult();
 	}
 }

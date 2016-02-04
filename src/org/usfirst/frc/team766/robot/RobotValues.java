@@ -20,4 +20,8 @@ public class RobotValues {
 	//real values
 	public static final double TAPE_WIDTH = 0.508; //with 2 in height tape
 	public static final double TOWER_HEIGHT = 2.4638;
+	
+	//Winch
+	public static final int WINCH_POWER = 1;
+	public static final boolean PIST_OUT = true;
 }
