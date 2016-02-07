@@ -32,4 +32,10 @@ public class RobotValues {
 	public static final double ROTATION_TO_HEIGHT_RATIO = 1.0;
 	public static final double HEIGHT_INITIAL = 1.0;
 	public static final double ROTATIONS_PER_DEGREE = 1;
+	
+	//PID values
+	public static final double ArmKp = 1;
+	public static final double ArmKi = 0;
+	public static final double ArmKd = 0;
+	public static final double ArmThreshold = 0.05;
 }

@@ -1,4 +1,6 @@
-package org.usfirst.frc.team766.robot.commands;
+package org.usfirst.frc.team766.robot.commands.Catapult;
+
+import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 
 public class Winch extends CommandBase{

@@ -15,10 +15,13 @@ public class Ports {
 	//Solenoids
 	public static final int Sol_Fire = 0;
 	public static final int Sol_Shifter = 1;
+	public static final int Sol_ArmS1 = 2;
 	
 	//Encoders
 	public static final int DIO_LDriveEncA = 0,
 							DIO_LDriveEncB = 1,
+							DIO_ArmA = 2,
+							DIO_ArmB = 3,
 							DIO_RDriveEncA = 8,
 							DIO_RDriveEncB = 9;
 	

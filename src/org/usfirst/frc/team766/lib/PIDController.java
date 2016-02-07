@@ -210,6 +210,10 @@ public class PIDController {
 	public void setMaxoutputLow(double in) {
 		maxoutput_low = in;
 	}
+	
+	public double getSetpoint(){
+		return setpoint;
+	}
 
 	private void pr(Object text) {
 		if (print)

@@ -67,6 +67,10 @@ public class Camera extends Subsystem{
 		return verticalAngle;
 	}
 	
+	public double getAverageDist(){
+		return (getFocalDistance() + getAngleDistance())/2;
+	}
+	
 	public void setFocalDistance(double distance){
 		focalDistance = distance;
 	}
