@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team766.lib;
 
+import static edu.wpi.first.wpilibj.Timer.delay;
+
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,9 +20,7 @@ import java.nio.ByteBuffer;
 
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
-import org.opencv.imgcodecs.Imgcodecs;
-
-import static edu.wpi.first.wpilibj.Timer.delay;
+import org.opencv.highgui.Highgui;
 
 /**
  * Axis M1011 network camera.  Reads the values from the network camera into a matrix
@@ -136,7 +136,7 @@ public class AxisCamera {
 				e.printStackTrace();
 			}
         	
-            out = Imgcodecs.imdecode(in, Imgcodecs.CV_LOAD_IMAGE_COLOR);
+            out = Highgui.imdecode(in, Highgui.CV_LOAD_IMAGE_COLOR);
         }
 
         m_freshImage = false;
