@@ -24,4 +24,9 @@ public class RobotValues {
 	//Winch
 	public static final int WINCH_POWER = 1;
 	public static final boolean PIST_OUT = true;
+	
+	//Arm
+	public static final double ROTATION_TO_HEIGHT_RATIO = 1.0;
+	public static final double HEIGHT_INITIAL = 1.0;
+	public static final double ROTATIONS_PER_DEGREE = 1;
 }

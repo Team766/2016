@@ -21,7 +21,7 @@ public class Winch extends CommandBase{
 	}
 
 	protected void interrupted() {
-		end();
+		Catapult.setWinch(0.0);
 		Catapult.setReadyToFire(false);
 	}
 }

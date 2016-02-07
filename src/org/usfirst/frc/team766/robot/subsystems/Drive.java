@@ -55,7 +55,6 @@ public class Drive extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-    	
     }
     
     public void resetGyro(){
@@ -70,12 +69,9 @@ public class Drive extends Subsystem {
     	leftEncoder.reset();
     }
     
-    public void setLeftEncoder(double dist){
-    	leftEncoder.setDistancePerPulse(dist);
-    }
-    
-    public void setRightEncoder(double dist){
-    	rightEncoder.setDistancePerPulse(dist);
+    public void resetEncoders(){
+    	resetRightEncoder();
+    	resetLeftEncoder();
     }
 }
 

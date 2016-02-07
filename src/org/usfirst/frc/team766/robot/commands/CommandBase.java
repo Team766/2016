@@ -5,6 +5,7 @@ import org.usfirst.frc.team766.robot.subsystems.Camera;
 import org.usfirst.frc.team766.robot.subsystems.Catapult;
 import org.usfirst.frc.team766.robot.subsystems.Drive;
 import org.usfirst.frc.team766.robot.subsystems.Intake;
+import org.usfirst.frc.team766.robot.subsystems.Arm;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -15,6 +16,7 @@ public abstract class CommandBase extends Command {
 	public static Camera Camera;
 	public static Intake Intake;
 	public static Catapult Catapult;
+	public static Arm Arm;
 	
 	public static void init(){
 		OI = new OI();
@@ -22,5 +24,6 @@ public abstract class CommandBase extends Command {
 		Camera = new Camera();
 		Intake = new Intake();
 		Catapult = new Catapult();
+		Arm = new Arm();
 	}
 }

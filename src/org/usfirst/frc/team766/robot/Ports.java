@@ -6,6 +6,9 @@ public class Ports {
 	public static final int PWM_Right_Drive = 0;
 	public static final int PWM_Left_Drive = 1;
 	
+	//Arm
+	public static final int PWM_ARM = 3;
+	
 	//Shooter
 	public static final int PWM_Winch = 2;
 	
@@ -24,5 +27,4 @@ public class Ports {
 	
 	//Hall Effect Sensor
 	public static final int DIO_HallEffectSensorWinch = 10;
-	
 }
