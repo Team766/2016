@@ -18,7 +18,7 @@ import java.nio.ByteBuffer;
 
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
-import org.opencv.highgui.Highgui;
+import org.opencv.imgcodecs.Imgcodecs;
 
 import static edu.wpi.first.wpilibj.Timer.delay;
 
@@ -136,7 +136,7 @@ public class AxisCamera {
 				e.printStackTrace();
 			}
         	
-            out = Highgui.imdecode(in, Highgui.CV_LOAD_IMAGE_COLOR);
+            out = Imgcodecs.imdecode(in, Imgcodecs.CV_LOAD_IMAGE_COLOR);
         }
 
         m_freshImage = false;

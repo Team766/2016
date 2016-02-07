@@ -10,7 +10,6 @@ import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
-import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team766.lib.AxisCamera;
 import org.usfirst.frc.team766.robot.RobotValues;
@@ -152,18 +151,5 @@ public class FindErrors extends CommandBase {
 				trackPoint = p;
 		}
 		return trackPoint;
-	}
-	
-	public void savePics(Mat img) {
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException ex) {
-			System.out.println("0 noses.....I 2 tyd to swep");
-		}
-		// change address for your computers
-		Highgui.imwrite("C://Users/Student/ImagePics/filteredBox_" + picCount + ".jpeg", img);
-		picCount++;
-		
-		System.out.println("Looping: " + picCount);
 	}
 }
