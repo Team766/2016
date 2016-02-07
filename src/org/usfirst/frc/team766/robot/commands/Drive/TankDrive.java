@@ -12,8 +12,8 @@ public class TankDrive extends CommandBase{
 	}
 
 	protected void execute() {
-		Drive.setLeftEncoder(OI.getLeftY());
-		Drive.setRightEncoder(OI.getRightY());
+		Drive.setLeftPower(OI.getLeftY());
+		Drive.setRightPower(OI.getRightY());
 	}
 
 	protected boolean isFinished() {

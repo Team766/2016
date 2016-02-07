@@ -12,10 +12,32 @@ public class Camera extends Subsystem{
 	
 	AxisCamera cam = new AxisCamera("169.254.2.2");
 	
-	private int pixelWidth = 0;
-	private double xError = 0.0;
-	private double yError = 0.0;
-			
+	private int pixelWidth;
+	private double xError;
+	private double yError;
+	
+	private double verticalAngle = 90;
+	
+	private double angleError;
+	
+	private double focalDistance;
+	private int trackTarget;
+	
+	public Camera(){
+		pixelWidth = 0;
+		angleError = focalDistance = 0;
+		xError = yError = 0.0;
+		trackTarget = 3;
+	}
+	
+	/**
+	 * @param point 0-2 with 0 being the far right point as seen when looking at the tower.  3 is for
+	 * largest area, and 4 is for center;
+	 */
+	public void changeTrackPoint(int point){
+		trackTarget = point;
+	}
+	
 	public void setPixelWidth(int w){
 		pixelWidth = w;
 	}
@@ -24,19 +46,37 @@ public class Camera extends Subsystem{
 		return pixelWidth;
 	}
 	
+	public double getAngleError(){
+		return angleError;
+	}
+	
+	public void setAngleError(double angle){
+		angleError = angle;
+	}
+	
 	public double getAngleDistance(){
 		return (RobotValues.CAMERA_HEIGHT - RobotValues.ROBOT_BASELINE) / Math.tan(vertical.getAngle());
 	}
 	
+	public void setVerticalAngle(double degree){
+		vertical.setAngle(degree);
+		verticalAngle = degree;
+	}
+	
+	public double getVerticalAngle(){
+		return verticalAngle;
+	}
+	
+	public void setFocalDistance(double distance){
+		focalDistance = distance;
+	}
+	
 	public double getFocalDistance(){
-		return (RobotValues.TAPE_WIDTH * RobotValues.FOCAL_LENGTH) / getPixelWidth();
+		return focalDistance;
 	}
 	
 	public double getDistance(){
 		return (getAngleDistance() + getFocalDistance()) / 2.0 ;
-	}
-
-	protected void initDefaultCommand() {
 	}
 
 	public double getXError() {
@@ -53,5 +93,12 @@ public class Camera extends Subsystem{
 
 	public void setYError(double yError) {
 		this.yError = yError;
-	}	
+	}
+	
+	public int getTrackPoint(){
+		return trackTarget;
+	}
+	
+	protected void initDefaultCommand() {
+	}
 }

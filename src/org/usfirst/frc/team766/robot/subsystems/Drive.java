@@ -73,5 +73,18 @@ public class Drive extends Subsystem {
     	resetRightEncoder();
     	resetLeftEncoder();
     }
+    
+    public void setLeftPower(double s){
+    	leftDrive.set(s);
+    }
+    
+    public void setRightPower(double s){
+    	rightDrive.set(s);
+    }
+    
+    public void setPower(double s){
+    	leftDrive.set(s);
+    	rightDrive.set(s);
+    }
 }
 

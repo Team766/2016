@@ -2,6 +2,9 @@
 package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.robot.commands.CommandBase;
+import org.usfirst.frc.team766.robot.commands.Camera.FindErrors;
+import org.usfirst.frc.team766.robot.commands.Camera.TrackTarget;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -21,6 +24,9 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
+		new FindErrors().start();
+		new TrackTarget().start();
+		
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
@@ -30,6 +36,9 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
+		new FindErrors().start();
+		new TrackTarget().start();
+		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}

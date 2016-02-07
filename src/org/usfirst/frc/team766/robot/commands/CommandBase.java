@@ -6,7 +6,6 @@ import org.usfirst.frc.team766.robot.subsystems.Catapult;
 import org.usfirst.frc.team766.robot.subsystems.Drive;
 import org.usfirst.frc.team766.robot.subsystems.Intake;
 import org.usfirst.frc.team766.robot.subsystems.Arm;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 public abstract class CommandBase extends Command {
