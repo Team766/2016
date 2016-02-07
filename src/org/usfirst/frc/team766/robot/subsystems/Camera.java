@@ -27,14 +27,15 @@ public class Camera extends Subsystem{
 		pixelWidth = 0;
 		angleError = focalDistance = 0;
 		xError = yError = 0.0;
-		trackTarget = 0;
+		trackTarget = 3;
 	}
 	
 	/**
-	 * @param point 0-2 with 0 being the far right point as seen when looking at the tower
+	 * @param point 0-2 with 0 being the far right point as seen when looking at the tower.  3 is for
+	 * largest area, and 4 is for center;
 	 */
 	public void changeTrackPoint(int point){
-		
+		trackTarget = point;
 	}
 	
 	public void setPixelWidth(int w){

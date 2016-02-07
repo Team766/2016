@@ -37,6 +37,7 @@ public class FindErrors extends CommandBase {
 	private AxisCamera cam;
 	private Point trackPoint;
 	private Point followPoint = new Point();
+	private Point largestCenter = new Point();
 	
 	private int picCount = 0;
 	//Box Tracer
@@ -83,26 +84,33 @@ public class FindErrors extends CommandBase {
 			boundingRects.add(Imgproc.boundingRect(point));
 		
 		for(Rect r : boundingRects){
-			if(r.width * r.height > biggestRect.height * biggestRect.width)
-				biggestRect = r;
-			
 			//Create the arraylist with the center points
 			centerPoints.add(new Point(r.x + r.width/2, r.y + r.height/2));
+			
+			if(r.width * r.height > biggestRect.height * biggestRect.width){
+				biggestRect = r;
+				largestCenter = centerPoints.get(centerPoints.size() - 1);
+			}
 		}
 		
 		if(centerPoints.size() < 1)return;
 		followPoint.y = binaryImage.height()/2;
-		
-		//Fix to account for only two points!!!
-		switch(Camera.getTrackPoint()){
-			case 0:
-				followPoint.x = 0;
-				break;
-			case 1:
-				followPoint.x = binaryImage.width()/2;
-				break;
-			case 2:
-				followPoint.x = binaryImage.width();
+
+		if(Camera.getTrackPoint() == 4)
+			followPoint.x = binaryImage.width()/2;
+		else if(centerPoints.size() == 1 || Camera.getTrackPoint() > 2 || contours.size() > 3)
+			followPoint.x = largestCenter.x;
+		else if(centerPoints.size() == 3){
+			switch(Camera.getTrackPoint()){
+				case 0:
+					followPoint.x = 0;
+					break;
+				case 1:
+					followPoint.x = binaryImage.width()/2;
+					break;
+				case 2:
+					followPoint.x = binaryImage.width();
+			}
 		}
 		
 		trackPoint = findClossestPoint(centerPoints, followPoint);
