@@ -13,12 +13,12 @@ public class RobotValues {
 	public static final String[] Autons = {"Vision Drive", "22 Points"};
 	
 	//real values
-	public static final double TAPE_WIDTH = 0.508;
+	public static final double TAPE_WIDTH = 0.5207;
 	public static final double TOWER_HEIGHT = 2.4638;
 	
 	//Vision Values
-	public static final double PIXEL_WIDTH = 211;
-	public static final double DISTANCE = 49;
+	public static final double PIXEL_WIDTH = 351;
+	public static final double DISTANCE = 1.143;
 	public static final double FOCAL_LENGTH = (PIXEL_WIDTH * DISTANCE) / TAPE_WIDTH;
 	public static final int FOCAL_WIDTH = 1;
 	public static final double CAMERA_HEIGHT = 1;
