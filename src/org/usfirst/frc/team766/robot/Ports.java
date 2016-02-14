@@ -4,10 +4,10 @@ public class Ports {
 	
 	//Drive
 	public static final int PWM_Right_Drive = 0;
-	public static final int PWM_Left_Drive = 1;
+	public static final int PWM_Left_Drive = 3;
 	
 	//Arm
-	public static final int PWM_ARM = 3;
+	public static final int PWM_ARM = 1;
 	
 	//Shooter
 	public static final int PWM_Winch = 2;

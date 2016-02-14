@@ -20,7 +20,7 @@ public abstract class CommandBase extends Command {
 	public static void init(){
 		OI = new OI();
 		Drive = new Drive();
-		Camera = new Camera();
+		//Camera = new Camera();
 		Intake = new Intake();
 		Catapult = new Catapult();
 		Arm = new Arm();
