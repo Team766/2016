@@ -38,4 +38,8 @@ public class RobotValues {
 	public static final double ArmKi = 0;
 	public static final double ArmKd = 0;
 	public static final double ArmThreshold = 0.05;
+	public static final double DriveKp = 1;
+	public static final double DriveKi = 0;
+	public static final double DriveKd = 0;
+	public static final double DriveThreshold = 0.05;
 }

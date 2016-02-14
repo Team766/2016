@@ -30,4 +30,10 @@ public class Ports {
 	
 	//Hall Effect Sensor
 	public static final int DIO_HallEffectSensorWinch = 10;
+	
+	//intake
+	public static final int PWM_Intake = 0,
+			PWM_Rotator = 0; //find real port
+	public static final int DIO_IntakeA = 0,
+			DIO_IntakeB = 0; //not real port
 }

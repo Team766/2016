@@ -86,5 +86,13 @@ public class Drive extends Subsystem {
     	leftDrive.set(s);
     	rightDrive.set(s);
     }
+    
+    public double getLeftDistance(){
+    	return leftDrive.get() * DISTANCE_PER_PULSE;
+    }
+    
+    public double getRightDistance(){
+    	return rightDrive.get() * DISTANCE_PER_PULSE;
+    }
 }
 
