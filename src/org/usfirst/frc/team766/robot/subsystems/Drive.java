@@ -83,8 +83,8 @@ public class Drive extends Subsystem {
     }
     
     public void setPower(double s){
-    	leftDrive.set(s);
-    	rightDrive.set(s);
+    	setLeftPower(s);
+    	setRightPower(s);
     }
     
     public double getLeftDistance(){

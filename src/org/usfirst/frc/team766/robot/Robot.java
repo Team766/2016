@@ -4,6 +4,7 @@ package org.usfirst.frc.team766.robot;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 import org.usfirst.frc.team766.robot.commands.Camera.FindErrors;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackTarget;
+import org.usfirst.frc.team766.robot.commands.Drive.TankDrive;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -36,8 +37,10 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
-		new FindErrors().start();
-		new TrackTarget().start();
+		//new FindErrors().start();
+		//new TrackTarget().start();
+		
+		new TankDrive().start();
 		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
