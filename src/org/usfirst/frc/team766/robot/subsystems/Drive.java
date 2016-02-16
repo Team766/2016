@@ -29,7 +29,8 @@ public class Drive extends Subsystem {
 	private Encoder leftEncoder = new Encoder(Ports.DIO_LDriveEncA,
 			Ports.DIO_LDriveEncB, false, CounterBase.EncodingType.k4X);
 	
-	private Solenoid shifter = new Solenoid(Ports.Sol_Shifter);
+	private Solenoid leftShifter = new Solenoid(Ports.Sol_LeftShifter);
+	private Solenoid rightShifter = new Solenoid(Ports.Sol_RightShifter);
 
 	private GyroBase gyro = new AnalogGyro(Ports.GYRO);
 	

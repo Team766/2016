@@ -9,12 +9,14 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Arm extends Subsystem{
-
-	Victor arm = new Victor(Ports.PWM_ARM);
 	
 	Encoder armEncoder = new Encoder(Ports.DIO_ArmA, Ports.DIO_ArmB);
 	
 	Solenoid firstStage = new Solenoid(Ports.Sol_ArmS1);
+	Solenoid thirdStage = new Solenoid(Ports.Sol_ArmS3);
+	
+	Solenoid secondStageUp = new Solenoid(Ports.Sol_ArmS2_Up);
+	Solenoid secondStageDown = new Solenoid(Ports.Sol_ArmS2_Down);
 	
 	private double heightSetpoint;
 	private double heightError;
@@ -54,12 +56,6 @@ public class Arm extends Subsystem{
 		return armEncoder.get() * RobotValues.ROTATIONS_PER_DEGREE + RobotValues.HEIGHT_INITIAL;
 	}
 	
-	public void setArmPower(double power){
-		if(getStage1Extended())
-			arm.set(power);
-		else
-			System.out.println("Arm: Extend stage 1 before moving arm");
-	}
 	
 	public void extendStage1(boolean a){
 		firstStage.set(a);

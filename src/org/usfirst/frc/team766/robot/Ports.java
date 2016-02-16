@@ -4,36 +4,44 @@ public class Ports {
 	
 	//Drive
 	public static final int PWM_Right_Drive = 0;
-	public static final int PWM_Left_Drive = 3;
+	public static final int PWM_Left_Drive = 1;
 	
-	//Arm
-	public static final int PWM_ARM = 1;
+	//Intake
+	public static final int PWM_IntakeWheels = 4;
+	public static final int PWM_IntakeRotator = 5;
 	
 	//Shooter
 	public static final int PWM_Winch = 2;
 	
+	//Camera
+	public static final int PWM_Servo = 3;
+	
 	//Solenoids
-	public static final int Sol_Fire = 0;
-	public static final int Sol_Shifter = 1;
-	public static final int Sol_ArmS1 = 2;
+	public static final int Sol_ArmS1 = 0;
+	public static final int Sol_ArmS2_Up = 1;
+	public static final int Sol_ArmS2_Down = 2;
+	public static final int Sol_ArmS3 = 3;
+	public static final int Sol_RightShifter = 4;
+	public static final int Sol_LeftShifter = 5;
+	public static final int Sol_Fire = 6;
+	
 	
 	//Encoders
 	public static final int DIO_LDriveEncA = 0,
 							DIO_LDriveEncB = 1,
-							DIO_ArmA = 2,
-							DIO_ArmB = 3,
-							DIO_RDriveEncA = 8,
-							DIO_RDriveEncB = 9;
+							DIO_RDriveEncA = 2,
+							DIO_RDriveEncB = 3,
+							DIO_ArmA = 4,
+							DIO_ArmB = 5,
+							DIO_IntakeA = 6,
+							DIO_IntakeB = 7,
+							DIO_WinchA = 8,
+							DIO_WinchB = 9;
+							
 	
 	//Gyro
 	public static final int GYRO = 0;
 	
 	//Hall Effect Sensor
 	public static final int DIO_HallEffectSensorWinch = 10;
-	
-	//intake
-	public static final int PWM_Intake = 0,
-			PWM_Rotator = 0; //find real port
-	public static final int DIO_IntakeA = 0,
-			DIO_IntakeB = 0; //not real port
 }

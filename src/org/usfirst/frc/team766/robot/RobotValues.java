@@ -24,6 +24,10 @@ public class RobotValues {
 	public static final double CAMERA_HEIGHT = 1;
 	public static final double ROBOT_BASELINE = 1;
 	
+	//Intake
+	 public static final double INTAKE_LENGTH = 0.5;			//REAL VALUE NEEDED
+	 public static final double BALL_COMPRESSION_HEIGHT = 0.2286;
+	
 	//Winch
 	public static final int WINCH_POWER = 1;
 	public static final boolean PIST_OUT = true;
@@ -38,6 +42,7 @@ public class RobotValues {
 	public static final double ArmKi = 0;
 	public static final double ArmKd = 0;
 	public static final double ArmThreshold = 0.05;
+	
 	public static final double DriveKp = 1;
 	public static final double DriveKi = 0;
 	public static final double DriveKd = 0;

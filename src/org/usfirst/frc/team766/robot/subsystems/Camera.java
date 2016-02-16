@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.robot.subsystems;
 
+import org.usfirst.frc.team766.robot.Ports;
 import org.usfirst.frc.team766.robot.RobotValues;
 
 import edu.wpi.first.wpilibj.Servo;
@@ -8,7 +9,7 @@ import edu.wpi.first.wpilibj.vision.AxisCamera;
 
 public class Camera extends Subsystem{
 	
-	Servo vertical = new Servo(1);
+	Servo vertical = new Servo(Ports.PWM_Servo);
 	
 	AxisCamera cam = new AxisCamera("169.254.2.2");
 	
