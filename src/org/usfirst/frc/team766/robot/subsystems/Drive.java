@@ -21,13 +21,15 @@ public class Drive extends Subsystem {
 			PULSES_PER_ROTATION = 256,
 			DISTANCE_PER_PULSE = (Math.PI * WHEEL_DIAMETER) / PULSES_PER_ROTATION;
 	
-	private Victor leftDrive = new Victor(Ports.PWM_Left_Drive);
-	private Victor rightDrive = new Victor(Ports.PWM_Right_Drive); 
+	private Victor leftDrive1 = new Victor(Ports.PWM_Left_Drive);
+	private Victor leftDrive2 = new Victor(Ports.PWM_Left_Drive);
+	private Victor rightDrive1 = new Victor(Ports.PWM_Right_Drive); 
+	private Victor rightDrive2 = new Victor(Ports.PWM_Right_Drive); 
 	
-	private Encoder rightEncoder = new Encoder(Ports.DIO_RDriveEncA,
-			Ports.DIO_RDriveEncB, false, CounterBase.EncodingType.k4X);
-	private Encoder leftEncoder = new Encoder(Ports.DIO_LDriveEncA,
-			Ports.DIO_LDriveEncB, false, CounterBase.EncodingType.k4X);
+	private Encoder rightEncoder = new Encoder(Ports.DIO_RDriveEnc1,
+			Ports.DIO_RDriveEnc2, false, CounterBase.EncodingType.k4X);
+	private Encoder leftEncoder = new Encoder(Ports.DIO_LDriveEnc1,
+			Ports.DIO_LDriveEnc2, false, CounterBase.EncodingType.k4X);
 	
 	private Solenoid shifter = new Solenoid(Ports.Sol_Shifter);
 
@@ -61,6 +63,10 @@ public class Drive extends Subsystem {
     	gyro.reset();
     }
     
+    public double getGyroAngle(){
+    	return gyro.getAngle();
+    }
+    
     public void resetRightEncoder(){
     	rightEncoder.reset();
     }
@@ -75,11 +81,13 @@ public class Drive extends Subsystem {
     }
     
     public void setLeftPower(double s){
-    	leftDrive.set(s);
+    	leftDrive1.set(s);
+    	leftDrive2.set(s);
     }
     
     public void setRightPower(double s){
-    	rightDrive.set(s);
+    	rightDrive1.set(s);
+    	rightDrive2.set(s);
     }
     
     public void setPower(double s){
@@ -88,11 +96,11 @@ public class Drive extends Subsystem {
     }
     
     public double getLeftDistance(){
-    	return leftDrive.get() * DISTANCE_PER_PULSE;
+    	return leftEncoder.get() * DISTANCE_PER_PULSE;
     }
     
     public double getRightDistance(){
-    	return rightDrive.get() * DISTANCE_PER_PULSE;
+    	return rightEncoder.get() * DISTANCE_PER_PULSE;
     }
 }
 

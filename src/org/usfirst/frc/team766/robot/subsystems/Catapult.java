@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *	Subsystem for controlling the catapult
+ *	Subsystem for controlling the Catapult
  */
 public class Catapult extends Subsystem {
     

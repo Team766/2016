@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.robot.commands.Catapult;
 
+import org.usfirst.frc.team766.robot.RobotValues;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 public class Fire extends CommandBase{
@@ -10,6 +11,7 @@ public class Fire extends CommandBase{
 	protected void initialize() {
 		count = 0;
 		done = false;
+		MoveIntake(RobotValues.INTAKE_STRAIGHTUP_ANGLE);
 	}
 
 	protected void execute() {

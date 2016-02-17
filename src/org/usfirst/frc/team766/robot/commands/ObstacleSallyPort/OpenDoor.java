@@ -1,8 +1,8 @@
-package org.usfirst.frc.team766.robot.commands.Intake;
+package org.usfirst.frc.team766.robot.commands.ObstacleSallyPort;
 
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 
-public class ConquerChivalDeFrieza extends CommandBase{
+public class OpenDoor extends CommandBase{
 
 	protected void initialize() {
 		
@@ -15,13 +15,12 @@ public class ConquerChivalDeFrieza extends CommandBase{
 	protected boolean isFinished() {
 		return false;
 	}
-
+	
 	protected void end() {
 		
 	}
-
+	
 	protected void interrupted() {
 		end();
 	}
-
 }

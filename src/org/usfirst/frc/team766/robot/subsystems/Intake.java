@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * subsystem for the intake
+ * Subsystem for the Intake
  */
 public class Intake extends Subsystem {
     
@@ -16,13 +16,13 @@ public class Intake extends Subsystem {
     }
     
     //motor for spinning things
-    private Victor wheels = new Victor(Ports.PWM_Intake);
+    private Victor wheels = new Victor(Ports.PWM_IntakeWheels);
 
     //motor for rotating whole mechanism
-    private Victor rotator = new Victor(Ports.PWM_Rotator);
+    private Victor rotator = new Victor(Ports.PWM_IntakeRotator);
 
     //encoder on rotator
-    private Encoder intakeAngle = new Encoder(Ports.DIO_IntakeA, Ports.DIO_IntakeB);
+    private Encoder intakeAngle = new Encoder(Ports.DIO_IntakeEnc1, Ports.DIO_IntakeEnc2);
 
     public void setWheels(double s){
     	wheels.set(s);
@@ -32,9 +32,8 @@ public class Intake extends Subsystem {
     	rotator.set(s);
     }
 
-    public int getIntakeAngle(){
-    	return intakeAngle.get();
+    public double getIntakeAngle(){
+    	return intakeAngle.get() * (256d/360d);
     }
-    
 }
 

@@ -7,7 +7,7 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 public class DriveDistance extends CommandBase{
 
 	private double distance;
-	private PIDController drivePID = new PIDController(RobotValues.DriveKp, RobotValues.DriveKi, RobotValues.ArmKd, -1, 1, RobotValues.DriveThreshold);
+	private PIDController drivePID = new PIDController(RobotValues.DriveKp, RobotValues.DriveKi, RobotValues.DriveKd, -1, 1, RobotValues.DriveThreshold);
 	
 	public DriveDistance(int d){
 		distance = d + (Drive.getLeftDistance() + Drive.getRightDistance())/2;
@@ -27,8 +27,7 @@ public class DriveDistance extends CommandBase{
 	}
 
 	protected void end() {
-		Drive.setLeftPower(0.0);
-		Drive.setRightPower(0.0);
+		Drive.setPower(0.0);
 	}
 
 	protected void interrupted() {
