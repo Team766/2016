@@ -26,12 +26,11 @@ public class Drive extends Subsystem {
 	private Victor rightDrive1 = new Victor(Ports.PWM_Right_Drive); 
 	private Victor rightDrive2 = new Victor(Ports.PWM_Right_Drive); 
 	
-	private Encoder rightEncoder = new Encoder(Ports.DIO_RDriveEnc1,
-			Ports.DIO_RDriveEnc2, false, CounterBase.EncodingType.k4X);
-	private Encoder leftEncoder = new Encoder(Ports.DIO_LDriveEnc1,
-			Ports.DIO_LDriveEnc2, false, CounterBase.EncodingType.k4X);
+	private Encoder rightEncoder = new Encoder(Ports.DIO_RDriveEncA, Ports.DIO_RDriveEncB);
+	private Encoder leftEncoder = new Encoder(Ports.DIO_LDriveEncA, Ports.DIO_LDriveEncB);
 	
-	private Solenoid shifter = new Solenoid(Ports.Sol_Shifter);
+	private Solenoid leftShifter = new Solenoid(Ports.Sol_LeftShifter);
+	private Solenoid rightShifter = new Solenoid(Ports.Sol_RightShifter);
 
 	private GyroBase gyro = new AnalogGyro(Ports.GYRO);
 	

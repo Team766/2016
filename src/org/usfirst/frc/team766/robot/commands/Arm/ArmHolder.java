@@ -21,7 +21,7 @@ public class ArmHolder extends CommandBase{
 		
 		ArmPID.calculate(Arm.getHeight(), false);
 	
-		Arm.setArmPower(ArmPID.getOutput());
+		//Arm.setArmPower(ArmPID.getOutput());
 	}
 
 	protected boolean isFinished() {
@@ -29,7 +29,7 @@ public class ArmHolder extends CommandBase{
 	}
 
 	protected void end() {
-		Arm.setArmPower(0);
+		//Arm.setArmPower(0);
 	}
 
 	protected void interrupted() {

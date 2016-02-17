@@ -4,6 +4,7 @@ import org.usfirst.frc.team766.robot.Ports;
 import org.usfirst.frc.team766.robot.RobotValues;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,6 +21,8 @@ public class Catapult extends Subsystem {
 	
 	//piston
 	Solenoid launch = new Solenoid(Ports.Sol_Fire);
+	
+	Encoder travelDistance = new Encoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
 	
 	//sensor
 	DigitalInput sensor = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 

@@ -2,40 +2,45 @@ package org.usfirst.frc.team766.robot;
 
 public class Ports {
 	
-	//Motors
-	public static final int PWM_Right_Drive = 0,
-							PWM_Left_Drive = 1;
-	public static final int PWM_Winch = 2;
-	public static final int PWM_Servo = 3;
-	public static final int PWM_IntakeWheels = 4,
-							PWM_IntakeRotator = 5;
+	//Drive
+	public static final int PWM_Right_Drive = 0;
+	public static final int PWM_Left_Drive = 1;
 	
-	//Solenoids
-	public static final int Sol_Arm1 = 0,
-							Sol_Arm2Up = 1,
-							Sol_Arm2Down = 2,
-							Sol_Arm3 = 3;
-	public static final int Sol_RShifter = 4,
-							Sol_LShifter = 5,
-							Sol_Fire = 6;
+	//Intake
+	public static final int PWM_IntakeWheels = 4;
+	public static final int PWM_IntakeRotator = 5;
+	
+	//Shooter
+	public static final int PWM_Winch = 2;
+	
+	//Camera
+	public static final int PWM_Servo = 3;
+
+	public static final int Sol_ArmS1 = 0;
+	public static final int Sol_ArmS2_Up = 1;
+	public static final int Sol_ArmS2_Down = 2;
+	public static final int Sol_ArmS3 = 3;
+	public static final int Sol_RightShifter = 4;
+	public static final int Sol_LeftShifter = 5;
+	public static final int Sol_Fire = 6;
 	
 	
 	//Encoders
-	public static final int DIO_LDriveEnc1 = 0,
-							DIO_LDriveEnc2 = 1,
-							DIO_RDriveEnc1 = 2,
-							DIO_RDriveEnc2 = 3,
+	public static final int DIO_LDriveEncA = 0,
+							DIO_LDriveEncB = 1,
+							DIO_RDriveEncA = 2,
+							DIO_RDriveEncB = 3,
 							DIO_ArmA = 4,
 							DIO_ArmB = 5,
-							DIO_IntakeEnc1 = 6,
-							DIO_IntakeEnc2 = 7,
-							DIO_WinchEnc1 = 8,
-							DIO_WinchEnc2 = 9;
-	
+							DIO_IntakeA = 6,
+							DIO_IntakeB = 7,
+							DIO_WinchA = 8,
+							DIO_WinchB = 9;
+							
 	//Gyro
 	public static final int GYRO = 0;
 	
 	//Hall Effect Sensor
 	public static final int DIO_HallEffectSensorWinch = 10;
-	
+
 }

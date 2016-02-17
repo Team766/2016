@@ -11,7 +11,7 @@ public class Fire extends CommandBase{
 	protected void initialize() {
 		count = 0;
 		done = false;
-		MoveIntake(RobotValues.INTAKE_STRAIGHTUP_ANGLE);
+		//MoveIntake(RobotValues.INTAKE_STRAIGHTUP_ANGLE);
 	}
 
 	protected void execute() {

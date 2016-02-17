@@ -10,11 +10,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Arm extends Subsystem{
 	
 	private Encoder armEncoder = new Encoder(Ports.DIO_ArmA, Ports.DIO_ArmB);
+
+	Solenoid firstStage = new Solenoid(Ports.Sol_ArmS1);
+	Solenoid thirdStage = new Solenoid(Ports.Sol_ArmS3);
 	
-	private Solenoid firstStage = new Solenoid(Ports.Sol_Arm1);
-	private Solenoid secondStageUp = new Solenoid(Ports.Sol_Arm2Up);
-	private Solenoid secondStageDown = new Solenoid(Ports.Sol_Arm2Down);
-	private Solenoid thirdStage = new Solenoid(Ports.Sol_Arm3);
+	Solenoid secondStageUp = new Solenoid(Ports.Sol_ArmS2_Up);
+	Solenoid secondStageDown = new Solenoid(Ports.Sol_ArmS2_Down);
 	
 	private double heightSetpoint;
 	private double heightError;

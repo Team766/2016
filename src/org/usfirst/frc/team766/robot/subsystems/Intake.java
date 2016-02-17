@@ -11,10 +11,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
     
-    public void initDefaultCommand() {
-    	
-    }
-    
     //motor for spinning things
     private Victor wheels = new Victor(Ports.PWM_IntakeWheels);
 
@@ -22,8 +18,11 @@ public class Intake extends Subsystem {
     private Victor rotator = new Victor(Ports.PWM_IntakeRotator);
 
     //encoder on rotator
-    private Encoder intakeAngle = new Encoder(Ports.DIO_IntakeEnc1, Ports.DIO_IntakeEnc2);
+    private Encoder intakeAngle = new Encoder(Ports.DIO_IntakeA, Ports.DIO_IntakeB);
 
+    public void initDefaultCommand() {	
+    }
+    
     public void setWheels(double s){
     	wheels.set(s);
     }
