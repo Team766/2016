@@ -17,42 +17,11 @@ public class Arm extends Subsystem{
 	Solenoid secondStageUp = new Solenoid(Ports.Sol_ArmS2_Up);
 	Solenoid secondStageDown = new Solenoid(Ports.Sol_ArmS2_Down);
 	
-	private double heightSetpoint;
-	private double heightError;
-	
 	protected void initDefaultCommand() {
 	}
 	
-	public void setHeightError(double error){
-		heightError = error;
-	}
-	
-	public boolean armAtPosition(){
-		return Math.abs(getHeightError()) < RobotValues.ARM_THRESHOLD;
-	}
-	
-	public double getHeightError(){
-		return heightError;
-	}
-	
-	public double getAngleFromHeight(double h){
-		return (h - RobotValues.HEIGHT_INITIAL)/RobotValues.ROTATION_TO_HEIGHT_RATIO;
-	}
-
 	public double getStage2Angle(){
 		return armEncoder.get() * (256d/360d);
-	}
-	
-	public double getArmSetpoint(){
-		return heightSetpoint;
-	}
-	
-	public void setArmSetpoint(double point){
-		heightSetpoint = point;
-	}
-	
-	public double getHeight(){
-		return armEncoder.get() * RobotValues.ROTATIONS_PER_DEGREE + RobotValues.HEIGHT_INITIAL;
 	}
 	
 	public void extendStage1(boolean a){

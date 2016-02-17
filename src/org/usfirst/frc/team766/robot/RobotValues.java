@@ -52,6 +52,12 @@ public class RobotValues {
 	public static final double DriveKi = 0;
 	public static final double DriveKd = 0;
 	public static final double DriveThreshold = 0.05;
+	
+	public static final double AngleKp = 1;
+	public static final double AngleKi = 0;
+	public static final double AngleKd = 0;
+	public static final double AngleThreshold = 1;
+	
 	public static final double IntakeKp = 1;
 	public static final double IntakeKi = 0;
 	public static final double IntakeKd = 0;
@@ -61,5 +67,6 @@ public class RobotValues {
 	public static final double INTAKE_BALL_ANGLE = 1,
 							   BALL_COMPRESSION_ANGLE = 1,
 							   INTAKE_STARTING_ANGLE = 1,
-							   INTAKE_STRAIGHTUP_ANGLE = 1;
+							   INTAKE_STRAIGHTUP_ANGLE = 1,
+							   DEFAULT_ANGLE = 1;
 }

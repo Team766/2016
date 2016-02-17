@@ -16,15 +16,9 @@ public class Catapult extends Subsystem {
     
 	private boolean readyToFire = false;
 	
-	//motor
 	Victor winch = new Victor(Ports.PWM_Winch);
-	
-	//piston
 	Solenoid launch = new Solenoid(Ports.Sol_Fire);
-	
 	Encoder travelDistance = new Encoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
-	
-	//sensor
 	DigitalInput sensor = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 
 	
 	public boolean getReadyToFire(){

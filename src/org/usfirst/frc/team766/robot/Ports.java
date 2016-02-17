@@ -36,9 +36,6 @@ public class Ports {
 							DIO_IntakeB = 7,
 							DIO_WinchA = 8,
 							DIO_WinchB = 9;
-							
-	//Gyro
-	public static final int GYRO = 0;
 	
 	//Hall Effect Sensor
 	public static final int DIO_HallEffectSensorWinch = 10;
