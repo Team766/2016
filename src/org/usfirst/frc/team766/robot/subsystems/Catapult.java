@@ -15,17 +15,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Catapult extends Subsystem {
     
 	private boolean readyToFire = false;
+	private RobotValues.RotationCounts position_ = RobotValues.RotationCounts.Bottom;
 	
-	//motor
 	Victor winch = new Victor(Ports.PWM_Winch);
-	
-	//piston
 	Solenoid launch = new Solenoid(Ports.Sol_Fire);
-	
 	Encoder travelDistance = new Encoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
+	DigitalInput atTop = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 
 	
-	//sensor
-	DigitalInput sensor = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 
+	
+	public RobotValues.RotationCounts getStopPosition(){
+		return position_;
+	}
+	
+	public void setStopPosition(RobotValues.RotationCounts position){
+		position_ = position;
+	}
 	
 	public boolean getReadyToFire(){
 		return readyToFire;
@@ -33,6 +37,10 @@ public class Catapult extends Subsystem {
 	
 	public void setReadyToFire(boolean x){
 		readyToFire = x;
+	}
+	
+	public double getRotations(){
+		return travelDistance.get() / 256d;
 	}
 	
 	public void goWinch(){
@@ -43,12 +51,12 @@ public class Catapult extends Subsystem {
 		winch.set(s);
 	}
 	
-	public boolean sensorDown(){
-		return sensor.get();
+	public boolean atTop(){
+		return atTop.get();
 	}
 	
-	public void releasePiston(){
-		launch.set(RobotValues.PIST_OUT);
+	public void firePiston(boolean fire){
+		launch.set(RobotValues.SOL_FIRE);
 	}
 	
     public void initDefaultCommand() {

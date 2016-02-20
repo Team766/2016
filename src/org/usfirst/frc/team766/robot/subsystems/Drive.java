@@ -2,11 +2,14 @@ package org.usfirst.frc.team766.robot.subsystems;
 
 import org.usfirst.frc.team766.robot.Ports;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GyroBase;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Command;
@@ -32,30 +35,16 @@ public class Drive extends Subsystem {
 	private Solenoid leftShifter = new Solenoid(Ports.Sol_LeftShifter);
 	private Solenoid rightShifter = new Solenoid(Ports.Sol_RightShifter);
 
-	private GyroBase gyro = new AnalogGyro(Ports.GYRO);
+	private ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	
 	private PowerDistributionPanel PDP = new PowerDistributionPanel();
 	
-	private boolean lock = false;
-	private Command lockCommand = null;
-	
-	/*
-	 * Todo:
-	 * 1.  Reset Commands
-	 * 2.  Power commands
-	 */
-	
-	public void lock(Command command){
-		lock = true;
-		lockCommand = command;
-	}
-	
-	public void unlock(){
-		lock = false;
-		lockCommand = null;
-	}
 	
     public void initDefaultCommand() {
+    }
+    
+    public void calibrateGyro(){
+    	gyro.calibrate();
     }
     
     public void resetGyro(){
@@ -100,6 +89,19 @@ public class Drive extends Subsystem {
     
     public double getRightDistance(){
     	return rightEncoder.get() * DISTANCE_PER_PULSE;
+    }
+    
+    public void setShifter(boolean on){
+    	setLeftShifter(on);
+    	setRightShifter(on);
+    }
+    
+    private void setLeftShifter(boolean on){
+    	leftShifter.set(on);
+    }
+    
+    private void setRightShifter(boolean on){
+    	rightShifter.set(on);
     }
 }
 
