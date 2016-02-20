@@ -16,7 +16,7 @@ public class Fire extends CommandBase{
 
 	protected void execute() {
 		if(Catapult.getReadyToFire()){
-			Catapult.releasePiston();
+			Catapult.firePiston(true);
 			if(count >= 100)
 				done = true;
 			count++;

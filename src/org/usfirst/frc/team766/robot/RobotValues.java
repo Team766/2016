@@ -30,7 +30,23 @@ public class RobotValues {
 	
 	//Winch
 	public static final int WINCH_POWER = 1;
-	public static final boolean PIST_OUT = true;
+	public static final boolean SOL_FIRE = true;
+	public static final double Catapult_RotationsToStop = 2; //Need Real Value
+	
+	//Find real values
+	public enum RotationCounts{
+	    Bottom(7), Middle(3.5);
+
+	    private double numVal;
+
+	    RotationCounts(double numVal) {
+	        this.numVal = numVal;
+	    }
+
+	    public double getNumVal() {
+	        return numVal;
+	    }
+	}
 	
 	//Arm
 	public static final double ROTATION_TO_HEIGHT_RATIO = 1.0;
