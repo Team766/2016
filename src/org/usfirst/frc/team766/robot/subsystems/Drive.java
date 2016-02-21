@@ -55,6 +55,10 @@ public class Drive extends Subsystem {
     	return gyro.getAngle();
     }
     
+    public double getGyroAngleRadians(){
+    	return gyro.getAngle() * (Math.PI / 180);
+    }
+    
     public void resetRightEncoder(){
     	rightEncoder.reset();
     }
@@ -103,5 +107,14 @@ public class Drive extends Subsystem {
     private void setRightShifter(boolean on){
     	rightShifter.set(on);
     }
+
+	public double getLeftVelocity() {
+		return leftEncoder.getRate();
+	}
+
+	public double getRightVelocity() {
+		return rightEncoder.getRate();
+	}
+
 }
 

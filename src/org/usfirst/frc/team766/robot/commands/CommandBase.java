@@ -17,7 +17,6 @@ public abstract class CommandBase extends Command {
 	public static Intake Intake;
 	public static Catapult Catapult;
 	public static Arm Arm;
-	public static Looper Looper;
 	
 	public static void init(){
 		OI = new OI();
@@ -26,6 +25,6 @@ public abstract class CommandBase extends Command {
 		Intake = new Intake();
 		Catapult = new Catapult();
 		Arm = new Arm();
-		Looper = new Looper();
+			
 	}
 }

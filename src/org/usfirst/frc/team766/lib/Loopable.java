@@ -5,4 +5,5 @@ public abstract class Loopable {
 	protected abstract void initilize();
 	protected abstract void run();
 	protected abstract void end();
+	protected abstract boolean isFinished();
 }

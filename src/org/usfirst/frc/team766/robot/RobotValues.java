@@ -24,6 +24,10 @@ public class RobotValues {
 	public static final double CAMERA_HEIGHT = 1;
 	public static final double ROBOT_BASELINE = 1;
 	
+	//Cheesy drive
+    public static final double sensitivityHigh = .85;
+    public static final double sensitivityLow = .75;
+	
 	//Intake
 	public static final double INTAKE_LENGTH = 0.354;
 	public static final double BALL_COMPRESSION_HEIGHT = 0.2286;
