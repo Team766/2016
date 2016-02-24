@@ -1,10 +1,12 @@
-
 package org.usfirst.frc.team766.robot;
 
+import org.usfirst.frc.team766.lib.Looper;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 import org.usfirst.frc.team766.robot.commands.Camera.FindErrors;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackTarget;
+import org.usfirst.frc.team766.robot.commands.Catapult.CatapultControl;
 import org.usfirst.frc.team766.robot.commands.Drive.TankDrive;
+import org.usfirst.frc.team766.robot.commands.Intake.IntakeControl;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,6 +20,10 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		CommandBase.init();
+		
+		new Thread(new Looper()).start();
+		Looper.getInstance().add(new CatapultControl());
+		Looper.getInstance().add(new IntakeControl());
 	}
 
 	public void disabledPeriodic() {
@@ -48,7 +54,6 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void disabledInit() {
-
 	}
 
 	public void teleopPeriodic() {

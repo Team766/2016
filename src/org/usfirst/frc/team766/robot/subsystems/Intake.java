@@ -55,4 +55,3 @@ public class Intake extends Subsystem {
 		this.angleError = angleError;
 	}
 }
-

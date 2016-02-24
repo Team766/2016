@@ -1,10 +1,11 @@
 package org.usfirst.frc.team766.robot.commands.Catapult;
 
+import org.usfirst.frc.team766.lib.Loopable;
 import org.usfirst.frc.team766.robot.RobotValues;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 
-public class Winch extends CommandBase{
+public class Winch extends Loopable{
 
 	private final double MIN_ACCEL = -0.5;
 	private final double DECELERATION = -.05;
@@ -14,14 +15,14 @@ public class Winch extends CommandBase{
 	private double power = 1.0;
 	private boolean done = false;
 	
-	protected void initialize() {
-		if(Catapult.getReadyToFire())
+	protected void initilize() {
+		if(CommandBase.Catapult.getReadyToFire())
 			done = true;
 		
-		Catapult.firePiston(false);
+		CommandBase.Catapult.firePiston(false);
 	}
 	
-	protected void execute() {
+	protected void run() {
 		if(readyToRampDown())
 			power += DECELERATION;
 		else
@@ -30,21 +31,21 @@ public class Winch extends CommandBase{
 		if(power <= MIN_POWER)
 			power = MIN_POWER;
 		
-		Catapult.setWinch(power);
+		CommandBase.Catapult.setWinch(power);
 	}
 
 	protected boolean isFinished() {
-		return done || Math.abs(Catapult.getStopPosition().getNumVal() - Catapult.getRotations()) < STOP_THRESHOLD;
+		return done || Math.abs(CommandBase.Catapult.getStopPosition().getNumVal() - CommandBase.Catapult.getRotations()) < STOP_THRESHOLD;
 	}
 
 	protected void end() {
-		Catapult.setWinch(0.0);
-		Catapult.setReadyToFire(true);
+		CommandBase.Catapult.setWinch(0.0);
+		CommandBase.Catapult.setReadyToFire(true);
 	}
 
 	protected void interrupted() {
-		Catapult.setWinch(0.0);
-		Catapult.setReadyToFire(false);
+		CommandBase.Catapult.setWinch(0.0);
+		CommandBase.Catapult.setReadyToFire(false);
 	}
 	
 	private double getDistanceToStop(double velocity){
@@ -52,6 +53,7 @@ public class Winch extends CommandBase{
 	}
 	
 	private boolean readyToRampDown(){
-		return Catapult.getStopPosition().getNumVal() - Catapult.getRotations() < RobotValues.Catapult_RotationsToStop;
+		return CommandBase.Catapult.getStopPosition().getNumVal() - CommandBase.Catapult.getRotations() < RobotValues.Catapult_RotationsToStop;
 	}
+
 }

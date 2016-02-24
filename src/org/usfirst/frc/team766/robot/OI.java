@@ -1,6 +1,10 @@
 package org.usfirst.frc.team766.robot;
 
+import org.usfirst.frc.team766.lib.trajectory.Path;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -10,6 +14,12 @@ public class OI{
 	
 	public Joystick jLeft = new Joystick(0),
 			jRight = new Joystick(1);
+	
+	public Button
+		buttonQuickTurn = new JoystickButton(jRight, Buttons.QUICKTURN),
+		buttonShifter = new JoystickButton(jLeft, Buttons.SHIFTER);
+	
+	public Path path = null;
 	
 	public OI(){
 		
@@ -28,6 +38,22 @@ public class OI{
 	}
 	
 	public double getRightY(){
+		return jRight.getY();
+	}
+
+	public boolean getQuickTurn() {
+		return buttonQuickTurn.get();
+	}
+
+	public boolean getShifter() {
+		return buttonShifter.get();
+	}
+
+	public double getSteer() {
+		return jRight.getX();
+	}
+
+	public double getThrottle() {
 		return jRight.getY();
 	}
 }
