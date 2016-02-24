@@ -1,25 +1,13 @@
 package org.usfirst.frc.team766.robot.commands.Intake;
 
+import org.usfirst.frc.team766.robot.RobotValues;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 
-public class IntakeBall extends CommandBase {
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
-	protected void initialize() {
+public class IntakeBall extends CommandGroup {
+	public IntakeBall(){
+		addParallel(new SetWheels(1.0));
+		addParallel(new MoveArm(CommandBase.Intake.getAngleFromHeight(RobotValues.BALL_COMPRESSION_HEIGHT)));
 	}
-
-	protected void execute() {
-	}
-
-	protected boolean isFinished() {
-		return false;
-	}
-
-	protected void end() {
-		Intake.setWheels(0.0);
-	}
-
-	protected void interrupted() {
-		end();
-	}
-
 }

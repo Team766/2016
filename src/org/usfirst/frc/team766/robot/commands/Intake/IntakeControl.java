@@ -18,6 +18,9 @@ public class IntakeControl extends Loopable{
 	}
 	
 	protected void run() {
+		if(CommandBase.Intake.isLocked())
+			return;
+		
 		if(Math.abs(CommandBase.Intake.getAngleSetpoint() - IntakePID.getSetpoint()) < SETPOINT_THRESHOLD)
 			IntakePID.setSetpoint(CommandBase.Intake.getAngleSetpoint());
 		

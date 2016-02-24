@@ -41,12 +41,11 @@ public class Catapult extends Subsystem {
 	}
 	
 	public double getRotations(){
-		return travelDistance.get() / 256d;
+		return (travelDistance.get() / 256d) * 5.95 * 3.0 * (40.0/35.0);
 	}
 	
 	public void goWinch(){
-		winchA.set(RobotValues.WINCH_POWER);
-		winchB.set(RobotValues.WINCH_POWER);
+		setWinch(RobotValues.WINCH_POWER);
 	}
 	
 	public void setWinch(double s){

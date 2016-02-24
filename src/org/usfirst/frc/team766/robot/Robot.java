@@ -5,13 +5,17 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 import org.usfirst.frc.team766.robot.commands.Camera.FindErrors;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackTarget;
 import org.usfirst.frc.team766.robot.commands.Catapult.CatapultControl;
+import org.usfirst.frc.team766.robot.commands.Drive.DriveDistance;
 import org.usfirst.frc.team766.robot.commands.Drive.TankDrive;
 import org.usfirst.frc.team766.robot.commands.Intake.IntakeControl;
+import org.usfirst.frc.team766.robot.commands.Intake.MoveArm;
+import org.usfirst.frc.team766.robot.commands.Intake.ResetIntakeAngle;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Robot extends IterativeRobot {
@@ -20,6 +24,20 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		CommandBase.init();
+		
+		//Test Commands
+		SmartDashboard.putData(new ResetIntakeAngle());
+		SmartDashboard.putData(new DriveDistance(2));
+		SmartDashboard.putData(new MoveArm(90));
+		
+		//PIDS
+		SmartDashboard.putNumber("Intake P: ", RobotValues.IntakeKp);
+		SmartDashboard.putNumber("Intake I: ", RobotValues.IntakeKi);
+		SmartDashboard.putNumber("Intake D: ", RobotValues.IntakeKd);
+		
+		SmartDashboard.putNumber("Drive P: ", RobotValues.DriveKp);
+		SmartDashboard.putNumber("Drive I: ", RobotValues.DriveKi);
+		SmartDashboard.putNumber("Drive D: ", RobotValues.DriveKd);
 		
 		new Thread(new Looper()).start();
 		Looper.getInstance().add(new CatapultControl());

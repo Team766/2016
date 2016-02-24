@@ -35,7 +35,7 @@ public class RobotValues {
 	//Winch
 	public static final int WINCH_POWER = 1;
 	public static final boolean SOL_FIRE = true;
-	public static final double Catapult_RotationsToStop = 2; //Need Real Value
+	public static final double Catapult_RotationsToStop = 4; //Need Real Value
 	
 	//Find real values
 	public enum RotationCounts{
