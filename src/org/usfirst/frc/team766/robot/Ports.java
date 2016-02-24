@@ -11,10 +11,11 @@ public class Ports {
 	public static final int PWM_IntakeRotator = 5;
 	
 	//Shooter
-	public static final int PWM_Winch = 2;
+	public static final int PWM_Winch1 = 2;
+	public static final int PWM_Winch2 = 3;
 	
 	//Camera
-	public static final int PWM_Servo = 3;
+	public static final int PWM_Servo = 6;
 
 	public static final int Sol_ArmS1 = 0;
 	public static final int Sol_ArmS2_Up = 1;

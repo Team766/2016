@@ -41,6 +41,7 @@ public class Robot extends IterativeRobot {
 		//new TrackTarget().start();
 		
 		new TankDrive().start();
+		//new MotorTester().start();
 		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();

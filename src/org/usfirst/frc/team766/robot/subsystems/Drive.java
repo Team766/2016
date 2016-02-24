@@ -24,10 +24,8 @@ public class Drive extends Subsystem {
 			PULSES_PER_ROTATION = 256,
 			DISTANCE_PER_PULSE = (Math.PI * WHEEL_DIAMETER) / PULSES_PER_ROTATION;
 	
-	private Victor leftDrive1 = new Victor(Ports.PWM_Left_Drive);
-	private Victor leftDrive2 = new Victor(Ports.PWM_Left_Drive);
-	private Victor rightDrive1 = new Victor(Ports.PWM_Right_Drive); 
-	private Victor rightDrive2 = new Victor(Ports.PWM_Right_Drive); 
+	private Victor leftDrive = new Victor(Ports.PWM_Left_Drive);
+	private Victor rightDrive = new Victor(Ports.PWM_Right_Drive); 
 	
 	private Encoder rightEncoder = new Encoder(Ports.DIO_RDriveEncA, Ports.DIO_RDriveEncB);
 	private Encoder leftEncoder = new Encoder(Ports.DIO_LDriveEncA, Ports.DIO_LDriveEncB);
@@ -69,13 +67,11 @@ public class Drive extends Subsystem {
     }
     
     public void setLeftPower(double s){
-    	leftDrive1.set(s);
-    	leftDrive2.set(s);
+    	leftDrive.set(-s);
     }
     
     public void setRightPower(double s){
-    	rightDrive1.set(s);
-    	rightDrive2.set(s);
+    	rightDrive.set(-s);
     }
     
     public void setPower(double s){

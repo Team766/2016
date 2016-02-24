@@ -17,7 +17,8 @@ public class Catapult extends Subsystem {
 	private boolean readyToFire = false;
 	private RobotValues.RotationCounts position_ = RobotValues.RotationCounts.Bottom;
 	
-	Victor winch = new Victor(Ports.PWM_Winch);
+	Victor winchA = new Victor(Ports.PWM_Winch1);
+	Victor winchB = new Victor(Ports.PWM_Winch2);
 	Solenoid launch = new Solenoid(Ports.Sol_Fire);
 	Encoder travelDistance = new Encoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
 	DigitalInput atTop = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 
@@ -44,11 +45,13 @@ public class Catapult extends Subsystem {
 	}
 	
 	public void goWinch(){
-		winch.set(RobotValues.WINCH_POWER);
+		winchA.set(RobotValues.WINCH_POWER);
+		winchB.set(RobotValues.WINCH_POWER);
 	}
 	
 	public void setWinch(double s){
-		winch.set(s);
+		winchA.set(s);
+		winchB.set(s);
 	}
 	
 	public boolean atTop(){
