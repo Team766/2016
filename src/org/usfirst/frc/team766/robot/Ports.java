@@ -2,6 +2,10 @@ package org.usfirst.frc.team766.robot;
 
 public class Ports {
 	
+	//PCMS
+	public static final int PCM_REGULAR = 0;
+	public static final int PCM_ARM = 1;
+	
 	//Drive
 	public static final int PWM_Right_Drive = 0;
 	public static final int PWM_Left_Drive = 1;
@@ -21,9 +25,10 @@ public class Ports {
 	public static final int Sol_ArmS2_Up = 1;
 	public static final int Sol_ArmS2_Down = 2;
 	public static final int Sol_ArmS3 = 3;
-	public static final int Sol_RightShifter = 4;
-	public static final int Sol_LeftShifter = 5;
-	public static final int Sol_Fire = 6;
+	public static final int Sol_RightShifter = 0;
+	public static final int Sol_LeftShifter = 1;
+	public static final int Sol_Fire_A = 2;
+	public static final int Sol_Fire_B = 3;
 	
 	
 	//Encoders
@@ -39,6 +44,6 @@ public class Ports {
 							DIO_WinchB = 9;
 	
 	//Hall Effect Sensor
-	public static final int DIO_HallEffectSensorWinch = 10;
+	public static final int DIO_HallEffectSensorWinch = 0;
 
 }

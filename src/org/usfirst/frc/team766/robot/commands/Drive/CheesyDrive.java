@@ -29,6 +29,8 @@ public class CheesyDrive extends CommandBase {
   }
 
   protected void execute() {
+	if(Drive.locked())
+			return;
     if (DriverStation.getInstance().isAutonomous()) {
       return;
     }

@@ -12,6 +12,9 @@ public class TankDrive extends CommandBase{
 	}
 
 	protected void execute() {
+		if(Drive.locked())
+			return;
+		
 		Drive.setLeftPower(OI.getLeftY());
 		Drive.setRightPower(OI.getRightY());
 	}

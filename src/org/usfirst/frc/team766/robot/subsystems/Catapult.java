@@ -4,8 +4,9 @@ import org.usfirst.frc.team766.robot.Ports;
 import org.usfirst.frc.team766.robot.RobotValues;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -19,7 +20,9 @@ public class Catapult extends Subsystem {
 	
 	Victor winchA = new Victor(Ports.PWM_Winch1);
 	Victor winchB = new Victor(Ports.PWM_Winch2);
-	Solenoid launch = new Solenoid(Ports.Sol_Fire);
+	
+	DoubleSolenoid launch = new DoubleSolenoid(Ports.PCM_REGULAR, Ports.Sol_Fire_A, Ports.Sol_Fire_B);
+	
 	Encoder travelDistance = new Encoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
 	DigitalInput atTop = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 
 	
@@ -58,7 +61,10 @@ public class Catapult extends Subsystem {
 	}
 	
 	public void firePiston(boolean fire){
-		launch.set(RobotValues.SOL_FIRE);
+		if(fire)
+			launch.set(Value.kForward);
+		else
+			launch.set(Value.kReverse);
 	}
 	
     public void initDefaultCommand() {

@@ -1,9 +1,12 @@
 package org.usfirst.frc.team766.robot.commands.Arm;
 
-import org.usfirst.frc.team766.robot.RobotValues;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
 public class MoveArmStage2 extends CommandBase{
+
+	private final double THRESHOLD = 7;
 
 	private int angle;
 	
@@ -12,22 +15,30 @@ public class MoveArmStage2 extends CommandBase{
 	}
 	
 	protected void initialize() {
-		Arm.moveStage2(angle); //0 degrees is straight down, 90 is straight out, goes almost to 180(straight up)
 	}
 
 	protected void execute() {
-		
+		drivePiston();
 	}
 
 	protected boolean isFinished() {
-		return Math.abs(Arm.getStage2Angle() - angle) < RobotValues.ARM_THRESHOLD;
+		return Math.abs(Arm.getStage2Angle() - angle) < THRESHOLD;
 	}
 	
 	protected void end() {
-		Arm.holdStage2();
+		Arm.setStageTwo(Value.kOff);
 	}
 	
 	protected void interrupted() {
 		end();
+	}
+	
+	private void drivePiston(){
+		if(Arm.getStage2Angle() - angle < 0)
+			Arm.setStageTwo(Value.kForward);
+		else if(Arm.getStage2Angle() - angle > 0)
+			Arm.setStageTwo(Value.kReverse);
+		else
+			Arm.setStageTwo(Value.kOff);
 	}
 }

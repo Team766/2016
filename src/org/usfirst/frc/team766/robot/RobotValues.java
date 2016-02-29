@@ -15,14 +15,15 @@ public class RobotValues {
 	//real values
 	public static final double TAPE_WIDTH = 0.5207;
 	public static final double TOWER_HEIGHT = 2.4638;
+	public static final double FIRE_DISTANCE = 10; //FIND REAL VALUE - may need to be an array of positions
 	
 	//Vision Values
 	public static final double PIXEL_WIDTH = 351;
 	public static final double DISTANCE = 1.143;
 	public static final double FOCAL_LENGTH = (PIXEL_WIDTH * DISTANCE) / TAPE_WIDTH;
 	public static final int FOCAL_WIDTH = 1;
-	public static final double CAMERA_HEIGHT = 1;
-	public static final double ROBOT_BASELINE = 1;
+	public static final double TargetCenterHeight = 1; //How far off the ground the center of the targets are
+	public static final double ROBOT_BASELINE = 1; //Height of camera off the ground
 	
 	//Cheesy drive
     public static final double sensitivityHigh = .85;
@@ -34,7 +35,6 @@ public class RobotValues {
 	
 	//Winch
 	public static final int WINCH_POWER = 1;
-	public static final boolean SOL_FIRE = true;
 	public static final double Catapult_RotationsToStop = 4; //Need Real Value
 	
 	//Find real values
@@ -56,8 +56,8 @@ public class RobotValues {
 	public static final double ROTATION_TO_HEIGHT_RATIO = 1.0;
 	public static final double HEIGHT_INITIAL = 1.0;
 	public static final double ROTATIONS_PER_DEGREE = 1;
-	public static final int ARM_THRESHOLD = 1,
-							ARM_MAX_MID_HEIGHT = 1;
+	public static final int ARM_MAX_MID_HEIGHT = 1,	//Need real values
+							SecondStageThreshold = 45;//Need real value
 	public static final int SALLYPORT_ANGLE = 1,
 							DRAWBRIDGE_ANGLE = 1,
 							STAGE2MAX_ANGLE = 1;
@@ -82,6 +82,11 @@ public class RobotValues {
 	public static final double IntakeKi = 0;
 	public static final double IntakeKd = 0;
 	public static final double IntakeThreshold = 0.05;
+	
+	public static final double CameraKp = 1;
+	public static final double CameraKi = 0;
+	public static final double CameraKd = 0;
+	public static final double CameraThreshold = 0.05;
 	
 	//Intake
 	public static final double INTAKE_BALL_ANGLE = 1,

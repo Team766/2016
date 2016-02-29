@@ -20,22 +20,22 @@ public class Drive extends Subsystem {
 			DISTANCE_PER_PULSE = (Math.PI * WHEEL_DIAMETER)
 					/ PULSES_PER_ROTATION;
 
-	private Victor leftDrive1 = new Victor(Ports.PWM_Left_Drive);
-	private Victor leftDrive2 = new Victor(Ports.PWM_Left_Drive);
-	private Victor rightDrive1 = new Victor(Ports.PWM_Right_Drive);
-	private Victor rightDrive2 = new Victor(Ports.PWM_Right_Drive);
+	private Victor leftDrive = new Victor(Ports.PWM_Left_Drive);
+	private Victor rightDrive = new Victor(Ports.PWM_Right_Drive);
 
 	private Encoder rightEncoder = new Encoder(Ports.DIO_RDriveEncA,
 			Ports.DIO_RDriveEncB);
 	private Encoder leftEncoder = new Encoder(Ports.DIO_LDriveEncA,
 			Ports.DIO_LDriveEncB);
 
-	private Solenoid leftShifter = new Solenoid(Ports.Sol_LeftShifter);
-	private Solenoid rightShifter = new Solenoid(Ports.Sol_RightShifter);
+	private Solenoid leftShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_LeftShifter);
+	private Solenoid rightShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_RightShifter);
 
 	private ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 
 	private PowerDistributionPanel PDP = new PowerDistributionPanel();
+	
+	private boolean locked = false;
 
 	public void initDefaultCommand() {
 	}
@@ -70,13 +70,11 @@ public class Drive extends Subsystem {
 	}
 
 	public void setLeftPower(double s) {
-		leftDrive1.set(s);
-		leftDrive2.set(s);
+		leftDrive.set(s);
 	}
 
 	public void setRightPower(double s) {
-		rightDrive1.set(s);
-		rightDrive2.set(s);
+		rightDrive.set(s);
 	}
 
 	public void setPower(double s) {
@@ -119,6 +117,13 @@ public class Drive extends Subsystem {
 	
 	public double getRightVoltage(){
 		return (PDP.getCurrent(0) + PDP.getCurrent(1))/2.0; 
+	}
+	
+	public boolean locked(){
+		return locked;
+	}
+	public void lock(boolean lock){
+		locked = lock;
 	}
 
 }

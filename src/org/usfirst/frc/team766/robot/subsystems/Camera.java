@@ -56,7 +56,7 @@ public class Camera extends Subsystem{
 	}
 	
 	public double getAngleDistance(){
-		return (RobotValues.CAMERA_HEIGHT - RobotValues.ROBOT_BASELINE) / Math.tan(vertical.getAngle());
+		return (RobotValues.TargetCenterHeight - RobotValues.ROBOT_BASELINE) / Math.tan(vertical.getAngle());
 	}
 	
 	public void setVerticalAngle(double degree){
@@ -66,10 +66,6 @@ public class Camera extends Subsystem{
 	
 	public double getVerticalAngle(){
 		return verticalAngle;
-	}
-	
-	public double getAverageDist(){
-		return (getFocalDistance() + getAngleDistance())/2;
 	}
 	
 	public void setFocalDistance(double distance){

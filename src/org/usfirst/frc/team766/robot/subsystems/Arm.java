@@ -3,6 +3,8 @@ package org.usfirst.frc.team766.robot.subsystems;
 import org.usfirst.frc.team766.robot.Ports;
 import org.usfirst.frc.team766.robot.RobotValues;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -11,13 +13,16 @@ public class Arm extends Subsystem{
 	
 	private Encoder armEncoder = new Encoder(Ports.DIO_ArmA, Ports.DIO_ArmB);
 
-	Solenoid firstStage = new Solenoid(Ports.Sol_ArmS1);
-	Solenoid thirdStage = new Solenoid(Ports.Sol_ArmS3);
+	private Solenoid firstStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS1);
+	private Solenoid thirdStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS3);
 	
-	Solenoid secondStageUp = new Solenoid(Ports.Sol_ArmS2_Up);
-	Solenoid secondStageDown = new Solenoid(Ports.Sol_ArmS2_Down);
+	private DoubleSolenoid secondStage = new DoubleSolenoid(Ports.PCM_ARM, Ports.Sol_ArmS2_Up, Ports.Sol_ArmS2_Down);
 	
 	protected void initDefaultCommand() {
+	}
+	
+	public void resetEncoder(){
+		armEncoder.reset();
 	}
 	
 	public double getStage2Angle(){
@@ -25,7 +30,7 @@ public class Arm extends Subsystem{
 	}
 	
 	public void extendStage1(boolean a){
-		if(armEncoder.get() > RobotValues.ARM_THRESHOLD && armEncoder.get() < RobotValues.ARM_MAX_MID_HEIGHT)
+		if(secondStageExtended() && armEncoder.get() < RobotValues.ARM_MAX_MID_HEIGHT)
 			firstStage.set(a);
 	}
 	
@@ -34,7 +39,7 @@ public class Arm extends Subsystem{
 	}
 	
 	public void extendStage3(boolean a){
-		if(firstStage.get() && getSecondStage())
+		if(firstStage.get() && secondStageExtended())
 			thirdStage.set(a);
 	}
 	
@@ -42,37 +47,11 @@ public class Arm extends Subsystem{
 		return thirdStage.get();
 	}
 	
-	public void moveStage2(int a){
-		if(a < armEncoder.get()){
-			secondStageUp.set(true);
-			secondStageDown.set(false);
-		}
-		else if(a > armEncoder.get()){
-			secondStageUp.set(false);
-			secondStageDown.set(true);
-		}
+	public void setStageTwo(Value value){
+		secondStage.set(value);
 	}
 	
-	public void holdStage2(){
-		secondStageUp.set(false);
-		secondStageDown.set(false);
-	}
-	
-	public boolean getSecondStage(){
-		return armEncoder.get() > RobotValues.ARM_THRESHOLD;
-	}
-	
-	public void extendArm(){
-		moveStage2(RobotValues.SALLYPORT_ANGLE);
-		firstStage.set(true);
-		moveStage2(RobotValues.STAGE2MAX_ANGLE);
-		thirdStage.set(true);
-	}
-	
-	public void collapseArm(){
-		thirdStage.set(false);
-		moveStage2(RobotValues.SALLYPORT_ANGLE);
-		firstStage.set(false);
-		moveStage2(0);
+	public boolean secondStageExtended(){
+		return getStage2Angle() > RobotValues.SecondStageThreshold;  
 	}
 }
