@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.robot.subsystems;
 
+import org.usfirst.frc.team766.lib.DeviceManager;
 import org.usfirst.frc.team766.robot.Ports;
 import org.usfirst.frc.team766.robot.RobotValues;
 
@@ -11,12 +12,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Arm extends Subsystem{
 	
-	private Encoder armEncoder = new Encoder(Ports.DIO_ArmA, Ports.DIO_ArmB);
+	private Encoder armEncoder;
 
-	private Solenoid firstStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS1);
-	private Solenoid thirdStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS3);
+	private Solenoid firstStage;
+	private Solenoid thirdStage;
 	
-	private DoubleSolenoid secondStage = new DoubleSolenoid(Ports.PCM_ARM, Ports.Sol_ArmS2_Up, Ports.Sol_ArmS2_Down);
+	private DoubleSolenoid secondStage;
+	
+	public Arm(){
+		armEncoder = DeviceManager.getArmEncoder();
+		firstStage = DeviceManager.getFirstStage();
+		secondStage = DeviceManager.getSecondStage();
+		thirdStage = DeviceManager.getThirdStage();
+	}
 	
 	protected void initDefaultCommand() {
 	}

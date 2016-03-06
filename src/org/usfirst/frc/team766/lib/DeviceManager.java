@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.lib;
 
+import org.usfirst.frc.team766.lib.Tester.BearlyVictor;
 import org.usfirst.frc.team766.robot.Ports;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -10,6 +11,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
 
@@ -32,6 +34,8 @@ public class DeviceManager {
 	private static Encoder leftEncoder = new Encoder(Ports.DIO_LDriveEncA,
 			Ports.DIO_LDriveEncB);
 	
+	private static Encoder armEncoder = new Encoder(Ports.DIO_ArmA, Ports.DIO_ArmB);
+	
     private static Encoder intakeAngle = new Encoder(Ports.DIO_IntakeA, Ports.DIO_IntakeB);
     
     private static Encoder travelDistance = new Encoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
@@ -39,6 +43,11 @@ public class DeviceManager {
     //Solenoids
 	private static Solenoid leftShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_LeftShifter);
 	private static Solenoid rightShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_RightShifter);
+	
+	private static Solenoid firstStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS1);
+	private static Solenoid thirdStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS3);
+	
+	private static DoubleSolenoid secondStage = new DoubleSolenoid(Ports.PCM_ARM, Ports.Sol_ArmS2_Up, Ports.Sol_ArmS2_Down);
 	
     private static DoubleSolenoid launch = new DoubleSolenoid(Ports.PCM_REGULAR, Ports.Sol_Fire_A, Ports.Sol_Fire_B);
 
@@ -52,6 +61,15 @@ public class DeviceManager {
 	
 	private static boolean TEST_MODE = false;
 
+	//Test Classes
+	private static BearlyVictor TEST_leftDrive = new BearlyVictor(Ports.PWM_Left_Drive);
+	private static BearlyVictor TEST_rightDrive = new BearlyVictor(Ports.PWM_Right_Drive);
+	
+	private static BearlyVictor TEST_wheels = new BearlyVictor(Ports.PWM_IntakeWheels);
+    private static BearlyVictor TEST_rotator = new BearlyVictor(Ports.PWM_IntakeRotator);
+    
+    private static BearlyVictor TEST_winchA = new BearlyVictor(Ports.PWM_Winch1);
+	private static BearlyVictor TEST_winchB = new BearlyVictor(Ports.PWM_Winch2);
 	
 	public static void setTestMode(boolean testMode){
 		TEST_MODE = testMode;
@@ -59,7 +77,7 @@ public class DeviceManager {
 	
 	//Drive
 	public static Victor getLeftVictor(){
-		return leftDrive;
+		return TEST_MODE? TEST_leftDrive : leftDrive;
 	}
 	public static Victor getRightVictor(){
 		return rightDrive;
@@ -104,8 +122,17 @@ public class DeviceManager {
 	public static Solenoid getRightShifter(){
 		return rightShifter;
 	}
+	public static Solenoid getFirstStage(){
+		return firstStage;
+	}
+	public static Solenoid getThirdStage(){
+		return thirdStage;
+	}
 	public static DoubleSolenoid getLaunch(){
 		return launch;
+	}
+	public static DoubleSolenoid getSecondStage(){
+		return secondStage;
 	}
 	
 	//Gyro
@@ -123,8 +150,12 @@ public class DeviceManager {
 		return PDP;
 	}
 	
+	public static Encoder getArmEncoder(){
+		return armEncoder;
+	}
+	
 	//Axis Camera
-	public static AxisCamera getcam(){
+	public static AxisCamera getCam(){
 		return cam;
 	}
 }

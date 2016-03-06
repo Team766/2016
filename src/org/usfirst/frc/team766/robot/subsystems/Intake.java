@@ -1,6 +1,6 @@
 package org.usfirst.frc.team766.robot.subsystems;
 
-import org.usfirst.frc.team766.robot.Ports;
+import org.usfirst.frc.team766.lib.DeviceManager;
 import org.usfirst.frc.team766.robot.RobotValues;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
     
-    private Victor wheels = new Victor(Ports.PWM_IntakeWheels);
-    private Victor rotator = new Victor(Ports.PWM_IntakeRotator);
+    private Victor wheels;
+    private Victor rotator;
 
-    private Encoder intakeAngle = new Encoder(Ports.DIO_IntakeA, Ports.DIO_IntakeB);
+    private Encoder intakeAngle;
     
     private double angleSetpoint;
     private double angleError;
@@ -23,6 +23,11 @@ public class Intake extends Subsystem {
     private boolean lockRotation;
     
     public Intake(){
+    	wheels = DeviceManager.getIntakeWheels();
+    	rotator = DeviceManager.getRotatorWheels();
+    	
+    	intakeAngle = DeviceManager.getIntakeAngle();
+    	
     	//Meters per pulse
     	intakeAngle.setDistancePerPulse(0.0087);
     	lockRotation = false;

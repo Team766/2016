@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.robot.subsystems;
 
+import org.usfirst.frc.team766.lib.DeviceManager;
 import org.usfirst.frc.team766.robot.Ports;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -20,23 +21,36 @@ public class Drive extends Subsystem {
 			DISTANCE_PER_PULSE = (Math.PI * WHEEL_DIAMETER)
 					/ PULSES_PER_ROTATION;
 
-	private Victor leftDrive = new Victor(Ports.PWM_Left_Drive);
-	private Victor rightDrive = new Victor(Ports.PWM_Right_Drive);
+	private Victor leftDrive;
+	private Victor rightDrive;
 
-	private Encoder rightEncoder = new Encoder(Ports.DIO_RDriveEncA,
-			Ports.DIO_RDriveEncB);
-	private Encoder leftEncoder = new Encoder(Ports.DIO_LDriveEncA,
-			Ports.DIO_LDriveEncB);
+	private Encoder rightEncoder;
+	private Encoder leftEncoder;
 
-	private Solenoid leftShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_LeftShifter);
-	private Solenoid rightShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_RightShifter);
+	private Solenoid leftShifter;
+	private Solenoid rightShifter;
 
-	private ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+	private ADXRS450_Gyro gyro;
 
-	private PowerDistributionPanel PDP = new PowerDistributionPanel();
+	private PowerDistributionPanel PDP;
 	
 	private boolean locked = false;
 
+	public Drive(){
+		leftDrive = DeviceManager.getLeftVictor();
+		rightDrive = DeviceManager.getRightVictor();
+	
+		rightEncoder = DeviceManager.getRightEncoder();
+		leftEncoder = DeviceManager.getLeftEncoder();
+		
+		leftShifter = DeviceManager.getLeftShifter();
+		rightShifter = DeviceManager.getRightShifter();
+		
+		gyro = DeviceManager.getGyro();
+		
+		PDP = DeviceManager.getPDP();
+	}
+	
 	public void initDefaultCommand() {
 	}
 

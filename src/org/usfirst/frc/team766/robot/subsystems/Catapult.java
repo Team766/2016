@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.robot.subsystems;
 
+import org.usfirst.frc.team766.lib.DeviceManager;
 import org.usfirst.frc.team766.robot.Ports;
 import org.usfirst.frc.team766.robot.RobotValues;
 
@@ -18,14 +19,23 @@ public class Catapult extends Subsystem {
 	private boolean readyToFire = false;
 	private RobotValues.RotationCounts position_ = RobotValues.RotationCounts.Bottom;
 	
-	Victor winchA = new Victor(Ports.PWM_Winch1);
-	Victor winchB = new Victor(Ports.PWM_Winch2);
+	Victor winchA;
+	Victor winchB;
 	
-	DoubleSolenoid launch = new DoubleSolenoid(Ports.PCM_REGULAR, Ports.Sol_Fire_A, Ports.Sol_Fire_B);
+	DoubleSolenoid launch;
 	
-	Encoder travelDistance = new Encoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
-	DigitalInput atTop = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 
+	Encoder travelDistance;
+	DigitalInput atTop; 
 	
+	public Catapult(){
+		winchA = DeviceManager.getWinchA();
+		winchB = DeviceManager.getWinchB();
+		
+		launch = DeviceManager.getLaunch();
+		
+		travelDistance = DeviceManager.getWhichTravel();
+		atTop = DeviceManager.getAtTop();
+	}
 	
 	public RobotValues.RotationCounts getStopPosition(){
 		return position_;

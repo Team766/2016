@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.robot.subsystems;
 
+import org.usfirst.frc.team766.lib.DeviceManager;
 import org.usfirst.frc.team766.robot.Ports;
 import org.usfirst.frc.team766.robot.RobotValues;
 
@@ -9,9 +10,9 @@ import edu.wpi.first.wpilibj.vision.AxisCamera;
 
 public class Camera extends Subsystem{
 	
-	Servo vertical = new Servo(Ports.PWM_Servo);
+	Servo vertical;
 	
-	AxisCamera cam = new AxisCamera("169.254.2.2");
+	AxisCamera cam;
 	
 	private int pixelWidth;
 	private double xError;
@@ -25,6 +26,9 @@ public class Camera extends Subsystem{
 	private int trackTarget;
 	
 	public Camera(){
+		vertical = DeviceManager.getVerticalServo();
+		cam = DeviceManager.getCam();
+		
 		pixelWidth = 0;
 		angleError = focalDistance = 0;
 		xError = yError = 0.0;
