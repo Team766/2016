@@ -17,7 +17,19 @@ public class JUnit {
 	private double startTime;
 	
 	public static void main(String[] args){
-		DeviceManager.setTestMode(true);
-		DeviceManager.getLeftVictor();
+		DeviceManager.SIMULATOR = true;
+		
+		FileParser parser = new FileParser("tests");
+		
+		while(!parser.isDone()){
+			System.out.println("Starting test: " + parser.readNextLine());
+			while(parser.hasNextLine()){
+				System.out.println(parser.readNextLine());
+			}
+		}
+		
+		DeviceManager.getInstance().getLeftVictor();
+		DeviceManager.getInstance().getLeftVictor().set(1);
+		System.out.println(DeviceManager.getInstance().getLeftVictor().get());
 	}
 }

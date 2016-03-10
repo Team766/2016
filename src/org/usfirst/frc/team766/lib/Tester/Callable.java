@@ -1,15 +1,10 @@
 package org.usfirst.frc.team766.lib.Tester;
 
-import java.util.ArrayList;
+import java.util.PriorityQueue;
 
-import edu.wpi.first.wpilibj.Victor;
+public abstract class Callable {
 
-public abstract class CallableVictor extends Victor{
-	public CallableVictor(int channel) {
-		super(channel);
-	}
-
-	public ArrayList<Values> values = new ArrayList<Values>();
+	public PriorityQueue<Values> values = new PriorityQueue<Values>();
 	private double startTime = 0;
 	
 	public void addValue(double time, double value){
@@ -17,20 +12,15 @@ public abstract class CallableVictor extends Victor{
 	}
 	
 	public void addValue(Values add){
-		for(int i = 0; i < values.size(); i++){
-			if(values.get(i).getTime() > add.getTime()){
-				values.add(i, add);
-				return;
-			}
-		}
-	}
-	
-	public boolean readyForNext(){
-		return values.get(0).getTime() <= currTime();
+		values.add(add);
 	}
 	
 	public double getNextValue(){
-		return values.remove(0).getValue();
+		while(values.size() > 1 && values.peek().getTime() <= currTime())
+			values.poll();
+		if(values.size() == 0)
+			return 0.0;
+		return values.poll().getValue();
 	}
 	
 	public double currTime(){

@@ -28,13 +28,13 @@ public class Catapult extends Subsystem {
 	DigitalInput atTop; 
 	
 	public Catapult(){
-		winchA = DeviceManager.getWinchA();
-		winchB = DeviceManager.getWinchB();
+		winchA = (Victor)DeviceManager.getInstance().getWinchA();
+		winchB = (Victor)DeviceManager.getInstance().getWinchB();
 		
-		launch = DeviceManager.getLaunch();
+		launch = DeviceManager.getInstance().getLaunch();
 		
-		travelDistance = DeviceManager.getWhichTravel();
-		atTop = DeviceManager.getAtTop();
+		travelDistance = DeviceManager.getInstance().getWhichTravel();
+		atTop = DeviceManager.getInstance().getAtTop();
 	}
 	
 	public RobotValues.RotationCounts getStopPosition(){

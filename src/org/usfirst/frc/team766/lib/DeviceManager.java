@@ -15,147 +15,202 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
 
+/**
+ * I like to think of myself as Woodrow Wilson, making the world safe for simulators
+ * @author Blevenson
+ *
+ */
+
 public class DeviceManager {
 	//Motors
-	private static Victor leftDrive = new Victor(Ports.PWM_Left_Drive);
-	private static Victor rightDrive = new Victor(Ports.PWM_Right_Drive);
+	private SpeedController leftDrive;
+	private SpeedController rightDrive;
 	
-	private static Victor wheels = new Victor(Ports.PWM_IntakeWheels);
-    private static Victor rotator = new Victor(Ports.PWM_IntakeRotator);
+	private SpeedController wheels;
+    private SpeedController rotator;
     
-    private static Victor winchA = new Victor(Ports.PWM_Winch1);
-	private static Victor winchB = new Victor(Ports.PWM_Winch2);
+    private SpeedController winchA;
+	private SpeedController winchB;
 	
-	private static Servo vertical = new Servo(Ports.PWM_Servo);
+	private Servo vertical;
     
     //Encoders
-	private static Encoder rightEncoder = new Encoder(Ports.DIO_RDriveEncA,
-			Ports.DIO_RDriveEncB);
-	private static Encoder leftEncoder = new Encoder(Ports.DIO_LDriveEncA,
-			Ports.DIO_LDriveEncB);
+	private Encoder rightEncoder;
+	private Encoder leftEncoder;
 	
-	private static Encoder armEncoder = new Encoder(Ports.DIO_ArmA, Ports.DIO_ArmB);
+	private Encoder armEncoder;
 	
-    private static Encoder intakeAngle = new Encoder(Ports.DIO_IntakeA, Ports.DIO_IntakeB);
+    private Encoder intakeAngle;
     
-    private static Encoder travelDistance = new Encoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
+    private Encoder travelDistance;
     
     //Solenoids
-	private static Solenoid leftShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_LeftShifter);
-	private static Solenoid rightShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_RightShifter);
+	private Solenoid leftShifter;
+	private Solenoid rightShifter;
 	
-	private static Solenoid firstStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS1);
-	private static Solenoid thirdStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS3);
+	private Solenoid firstStage;
+	private Solenoid thirdStage;
 	
-	private static DoubleSolenoid secondStage = new DoubleSolenoid(Ports.PCM_ARM, Ports.Sol_ArmS2_Up, Ports.Sol_ArmS2_Down);
+	private DoubleSolenoid secondStage;
 	
-    private static DoubleSolenoid launch = new DoubleSolenoid(Ports.PCM_REGULAR, Ports.Sol_Fire_A, Ports.Sol_Fire_B);
+    private DoubleSolenoid launch;
 
-	private static ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+	private ADXRS450_Gyro gyro;
 
-	private static DigitalInput atTop = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 
+	private DigitalInput atTop;
 	
-	private static PowerDistributionPanel PDP = new PowerDistributionPanel();
+	private PowerDistributionPanel PDP;
 	
-	private static AxisCamera cam = new AxisCamera("169.254.2.2");
+	private AxisCamera cam;
 	
-	private static boolean TEST_MODE = false;
+	
+	private static DeviceManager instance_;
+	public static boolean SIMULATOR = false;
+	
+	public static DeviceManager getInstance(){
+		if (instance_ == null){
+			instance_ = (SIMULATOR)? new DeviceManager(true) : new DeviceManager(false);
+		}
+		return instance_;
+	}
+	
+	public DeviceManager(){
+		this(false);
+	}
+	
+	public DeviceManager(boolean isSim){
+		if(!isSim){
+			leftDrive = new Victor(Ports.PWM_Left_Drive);
+			rightDrive = new Victor(Ports.PWM_Right_Drive);
+			
+			wheels = new Victor(Ports.PWM_IntakeWheels);
+		    rotator = new Victor(Ports.PWM_IntakeRotator);
+		    
+		    winchA = new Victor(Ports.PWM_Winch1);
+			winchB = new Victor(Ports.PWM_Winch2);
+			
+			vertical = new Servo(Ports.PWM_Servo);
+			
+			rightEncoder = new Encoder(Ports.DIO_RDriveEncA, Ports.DIO_RDriveEncB);
+			leftEncoder = new Encoder(Ports.DIO_LDriveEncA, Ports.DIO_LDriveEncB);
+			
+			armEncoder = new Encoder(Ports.DIO_ArmA, Ports.DIO_ArmB);
+			
+			intakeAngle = new Encoder(Ports.DIO_IntakeA, Ports.DIO_IntakeB);
+			
+			travelDistance = new Encoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
+			
+			leftShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_LeftShifter);
+			rightShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_RightShifter);
+			
+			firstStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS1);
+			thirdStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS3);
+			
+			secondStage = new DoubleSolenoid(Ports.PCM_ARM, Ports.Sol_ArmS2_Up, Ports.Sol_ArmS2_Down);
+			
+		    launch = new DoubleSolenoid(Ports.PCM_REGULAR, Ports.Sol_Fire_A, Ports.Sol_Fire_B);
 
-	//Test Classes
-	private static BearlyVictor TEST_leftDrive = new BearlyVictor(Ports.PWM_Left_Drive);
-	private static BearlyVictor TEST_rightDrive = new BearlyVictor(Ports.PWM_Right_Drive);
-	
-	private static BearlyVictor TEST_wheels = new BearlyVictor(Ports.PWM_IntakeWheels);
-    private static BearlyVictor TEST_rotator = new BearlyVictor(Ports.PWM_IntakeRotator);
-    
-    private static BearlyVictor TEST_winchA = new BearlyVictor(Ports.PWM_Winch1);
-	private static BearlyVictor TEST_winchB = new BearlyVictor(Ports.PWM_Winch2);
-	
-	public static void setTestMode(boolean testMode){
-		TEST_MODE = testMode;
+			gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+
+			atTop = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 
+			
+			PDP = new PowerDistributionPanel();
+			
+			cam = new AxisCamera("169.254.2.2");
+		}else{
+			leftDrive = new BearlyVictor(Ports.PWM_Left_Drive);
+			rightDrive = new BearlyVictor(Ports.PWM_Right_Drive);
+			
+			wheels = new BearlyVictor(Ports.PWM_IntakeWheels);
+		    rotator = new BearlyVictor(Ports.PWM_IntakeRotator);
+		    
+		    winchA = new BearlyVictor(Ports.PWM_Winch1);
+			winchB = new BearlyVictor(Ports.PWM_Winch2);
+		}
 	}
 	
 	//Drive
-	public static Victor getLeftVictor(){
-		return TEST_MODE? TEST_leftDrive : leftDrive;
+	public SpeedController getLeftVictor(){
+		return leftDrive;
 	}
-	public static Victor getRightVictor(){
+
+	public SpeedController getRightVictor(){
 		return rightDrive;
 	}
 	//Intake
-	public static Victor getIntakeWheels(){
+	public SpeedController getIntakeWheels(){
 		return wheels;
 	}
-	public static Victor getRotatorWheels(){
+	public SpeedController getRotatorWheels(){
 		return rotator;
 	}
 	
 	//Whinch
-	public static Victor getWinchA(){
+	public SpeedController getWinchA(){
 		return winchA;
 	}
-	public static Victor getWinchB(){
+	public SpeedController getWinchB(){
 		return winchB;
 	}
 	
-	public static Servo getVerticalServo(){
+	public Servo getVerticalServo(){
 		return vertical;
 	}
 	
-	public static Encoder getLeftEncoder(){
+	public Encoder getLeftEncoder(){
 		return leftEncoder;
 	}
-	public static Encoder getRightEncoder(){
+	public Encoder getRightEncoder(){
 		return rightEncoder;
 	}
-	public static Encoder getIntakeAngle(){
+	public Encoder getIntakeAngle(){
 		return intakeAngle;
 	}
-	public static Encoder getWhichTravel(){
+	public Encoder getWhichTravel(){
 		return travelDistance;
 	}
 
 	//Solenoid
-	public static Solenoid getLeftShifter(){
+	public Solenoid getLeftShifter(){
 		return leftShifter;
 	}
-	public static Solenoid getRightShifter(){
+	public Solenoid getRightShifter(){
 		return rightShifter;
 	}
-	public static Solenoid getFirstStage(){
+	public Solenoid getFirstStage(){
 		return firstStage;
 	}
-	public static Solenoid getThirdStage(){
+	public Solenoid getThirdStage(){
 		return thirdStage;
 	}
-	public static DoubleSolenoid getLaunch(){
+	public DoubleSolenoid getLaunch(){
 		return launch;
 	}
-	public static DoubleSolenoid getSecondStage(){
+	public DoubleSolenoid getSecondStage(){
 		return secondStage;
 	}
 	
 	//Gyro
-	public static ADXRS450_Gyro getGyro(){
+	public ADXRS450_Gyro getGyro(){
 		return gyro;
 	}
 	
 	//Encoder
-	public static DigitalInput getAtTop(){
+	public DigitalInput getAtTop(){
 		return atTop;
 	}
 	
 	//PDP
-	public static PowerDistributionPanel getPDP(){
+	public PowerDistributionPanel getPDP(){
 		return PDP;
 	}
 	
-	public static Encoder getArmEncoder(){
+	public Encoder getArmEncoder(){
 		return armEncoder;
 	}
 	
 	//Axis Camera
-	public static AxisCamera getCam(){
+	public AxisCamera getCam(){
 		return cam;
 	}
 }

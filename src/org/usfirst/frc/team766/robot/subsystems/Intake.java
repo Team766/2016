@@ -23,10 +23,10 @@ public class Intake extends Subsystem {
     private boolean lockRotation;
     
     public Intake(){
-    	wheels = DeviceManager.getIntakeWheels();
-    	rotator = DeviceManager.getRotatorWheels();
+    	wheels = (Victor)DeviceManager.getInstance().getIntakeWheels();
+    	rotator = (Victor)DeviceManager.getInstance().getRotatorWheels();
     	
-    	intakeAngle = DeviceManager.getIntakeAngle();
+    	intakeAngle = DeviceManager.getInstance().getIntakeAngle();
     	
     	//Meters per pulse
     	intakeAngle.setDistancePerPulse(0.0087);

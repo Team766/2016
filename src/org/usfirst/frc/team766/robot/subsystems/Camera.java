@@ -26,8 +26,8 @@ public class Camera extends Subsystem{
 	private int trackTarget;
 	
 	public Camera(){
-		vertical = DeviceManager.getVerticalServo();
-		cam = DeviceManager.getCam();
+		vertical = DeviceManager.getInstance().getVerticalServo();
+		cam = DeviceManager.getInstance().getCam();
 		
 		pixelWidth = 0;
 		angleError = focalDistance = 0;

@@ -20,10 +20,10 @@ public class Arm extends Subsystem{
 	private DoubleSolenoid secondStage;
 	
 	public Arm(){
-		armEncoder = DeviceManager.getArmEncoder();
-		firstStage = DeviceManager.getFirstStage();
-		secondStage = DeviceManager.getSecondStage();
-		thirdStage = DeviceManager.getThirdStage();
+		armEncoder = DeviceManager.getInstance().getArmEncoder();
+		firstStage = DeviceManager.getInstance().getFirstStage();
+		secondStage = DeviceManager.getInstance().getSecondStage();
+		thirdStage = DeviceManager.getInstance().getThirdStage();
 	}
 	
 	protected void initDefaultCommand() {

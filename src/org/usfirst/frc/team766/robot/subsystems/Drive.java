@@ -37,18 +37,18 @@ public class Drive extends Subsystem {
 	private boolean locked = false;
 
 	public Drive(){
-		leftDrive = DeviceManager.getLeftVictor();
-		rightDrive = DeviceManager.getRightVictor();
+		leftDrive = (Victor)DeviceManager.getInstance().getLeftVictor();
+		rightDrive = (Victor)DeviceManager.getInstance().getRightVictor();
 	
-		rightEncoder = DeviceManager.getRightEncoder();
-		leftEncoder = DeviceManager.getLeftEncoder();
+		rightEncoder = DeviceManager.getInstance().getRightEncoder();
+		leftEncoder = DeviceManager.getInstance().getLeftEncoder();
 		
-		leftShifter = DeviceManager.getLeftShifter();
-		rightShifter = DeviceManager.getRightShifter();
+		leftShifter = DeviceManager.getInstance().getLeftShifter();
+		rightShifter = DeviceManager.getInstance().getRightShifter();
 		
-		gyro = DeviceManager.getGyro();
+		gyro = DeviceManager.getInstance().getGyro();
 		
-		PDP = DeviceManager.getPDP();
+		PDP = DeviceManager.getInstance().getPDP();
 	}
 	
 	public void initDefaultCommand() {

@@ -3,11 +3,13 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class BearlyVictor extends CallableVictor{
+import edu.wpi.first.wpilibj.SpeedController;
+
+public class BearlyVictor extends Callable implements SpeedController{
 	private final double THRESHOLD = 1;
 	
 	public BearlyVictor(int port) {
-		super(port);
+//		super(port);
 	}
 
 	public void pidWrite(double output) {
@@ -22,8 +24,7 @@ public class BearlyVictor extends CallableVictor{
 
 	@Test
 	public void set(double speed) {
-		if(readyForNext())
-			assertEquals("", getNextValue(), speed, THRESHOLD);
+		assertEquals("", getNextValue(), speed, THRESHOLD);
 	}
 
 	public void setInverted(boolean isInverted) {
