@@ -15,7 +15,7 @@ public class CatapultControl extends Loopable{
 			CommandBase.Catapult.setReadyToFire(false);
 		}
 		
-		if(CommandBase.Catapult.getReadyToFire()){
+		if(!CommandBase.Catapult.getReadyToFire()){
 			Looper.getInstance().add(new Winch());
 		}
 		

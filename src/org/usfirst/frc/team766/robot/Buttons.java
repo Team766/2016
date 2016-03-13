@@ -6,7 +6,7 @@ public class Buttons {
 	public static final int AUTOALLIGN = 2;
 	
 	//Right Joystick
+	public static final int DRIVER_FIRE = 1;
 	public static final int QUICKTURN = 2;
-	
 	//Box Op
 }

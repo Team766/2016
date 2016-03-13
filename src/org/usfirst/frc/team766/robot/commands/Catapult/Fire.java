@@ -11,24 +11,24 @@ public class Fire extends CommandBase{
 	protected void initialize() {
 		count = 0;
 		done = false;
-		//MoveIntake(RobotValues.INTAKE_STRAIGHTUP_ANGLE);
+		Intake.setAngleSetpoint(RobotValues.INTAKE_STRAIGHTUP_ANGLE);
 	}
 
 	protected void execute() {
+		//Winched Back
 		if(Catapult.getReadyToFire()){
 			Catapult.firePiston(true);
-			if(count >= 100)
-				done = true;
-			count++;
+//			if(count >= 100)
+//				done = true;
+//			count++;
 		}
 	}
 
 	protected boolean isFinished() {
-		return done;
+		return Catapult.atTop() || !Catapult.getReadyToFire();
 	}
 
 	protected void end() {
-		Catapult.setReadyToFire(false);
 	}
 
 	protected void interrupted() {

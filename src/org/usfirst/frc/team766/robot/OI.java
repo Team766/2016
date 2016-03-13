@@ -1,6 +1,7 @@
 package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.trajectory.Path;
+import org.usfirst.frc.team766.robot.commands.Catapult.Fire;
 import org.usfirst.frc.team766.robot.commands.Drive.FollowTarget;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -17,14 +18,16 @@ public class OI{
 			jRight = new Joystick(1);
 	
 	public Button
+		buttonDriverShoot = new JoystickButton(jRight, Buttons.DRIVER_FIRE),
 		buttonQuickTurn = new JoystickButton(jRight, Buttons.QUICKTURN),
-		buttonShifter = new JoystickButton(jLeft, Buttons.SHIFTER),
+		buttonShifter = new JoystickButton(jRight, Buttons.SHIFTER),
 		buttonAutoAllign = new JoystickButton(jLeft, Buttons.AUTOALLIGN);
 	
 	public Path path = null;
 	
 	public OI(){
 		buttonAutoAllign.whileHeld(new FollowTarget());
+		buttonDriverShoot.whenPressed(new Fire());
 	}
 	
 	public double getLeftX(){
