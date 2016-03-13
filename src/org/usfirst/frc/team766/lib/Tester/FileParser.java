@@ -35,6 +35,7 @@ public class FileParser {
 	}
 	
 	public File nextFile(){
+		System.out.println("Size: " + files.size());
 		if(files.size() < 1){
 			done = true;
 			return null;
@@ -63,9 +64,6 @@ public class FileParser {
 		} catch (IOException e) {
 			System.err.println("Failed to read line");
 		}
-		
-		if(in == null)
-			nextFile();
 		
 		return in;
 	}

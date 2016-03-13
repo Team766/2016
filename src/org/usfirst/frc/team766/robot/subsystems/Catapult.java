@@ -33,7 +33,7 @@ public class Catapult extends Subsystem {
 		
 		launch = DeviceManager.getInstance().getLaunch();
 		
-		travelDistance = DeviceManager.getInstance().getWhichTravel();
+		travelDistance = (Encoder)DeviceManager.getInstance().getWinchTravel();
 		atTop = DeviceManager.getInstance().getAtTop();
 	}
 	

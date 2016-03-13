@@ -16,7 +16,7 @@ public class BearlyVictor extends Callable implements SpeedController{
 	}
 
 	public double get() {
-		return 0;
+		return getNextValue();
 	}
 
 	public void set(double speed, byte syncGroup) {

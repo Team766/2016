@@ -1,7 +1,6 @@
 package org.usfirst.frc.team766.robot.subsystems;
 
 import org.usfirst.frc.team766.lib.DeviceManager;
-import org.usfirst.frc.team766.robot.Ports;
 import org.usfirst.frc.team766.robot.RobotValues;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -20,7 +19,7 @@ public class Arm extends Subsystem{
 	private DoubleSolenoid secondStage;
 	
 	public Arm(){
-		armEncoder = DeviceManager.getInstance().getArmEncoder();
+		armEncoder = (Encoder)DeviceManager.getInstance().getArmEncoder();
 		firstStage = DeviceManager.getInstance().getFirstStage();
 		secondStage = DeviceManager.getInstance().getSecondStage();
 		thirdStage = DeviceManager.getInstance().getThirdStage();

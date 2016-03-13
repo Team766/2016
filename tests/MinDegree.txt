@@ -1,0 +1,13 @@
+MinDegree
+Encoder-IntakeEnc:	0	0
+Victor-IntakeRotator:	0	0
+Encoder-IntakeEnc:	1	159.30
+Victor-IntakeRotator:	1	0
+Encoder-IntakeEnc:	1	362.87
+Victor-IntakeRotator:	1	0
+Encoder-IntakeEnc:	2	362.87
+Victor-IntakeRotator:	2	0
+Encoder-IntakeEnc:	2	362.87
+Victor-IntakeRotator:	2	0
+Encoder-IntakeEnc:	2	362.87
+Victor-IntakeRotator:	2	0

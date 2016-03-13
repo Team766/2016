@@ -1,9 +1,11 @@
 package org.usfirst.frc.team766.lib;
 
+import org.usfirst.frc.team766.lib.Tester.BearlyEncoder;
 import org.usfirst.frc.team766.lib.Tester.BearlyVictor;
 import org.usfirst.frc.team766.robot.Ports;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
@@ -35,14 +37,14 @@ public class DeviceManager {
 	private Servo vertical;
     
     //Encoders
-	private Encoder rightEncoder;
-	private Encoder leftEncoder;
+	private CounterBase rightEncoder;
+	private CounterBase leftEncoder;
 	
-	private Encoder armEncoder;
+	private CounterBase armEncoder;
 	
-    private Encoder intakeAngle;
+    private CounterBase intakeAngle;
     
-    private Encoder travelDistance;
+    private CounterBase travelDistance;
     
     //Solenoids
 	private Solenoid leftShifter;
@@ -126,6 +128,15 @@ public class DeviceManager {
 		    
 		    winchA = new BearlyVictor(Ports.PWM_Winch1);
 			winchB = new BearlyVictor(Ports.PWM_Winch2);
+			
+			rightEncoder = new BearlyEncoder(Ports.DIO_RDriveEncA, Ports.DIO_RDriveEncB);
+			leftEncoder = new BearlyEncoder(Ports.DIO_LDriveEncA, Ports.DIO_LDriveEncB);
+			
+			armEncoder = new BearlyEncoder(Ports.DIO_ArmA, Ports.DIO_ArmB);
+			
+			intakeAngle = new BearlyEncoder(Ports.DIO_IntakeA, Ports.DIO_IntakeB);
+			
+			travelDistance = new BearlyEncoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
 		}
 	}
 	
@@ -145,7 +156,7 @@ public class DeviceManager {
 		return rotator;
 	}
 	
-	//Whinch
+	//Winch
 	public SpeedController getWinchA(){
 		return winchA;
 	}
@@ -157,16 +168,16 @@ public class DeviceManager {
 		return vertical;
 	}
 	
-	public Encoder getLeftEncoder(){
+	public CounterBase getLeftEncoder(){
 		return leftEncoder;
 	}
-	public Encoder getRightEncoder(){
+	public CounterBase getRightEncoder(){
 		return rightEncoder;
 	}
-	public Encoder getIntakeAngle(){
+	public CounterBase getIntakeAngle(){
 		return intakeAngle;
 	}
-	public Encoder getWhichTravel(){
+	public CounterBase getWinchTravel(){
 		return travelDistance;
 	}
 
@@ -205,7 +216,7 @@ public class DeviceManager {
 		return PDP;
 	}
 	
-	public Encoder getArmEncoder(){
+	public CounterBase getArmEncoder(){
 		return armEncoder;
 	}
 	

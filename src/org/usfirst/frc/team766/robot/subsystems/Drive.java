@@ -40,8 +40,8 @@ public class Drive extends Subsystem {
 		leftDrive = (Victor)DeviceManager.getInstance().getLeftVictor();
 		rightDrive = (Victor)DeviceManager.getInstance().getRightVictor();
 	
-		rightEncoder = DeviceManager.getInstance().getRightEncoder();
-		leftEncoder = DeviceManager.getInstance().getLeftEncoder();
+		rightEncoder = (Encoder)DeviceManager.getInstance().getRightEncoder();
+		leftEncoder = (Encoder)DeviceManager.getInstance().getLeftEncoder();
 		
 		leftShifter = DeviceManager.getInstance().getLeftShifter();
 		rightShifter = DeviceManager.getInstance().getRightShifter();

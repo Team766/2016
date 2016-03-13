@@ -26,11 +26,13 @@ public class Intake extends Subsystem {
     	wheels = (Victor)DeviceManager.getInstance().getIntakeWheels();
     	rotator = (Victor)DeviceManager.getInstance().getRotatorWheels();
     	
-    	intakeAngle = DeviceManager.getInstance().getIntakeAngle();
+    	intakeAngle = (Encoder)DeviceManager.getInstance().getIntakeAngle();
     	
     	//Meters per pulse
     	intakeAngle.setDistancePerPulse(0.0087);
     	lockRotation = false;
+    	
+    	setAngleSetpoint(RobotValues.DEFAULT_ANGLE);
     }
     
     public void initDefaultCommand() {	
