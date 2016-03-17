@@ -1,6 +1,7 @@
 package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.trajectory.Path;
+import org.usfirst.frc.team766.robot.commands.Catapult.Fire;
 import org.usfirst.frc.team766.robot.commands.Drive.FollowTarget;
 import org.usfirst.frc.team766.robot.commands.Intake.MoveIntake;
 
@@ -19,6 +20,7 @@ public class OI{
 			jBox = new Joystick(2);
 	
 	public Button
+		buttonDriverShoot = new JoystickButton(jRight, Buttons.DRIVER_FIRE),
 		buttonQuickTurn = new JoystickButton(jRight, Buttons.QUICKTURN),
 		buttonShifter = new JoystickButton(jLeft, Buttons.SHIFTER),
 		buttonAutoAllign = new JoystickButton(jLeft, Buttons.AUTOALLIGN),
@@ -33,6 +35,7 @@ public class OI{
 	
 	public OI(){
 		buttonAutoAllign.whileHeld(new FollowTarget());
+		buttonDriverShoot.whenPressed(new Fire());
 		
 		//Box OP
 		buttonIntakeUp.whenPressed(new MoveIntake(RobotValues.INTAKE_STRAIGHTUP_ANGLE));

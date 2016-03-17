@@ -36,6 +36,11 @@ public class BearlyVictor extends Callable implements SpeedController{
 
 	public void disable() {
 	}
+	
+	public void stopMotor() {
+		set(0.0);
+	}
 
 }
 */
+

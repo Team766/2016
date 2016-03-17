@@ -121,6 +121,7 @@ public class DeviceManager {
 			cam = new AxisCamera("169.254.2.2");
 		}else{
 			/*leftDrive = new BearlyVictor(Ports.PWM_Left_Drive);
+			leftDrive = new BearlyVictor(Ports.PWM_Left_Drive);
 			rightDrive = new BearlyVictor(Ports.PWM_Right_Drive);
 			
 			wheels = new BearlyVictor(Ports.PWM_IntakeWheels);

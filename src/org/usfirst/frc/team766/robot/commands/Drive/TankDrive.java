@@ -17,6 +17,8 @@ public class TankDrive extends CommandBase{
 		
 		Drive.setLeftPower(OI.getLeftY());
 		Drive.setRightPower(OI.getRightY());
+		
+		Drive.setShifter(OI.getShifter());
 	}
 
 	protected boolean isFinished() {
