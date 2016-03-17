@@ -5,10 +5,10 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 import org.usfirst.frc.team766.robot.commands.Camera.FindErrors;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackTarget;
 import org.usfirst.frc.team766.robot.commands.Catapult.CatapultControl;
+import org.usfirst.frc.team766.robot.commands.Drive.CheesyDrive;
 import org.usfirst.frc.team766.robot.commands.Drive.DriveDistance;
-import org.usfirst.frc.team766.robot.commands.Drive.TankDrive;
 import org.usfirst.frc.team766.robot.commands.Intake.IntakeControl;
-import org.usfirst.frc.team766.robot.commands.Intake.MoveArm;
+import org.usfirst.frc.team766.robot.commands.Intake.MoveIntake;
 import org.usfirst.frc.team766.robot.commands.Intake.ResetIntakeAngle;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -28,7 +28,7 @@ public class Robot extends IterativeRobot {
 		//Test Commands
 		SmartDashboard.putData(new ResetIntakeAngle());
 		SmartDashboard.putData(new DriveDistance(2));
-		SmartDashboard.putData(new MoveArm(90));
+		SmartDashboard.putData(new MoveIntake(90));
 		
 		//PIDS
 		SmartDashboard.putNumber("Intake P: ", RobotValues.IntakeKp);
@@ -64,8 +64,9 @@ public class Robot extends IterativeRobot {
 		//new FindErrors().start();
 		//new TrackTarget().start();
 		
-		new TankDrive().start();
+		new CheesyDrive().start();
 		//new MotorTester().start();
+//		new PrintWinchRotations().start();
 		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();

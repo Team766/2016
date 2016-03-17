@@ -1,7 +1,7 @@
 package org.usfirst.frc.team766.lib;
 
-import org.usfirst.frc.team766.lib.Tester.BearlyEncoder;
-import org.usfirst.frc.team766.lib.Tester.BearlyVictor;
+//import org.usfirst.frc.team766.lib.Tester.BearlyEncoder;
+//import org.usfirst.frc.team766.lib.Tester.BearlyVictor;
 import org.usfirst.frc.team766.robot.Ports;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -120,7 +120,7 @@ public class DeviceManager {
 			
 			cam = new AxisCamera("169.254.2.2");
 		}else{
-			leftDrive = new BearlyVictor(Ports.PWM_Left_Drive);
+			/*leftDrive = new BearlyVictor(Ports.PWM_Left_Drive);
 			rightDrive = new BearlyVictor(Ports.PWM_Right_Drive);
 			
 			wheels = new BearlyVictor(Ports.PWM_IntakeWheels);
@@ -136,7 +136,7 @@ public class DeviceManager {
 			
 			intakeAngle = new BearlyEncoder(Ports.DIO_IntakeA, Ports.DIO_IntakeB);
 			
-			travelDistance = new BearlyEncoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
+			travelDistance = new BearlyEncoder(Ports.DIO_WinchA, Ports.DIO_WinchB);*/
 		}
 	}
 	

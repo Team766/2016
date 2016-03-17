@@ -1,4 +1,4 @@
-package org.usfirst.frc.team766.lib.Tester;
+/*package org.usfirst.frc.team766.lib.Tester;
 
 import edu.wpi.first.wpilibj.CounterBase;
 
@@ -41,3 +41,4 @@ public class BearlyEncoder extends Callable implements CounterBase{
 	}
 
 }
+*/

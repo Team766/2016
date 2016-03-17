@@ -1,4 +1,7 @@
 package org.usfirst.frc.team766.robot;
+
+import org.usfirst.frc.team766.robot.commands.CommandBase;
+
 /**
  * The RobotValues holds all the constants used in the robot code
  */
@@ -73,15 +76,20 @@ public class RobotValues {
 	public static final double DriveKd = 0;
 	public static final double DriveThreshold = 0.05;
 	
+	public static final double GyroKp = 1;
+	public static final double GyroKi = 0;
+	public static final double GyroKd = 0;
+	public static final double GyroThreshold = 0.05;
+	
 	public static final double AngleKp = 1;
 	public static final double AngleKi = 0;
 	public static final double AngleKd = 0;
 	public static final double AngleThreshold = 1;
 	
-	public static final double IntakeKp = 1;
+	public static final double IntakeKp = 0.05;
 	public static final double IntakeKi = 0;
 	public static final double IntakeKd = 0;
-	public static final double IntakeThreshold = 0.05;
+	public static final double IntakeThreshold = 1;
 	
 	public static final double CameraKp = 1;
 	public static final double CameraKi = 0;
@@ -89,9 +97,8 @@ public class RobotValues {
 	public static final double CameraThreshold = 0.05;
 	
 	//Intake
-	public static final double INTAKE_BALL_ANGLE = 1,
-							   BALL_COMPRESSION_ANGLE = 1,
-							   INTAKE_STARTING_ANGLE = 1,
-							   INTAKE_STRAIGHTUP_ANGLE = 1,
-							   DEFAULT_ANGLE = 1;
+	public static final double INTAKE_BALL_ANGLE = CommandBase.Intake.getAngleFromHeight(BALL_COMPRESSION_HEIGHT),
+							   INTAKE_FLOOR_ANGLE = CommandBase.Intake.getAngleFromHeight(0),
+							   INTAKE_STRAIGHTUP_ANGLE = 180,
+							   INTAKE_STORE_ANGLE = 210;
 }

@@ -2,6 +2,7 @@ package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.trajectory.Path;
 import org.usfirst.frc.team766.robot.commands.Drive.FollowTarget;
+import org.usfirst.frc.team766.robot.commands.Intake.MoveIntake;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -14,17 +15,30 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI{
 	
 	public Joystick jLeft = new Joystick(0),
-			jRight = new Joystick(1);
+			jRight = new Joystick(1),
+			jBox = new Joystick(2);
 	
 	public Button
 		buttonQuickTurn = new JoystickButton(jRight, Buttons.QUICKTURN),
 		buttonShifter = new JoystickButton(jLeft, Buttons.SHIFTER),
-		buttonAutoAllign = new JoystickButton(jLeft, Buttons.AUTOALLIGN);
+		buttonAutoAllign = new JoystickButton(jLeft, Buttons.AUTOALLIGN),
+		
+		//Box Op
+		buttonIntakeUp = new JoystickButton(jBox, Buttons.INTAKE_UP),
+		buttonIntakeDown = new JoystickButton(jBox, Buttons.INTAKE_DOWN),
+		buttonIntakeCollect = new JoystickButton(jBox, Buttons.INTAKE_COLLECT),
+		buttonIntakeStore = new JoystickButton(jBox, Buttons.INTAKE_STORE);
 	
 	public Path path = null;
 	
 	public OI(){
 		buttonAutoAllign.whileHeld(new FollowTarget());
+		
+		//Box OP
+		buttonIntakeUp.whenPressed(new MoveIntake(RobotValues.INTAKE_STRAIGHTUP_ANGLE));
+		buttonIntakeDown.whenPressed(new MoveIntake(RobotValues.INTAKE_FLOOR_ANGLE));
+		buttonIntakeCollect.whenPressed(new MoveIntake(RobotValues.INTAKE_BALL_ANGLE));
+		buttonIntakeStore.whenPressed(new MoveIntake(RobotValues.INTAKE_STORE_ANGLE));
 	}
 	
 	public double getLeftX(){
@@ -52,11 +66,16 @@ public class OI{
 	}
 
 	public double getSteer() {
-		return jRight.getX();
+		return -jRight.getX();
 	}
 
 	public double getThrottle() {
-		return jRight.getY();
+		return -jLeft.getY();
+	}
+	
+	//TEST -- DELETE AFTER TESTING!!!!!!!!
+	public double getCatapultAxis(){
+		return jBox.getY();
 	}
 }
 

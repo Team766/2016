@@ -88,7 +88,7 @@ public class Drive extends Subsystem {
 	}
 
 	public void setRightPower(double s) {
-		rightDrive.set(s);
+		rightDrive.set(-s);
 	}
 
 	public void setPower(double s) {

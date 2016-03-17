@@ -6,6 +6,8 @@ import org.usfirst.frc.team766.lib.PIDController;
 import org.usfirst.frc.team766.robot.RobotValues;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 
+import edu.wpi.first.wpilibj.DriverStation;
+
 public class IntakeControl extends Loopable{
 
 	private PIDController IntakePID = new PIDController(RobotValues.IntakeKp, 
@@ -14,11 +16,12 @@ public class IntakeControl extends Loopable{
 	private double SETPOINT_THRESHOLD = 5d;
 	
 	protected void initilize() {
+		CommandBase.Intake.resetEncoder();
 		IntakePID.setSetpoint(CommandBase.Intake.getAngleSetpoint());
 	}
 	
 	protected void run() {
-		if(CommandBase.Intake.isLocked())
+		if(CommandBase.Intake.isLocked() || DriverStation.getInstance().isDisabled())
 			return;
 		
 		if(Math.abs(CommandBase.Intake.getAngleSetpoint() - IntakePID.getSetpoint()) < SETPOINT_THRESHOLD)

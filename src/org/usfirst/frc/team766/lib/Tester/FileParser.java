@@ -1,4 +1,4 @@
-package org.usfirst.frc.team766.lib.Tester;
+/*package org.usfirst.frc.team766.lib.Tester;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -86,3 +86,4 @@ public class FileParser {
 	}
 	
 }
+*/

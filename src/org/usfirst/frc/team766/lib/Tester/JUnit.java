@@ -1,4 +1,4 @@
-package org.usfirst.frc.team766.lib.Tester;
+/*package org.usfirst.frc.team766.lib.Tester;
 
 import org.usfirst.frc.team766.lib.DeviceManager;
 import org.usfirst.frc.team766.lib.Looper;
@@ -16,7 +16,7 @@ public class JUnit {
 	 * 		IntakeCatapultCollisionTest:
 	 * 		Encoder-Arm:	1	0.0
 	 * 		Victor-LeftDrive:	2	0.5
-	 */
+	 *
 	
 	private static double startTime;
 	private static String test;
@@ -140,3 +140,4 @@ public class JUnit {
 		return false;
 	}
 }
+*/

@@ -32,7 +32,7 @@ public class Intake extends Subsystem {
     	intakeAngle.setDistancePerPulse(0.0087);
     	lockRotation = false;
     	
-    	setAngleSetpoint(RobotValues.DEFAULT_ANGLE);
+    	setAngleSetpoint(90);
     }
     
     public void initDefaultCommand() {	

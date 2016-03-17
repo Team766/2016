@@ -39,7 +39,7 @@ public class CheesyDrive extends CommandBase {
 
     double wheelNonLinearity;
 
-    double wheel = -handleDeadband(OI.getSteer(), wheelDeadband);
+    double wheel = handleDeadband(OI.getSteer(), wheelDeadband);
     double throttle = handleDeadband(OI.getThrottle(), throttleDeadband);
 
     double negInertia = wheel - oldWheel;

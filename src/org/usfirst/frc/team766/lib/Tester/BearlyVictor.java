@@ -1,4 +1,4 @@
-package org.usfirst.frc.team766.lib.Tester;
+/*package org.usfirst.frc.team766.lib.Tester;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -38,3 +38,4 @@ public class BearlyVictor extends Callable implements SpeedController{
 	}
 
 }
+*/
