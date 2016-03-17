@@ -6,7 +6,7 @@ public class ExtendArmStage3 extends CommandBase{
 	
 	private boolean lift;
 	
-	private ExtendArmStage3(boolean lift){
+	public ExtendArmStage3(boolean lift){
 		this.lift = lift;
 	}
 	

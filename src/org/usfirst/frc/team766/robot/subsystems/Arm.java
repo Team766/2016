@@ -18,11 +18,16 @@ public class Arm extends Subsystem{
 	
 	private DoubleSolenoid secondStage;
 	
+	private boolean locked, raised;
+	
 	public Arm(){
 		armEncoder = (Encoder)DeviceManager.getInstance().getArmEncoder();
 		firstStage = DeviceManager.getInstance().getFirstStage();
 		secondStage = DeviceManager.getInstance().getSecondStage();
 		thirdStage = DeviceManager.getInstance().getThirdStage();
+		
+		locked = false;
+		raised = false;
 	}
 	
 	protected void initDefaultCommand() {
@@ -60,5 +65,21 @@ public class Arm extends Subsystem{
 	
 	public boolean secondStageExtended(){
 		return getStage2Angle() > RobotValues.SecondStageThreshold;  
+	}
+	
+	public void lock(boolean lock){
+		locked = lock;
+	}
+	
+	public boolean isLocked(){
+		return locked;
+	}
+	
+	public void raise(boolean up){
+		raised = up;
+	}
+	
+	public boolean isRaised(){
+		return raised;
 	}
 }

@@ -15,9 +15,13 @@ public class MoveArmStage2 extends CommandBase{
 	}
 	
 	protected void initialize() {
+		Arm.lock(true);
 	}
 
 	protected void execute() {
+		if(!Arm.isRaised())
+			return;
+		
 		drivePiston();
 	}
 
@@ -27,6 +31,7 @@ public class MoveArmStage2 extends CommandBase{
 	
 	protected void end() {
 		Arm.setStageTwo(Value.kOff);
+		Arm.lock(false);
 	}
 	
 	protected void interrupted() {

@@ -1,9 +1,12 @@
 package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.trajectory.Path;
+import org.usfirst.frc.team766.robot.commands.Arm.ExtendArmStage1;
+import org.usfirst.frc.team766.robot.commands.Arm.Store;
 import org.usfirst.frc.team766.robot.commands.Catapult.Fire;
 import org.usfirst.frc.team766.robot.commands.Drive.FollowTarget;
 import org.usfirst.frc.team766.robot.commands.Intake.MoveIntake;
+import org.usfirst.frc.team766.robot.commands.Intake.SetWheels;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -29,19 +32,36 @@ public class OI{
 		buttonIntakeUp = new JoystickButton(jBox, Buttons.INTAKE_UP),
 		buttonIntakeDown = new JoystickButton(jBox, Buttons.INTAKE_DOWN),
 		buttonIntakeCollect = new JoystickButton(jBox, Buttons.INTAKE_COLLECT),
-		buttonIntakeStore = new JoystickButton(jBox, Buttons.INTAKE_STORE);
+		buttonIntakeStore = new JoystickButton(jBox, Buttons.INTAKE_STORE),
+		
+		buttonBoxOpShoot = new JoystickButton(jBox, Buttons.BOXOP_FIRE),
+		
+		buttonArmToggle = new JoystickButton(jBox, Buttons.ARM_TOGGLE),
+	
+		buttonIntakeIn = new JoystickButton(jBox, Buttons.INTAKE_WHEELS_IN),
+		buttonIntakeOut = new JoystickButton(jBox, Buttons.INTAKE_WHEELS_OUT);
+		
 	
 	public Path path = null;
 	
 	public OI(){
+		Fire fire = new Fire();
 		buttonAutoAllign.whileHeld(new FollowTarget());
-		buttonDriverShoot.whenPressed(new Fire());
+		buttonDriverShoot.whenPressed(fire);
 		
 		//Box OP
 		buttonIntakeUp.whenPressed(new MoveIntake(RobotValues.INTAKE_STRAIGHTUP_ANGLE));
 		buttonIntakeDown.whenPressed(new MoveIntake(RobotValues.INTAKE_FLOOR_ANGLE));
 		buttonIntakeCollect.whenPressed(new MoveIntake(RobotValues.INTAKE_BALL_ANGLE));
 		buttonIntakeStore.whenPressed(new MoveIntake(RobotValues.INTAKE_STORE_ANGLE));
+		
+		buttonBoxOpShoot.whenPressed(fire);
+		
+		buttonArmToggle.whenReleased(new Store());
+		buttonArmToggle.whenPressed(new ExtendArmStage1(true));
+		
+		buttonIntakeIn.whileHeld(new SetWheels(1.0));
+		buttonIntakeOut.whileHeld(new SetWheels(-1.0));
 	}
 	
 	public double getLeftX(){
@@ -74,6 +94,14 @@ public class OI{
 
 	public double getThrottle() {
 		return -jLeft.getY();
+	}
+	
+	public double getIntakeJoystick(){
+		return jBox.getRawAxis(Buttons.JOYSTICK_INTAKE);
+	}
+	
+	public double getArmJoystick(){
+		return jBox.getRawAxis(Buttons.JOYSTICK_ARM);
 	}
 	
 	//TEST -- DELETE AFTER TESTING!!!!!!!!

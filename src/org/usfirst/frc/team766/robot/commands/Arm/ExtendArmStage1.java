@@ -6,7 +6,7 @@ public class ExtendArmStage1 extends CommandBase{
 	
 	private boolean lift;
 
-	private ExtendArmStage1(boolean lift){
+	public ExtendArmStage1(boolean lift){
 		this.lift = lift;
 	}
 	
@@ -15,7 +15,6 @@ public class ExtendArmStage1 extends CommandBase{
 	}
 	
 	protected void execute() {
-	
 	}
 
 	protected boolean isFinished() {
@@ -23,10 +22,9 @@ public class ExtendArmStage1 extends CommandBase{
 	}
 	
 	protected void end() {
-		
+		Arm.raise(lift);
 	}
 	
 	protected void interrupted() {
-		end();
 	}
 }

@@ -2,12 +2,14 @@ package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.Looper;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
+import org.usfirst.frc.team766.robot.commands.Arm.ManualAdjustment;
 import org.usfirst.frc.team766.robot.commands.Camera.FindErrors;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackTarget;
 import org.usfirst.frc.team766.robot.commands.Catapult.CatapultControl;
 import org.usfirst.frc.team766.robot.commands.Drive.CheesyDrive;
 import org.usfirst.frc.team766.robot.commands.Drive.DriveDistance;
 import org.usfirst.frc.team766.robot.commands.Intake.IntakeControl;
+import org.usfirst.frc.team766.robot.commands.Intake.ManualIntakeControl;
 import org.usfirst.frc.team766.robot.commands.Intake.MoveIntake;
 import org.usfirst.frc.team766.robot.commands.Intake.ResetIntakeAngle;
 
@@ -64,6 +66,8 @@ public class Robot extends IterativeRobot {
 		//new FindErrors().start();
 		//new TrackTarget().start();
 		
+		new ManualAdjustment().start();
+		new ManualIntakeControl().start();
 		new CheesyDrive().start();
 		//new MotorTester().start();
 //		new PrintWinchRotations().start();
