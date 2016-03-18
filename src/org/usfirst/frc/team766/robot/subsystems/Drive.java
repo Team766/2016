@@ -4,6 +4,7 @@ import org.usfirst.frc.team766.lib.DeviceManager;
 import org.usfirst.frc.team766.robot.Ports;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI;
@@ -33,6 +34,7 @@ public class Drive extends Subsystem {
 	private ADXRS450_Gyro gyro;
 
 	private PowerDistributionPanel PDP;
+	private BuiltInAccelerometer accel;
 	
 	private boolean locked = false;
 
@@ -49,6 +51,7 @@ public class Drive extends Subsystem {
 		gyro = DeviceManager.getInstance().getGyro();
 		
 		PDP = DeviceManager.getInstance().getPDP();
+		accel = DeviceManager.getInstance().getAccel();
 	}
 	
 	public void initDefaultCommand() {
@@ -123,6 +126,10 @@ public class Drive extends Subsystem {
 
 	public double getRightVelocity() {
 		return rightEncoder.getRate();
+	}
+	
+	public double getAccel(){
+		return accel.getX();
 	}
 	
 	public double getLeftVoltage(){

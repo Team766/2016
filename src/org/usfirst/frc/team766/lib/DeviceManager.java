@@ -5,6 +5,7 @@ package org.usfirst.frc.team766.lib;
 import org.usfirst.frc.team766.robot.Ports;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -63,6 +64,8 @@ public class DeviceManager {
 	
 	private PowerDistributionPanel PDP;
 	
+	private BuiltInAccelerometer accel;
+	
 	private AxisCamera cam;
 	
 	
@@ -117,6 +120,8 @@ public class DeviceManager {
 			atTop = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 
 			
 			PDP = new PowerDistributionPanel();
+			
+			accel = new BuiltInAccelerometer();
 			
 			cam = new AxisCamera("169.254.2.2");
 		}else{
@@ -215,6 +220,10 @@ public class DeviceManager {
 	//PDP
 	public PowerDistributionPanel getPDP(){
 		return PDP;
+	}
+	
+	public BuiltInAccelerometer getAccel(){
+		return accel;
 	}
 	
 	public CounterBase getArmEncoder(){

@@ -14,11 +14,13 @@ public class RobotValues {
 	
 	//Auton
 	public static final String[] Autons = {"Vision Drive", "22 Points"};
+	public static final double DEAD_RECK_POWER = 1.0;
 	
 	//real values
 	public static final double TAPE_WIDTH = 0.5207;
 	public static final double TOWER_HEIGHT = 2.4638;
 	public static final double FIRE_DISTANCE = 10; //FIND REAL VALUE - may need to be an array of positions
+	public static final double AUTON_LINE_TO_BACK_DEFENSES = 3.007868;
 	
 	//Vision Values
 	public static final double PIXEL_WIDTH = 351;

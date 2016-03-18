@@ -69,7 +69,7 @@ public class Robot extends IterativeRobot {
 		new ManualAdjustment().start();
 		new ManualIntakeControl().start();
 		new CheesyDrive().start();
-		//new MotorTester().start();
+//		new MotorTester().start();
 //		new PrintWinchRotations().start();
 		
 		if (autonomousCommand != null)
