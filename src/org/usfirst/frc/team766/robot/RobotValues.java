@@ -1,6 +1,6 @@
 package org.usfirst.frc.team766.robot;
 
-import org.usfirst.frc.team766.robot.commands.CommandBase;
+import org.usfirst.frc.team766.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -91,7 +91,7 @@ public class RobotValues {
 	public static final double AngleThreshold = 1;
 	
 	public static final double IntakeKp = 0.1;//SmartDashboard.getNumber("Intake P: ");
-	public static final double IntakeKi = SmartDashboard.getNumber("Intake I: ");
+	public static final double IntakeKi = 0;//SmartDashboard.getNumber("Intake I: ");
 	public static final double IntakeKd = 0.005;//SmartDashboard.getNumber("Intake D: ");
 	public static final double IntakeThreshold = 1;
 	
@@ -101,8 +101,8 @@ public class RobotValues {
 	public static final double CameraThreshold = 0.05;
 	
 	//Intake
-	public static final double INTAKE_BALL_ANGLE = CommandBase.Intake.getAngleFromHeight(BALL_COMPRESSION_HEIGHT),
-							   INTAKE_FLOOR_ANGLE = CommandBase.Intake.getAngleFromHeight(0),
+	public static final double INTAKE_BALL_ANGLE = Intake.getAngleFromHeight(BALL_COMPRESSION_HEIGHT),
+							   INTAKE_FLOOR_ANGLE = Intake.getAngleFromHeight(0),
 							   INTAKE_STRAIGHTUP_ANGLE = 180,
 							   INTAKE_STORE_ANGLE = 210;
 }

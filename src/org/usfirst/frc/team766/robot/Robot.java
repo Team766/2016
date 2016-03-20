@@ -2,6 +2,7 @@ package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.Looper;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
+import org.usfirst.frc.team766.robot.commands.Camera.TrackingLight;
 import org.usfirst.frc.team766.robot.commands.Drive.CheesyDrive;
 import org.usfirst.frc.team766.robot.commands.Drive.DriveDistance;
 import org.usfirst.frc.team766.robot.commands.Intake.IntakeControl;
@@ -21,13 +22,6 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 
 	public void robotInit() {
-		CommandBase.init();
-		
-		//Test Commands
-		SmartDashboard.putData(new ResetIntakeAngle());
-		SmartDashboard.putData(new DriveDistance(2));
-		SmartDashboard.putData(new MoveIntake(90));
-		
 		//PIDS
 		SmartDashboard.putNumber("Intake P: ", RobotValues.IntakeKp);
 		SmartDashboard.putNumber("Intake I: ", RobotValues.IntakeKi);
@@ -36,6 +30,14 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drive P: ", RobotValues.DriveKp);
 		SmartDashboard.putNumber("Drive I: ", RobotValues.DriveKi);
 		SmartDashboard.putNumber("Drive D: ", RobotValues.DriveKd);
+		CommandBase.init();
+		
+		//Test Commands
+		SmartDashboard.putData(new ResetIntakeAngle());
+		SmartDashboard.putData(new DriveDistance(2));
+		SmartDashboard.putData(new MoveIntake(90));
+		SmartDashboard.putData(new TrackingLight(true));
+		
 		
 //		Looper.getInstance().add(new CatapultControl());
 		Looper.getInstance().add(new IntakeControl());
@@ -65,6 +67,7 @@ public class Robot extends IterativeRobot {
 		new CheesyDrive().start();
 //		new MotorTester().start();
 //		new PrintWinchRotations().start();
+//		new TankDrive().start();
 		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();

@@ -30,6 +30,8 @@ public class Ports {
 	public static final int Sol_RightShifter = 0;
 	public static final int Sol_Fire_A = 1;
 	public static final int Sol_Fire_B = 2;
+	public static final int Sol_CloseShot = 3;
+	
 	
 	
 	//Encoders

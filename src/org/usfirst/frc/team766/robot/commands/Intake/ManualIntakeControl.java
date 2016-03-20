@@ -10,7 +10,8 @@ public class ManualIntakeControl extends CommandBase{
 	}
 
 	protected void execute() {
-		Intake.setAngleSetpoint(Intake.getAngleSetpoint() + (OI.getIntakeJoystick() * JOYSTICK_TO_ANGLE));
+		if(Math.abs(OI.getIntakeJoystick()) > 0.4)
+			Intake.setAngleSetpoint(Intake.getAngleSetpoint() + (OI.getIntakeJoystick() * JOYSTICK_TO_ANGLE));
 	}
 
 	protected boolean isFinished() {

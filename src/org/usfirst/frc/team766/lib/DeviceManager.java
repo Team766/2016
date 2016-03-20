@@ -57,7 +57,9 @@ public class DeviceManager {
 	private DoubleSolenoid secondStage;
 	
     private DoubleSolenoid launch;
-
+    
+    private Solenoid closeShot;
+    
 	private ADXRS450_Gyro gyro;
 
 	private DigitalInput atTop;
@@ -108,6 +110,7 @@ public class DeviceManager {
 			travelDistance = new Encoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
 			
 			driveShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_RightShifter);
+			closeShot = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_CloseShot);
 			
 			firstStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS1);
 			thirdStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS3);
@@ -124,7 +127,7 @@ public class DeviceManager {
 			
 			accel = new BuiltInAccelerometer();
 			
-			cam = new AxisCamera("169.254.2.2");
+			cam = new AxisCamera("10.7.66.11");
 			
 			cameraLights = new Relay(Ports.Camera_Lights);
 			trackingLight = new Relay(Ports.TrackingLight);
@@ -201,6 +204,9 @@ public class DeviceManager {
 	}
 	public Solenoid getThirdStage(){
 		return thirdStage;
+	}
+	public Solenoid getCloseShot(){
+		return closeShot;
 	}
 	public DoubleSolenoid getLaunch(){
 		return launch;

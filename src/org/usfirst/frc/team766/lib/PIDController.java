@@ -21,7 +21,7 @@ package org.usfirst.frc.team766.lib;
 
 public class PIDController {
 	private int printCounter = 0;
-	private boolean print = true;
+	private boolean print = false;
 
 	private double Kp = 0;
 	private double Ki = 0;

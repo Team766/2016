@@ -44,7 +44,7 @@ public class Intake extends Subsystem {
     }
 
     public void setRotationMotor(double s){
-    	if(getAngle() < getAngleFromHeight(0) && s < 0){
+    	if(getAngle() < getAngleFromHeight(0) && s < 0 && !lockRotation){
     		s = 0;
     		System.out.println("Intake: Angle too low");
     	}
@@ -55,6 +55,10 @@ public class Intake extends Subsystem {
     	else if(s > 0.3)
     		s = 0.3;
     	
+    	setRawRotationMotor(s);
+    }
+    
+    public void setRawRotationMotor(double s){
     	rotator.set(-s);
     }
 
@@ -79,7 +83,7 @@ public class Intake extends Subsystem {
 		return .289 - .314*Math.cos(getAngle());
 	}
 	
-	public double getAngleFromHeight(double height){
+	public static double getAngleFromHeight(double height){
 		return Math.toDegrees(Math.acos((.3 - height)/.314));
 	}
 

@@ -113,14 +113,14 @@ public class Camera extends Subsystem{
 	
 	public void setCameraLights(boolean on){
 		if(on)
-			cameraLights.set(Value.kOn);
+			cameraLights.set(Value.kForward);
 		else
 			cameraLights.set(Value.kOff);
 	}
 	
 	public void setTrackingLight(boolean on){
 		if(on)
-			trackingLight.set(Value.kOn);
+			trackingLight.set(Value.kForward);
 		else
 			trackingLight.set(Value.kOff);
 	}

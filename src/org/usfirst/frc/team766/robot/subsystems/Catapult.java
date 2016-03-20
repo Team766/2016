@@ -1,13 +1,13 @@
 package org.usfirst.frc.team766.robot.subsystems;
 
 import org.usfirst.frc.team766.lib.DeviceManager;
-import org.usfirst.frc.team766.robot.Ports;
 import org.usfirst.frc.team766.robot.RobotValues;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -23,6 +23,7 @@ public class Catapult extends Subsystem {
 	Victor winchB;
 	
 	DoubleSolenoid launch;
+	Solenoid closeShot;
 	
 	Encoder travelDistance;
 	DigitalInput atTop; 
@@ -32,6 +33,7 @@ public class Catapult extends Subsystem {
 		winchB = (Victor)DeviceManager.getInstance().getWinchB();
 		
 		launch = DeviceManager.getInstance().getLaunch();
+		closeShot = DeviceManager.getInstance().getCloseShot();
 		
 		travelDistance = (Encoder)DeviceManager.getInstance().getWinchTravel();
 		atTop = DeviceManager.getInstance().getAtTop();
@@ -62,8 +64,8 @@ public class Catapult extends Subsystem {
 	}
 	
 	public void setWinch(double s){
-		winchA.set(-s);
-		winchB.set(-s);
+		winchA.set(s);
+		winchB.set(s);
 	}
 	
 	public boolean atTop(){
@@ -75,6 +77,10 @@ public class Catapult extends Subsystem {
 			launch.set(Value.kForward);
 		else
 			launch.set(Value.kReverse);
+	}
+	
+	public void closeShot(boolean close){
+		closeShot.set(close);
 	}
 	
     public void initDefaultCommand() {

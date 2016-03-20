@@ -7,23 +7,24 @@ public class ResetIntakeAngle extends CommandBase{
 
 	private int numNoMoves;
 	private boolean isFinished;
-	private final double VELOCITY_THRESHOLD = 20;
+	private final double VELOCITY_THRESHOLD = 0.4;
 	
 	protected void initialize() {
 		Intake.lockRotation(true);
 		
 		numNoMoves = 0;
 		isFinished = false;
-		
-		Intake.setRotationMotor(-0.25);
+
+		Intake.setRawRotationMotor(-0.5);
 	}
 
 	protected void execute() {
-		if (Math.abs(Intake.getVelocity()) < VELOCITY_THRESHOLD) {
+		if(Math.abs(Intake.getVelocity()) < VELOCITY_THRESHOLD) {
 			numNoMoves++;
 		}
+			
 		System.out.println("IntakeAngle:\t" + Intake.getAngle() + "\t IntakeValue:\t" + Intake.getVelocity());
-		if (numNoMoves > 10) {
+		if (numNoMoves > 25) {
 			Intake.resetEncoder();
 			isFinished = true;
 		}

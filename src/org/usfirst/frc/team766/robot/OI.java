@@ -1,11 +1,10 @@
 package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.trajectory.Path;
-import org.usfirst.frc.team766.robot.commands.Arm.ExtendArmStage1;
-import org.usfirst.frc.team766.robot.commands.Arm.MoveArmStage2;
-import org.usfirst.frc.team766.robot.commands.Arm.Store;
+import org.usfirst.frc.team766.robot.commands.Camera.TrackingLight;
 import org.usfirst.frc.team766.robot.commands.Catapult.Fire;
 import org.usfirst.frc.team766.robot.commands.Catapult.ManualWinchBack;
+import org.usfirst.frc.team766.robot.commands.Catapult.SetCloseShot;
 import org.usfirst.frc.team766.robot.commands.Drive.FollowTarget;
 import org.usfirst.frc.team766.robot.commands.Intake.MoveIntake;
 import org.usfirst.frc.team766.robot.commands.Intake.SetWheels;
@@ -65,12 +64,16 @@ public class OI{
 		
 		buttonBoxOpShoot.whenPressed(fire);
 		
-		buttonArmToggle.whenReleased(new Store());
-		buttonArmToggle.whenPressed(new ExtendArmStage1(true));
+//		buttonArmToggle.whenReleased(new Store());
+//		buttonArmToggle.whenPressed(new ExtendArmStage1(true));
+//		
+//		buttonArmDrawbridge.whenPressed(new MoveArmStage2(RobotValues.DRAWBRIDGE_ANGLE));
+//		buttonArmSallyPort.whenPressed(new MoveArmStage2(RobotValues.SALLYPORT_ANGLE));
+//		buttonArmScaling.whenPressed(new MoveArmStage2(RobotValues.STAGE2MAX_ANGLE));
 		
-		buttonArmDrawbridge.whenPressed(new MoveArmStage2(RobotValues.DRAWBRIDGE_ANGLE));
-		buttonArmSallyPort.whenPressed(new MoveArmStage2(RobotValues.SALLYPORT_ANGLE));
-		buttonArmScaling.whenPressed(new MoveArmStage2(RobotValues.STAGE2MAX_ANGLE));
+		//Repurposed buttons for testing purposes...lol
+		buttonArmToggle.toggleWhenPressed(new TrackingLight(true));
+		buttonArmScaling.toggleWhenPressed(new SetCloseShot(true));
 		
 		buttonIntakeIn.whileHeld(new SetWheels(1.0));
 		buttonIntakeOut.whileHeld(new SetWheels(-1.0));
