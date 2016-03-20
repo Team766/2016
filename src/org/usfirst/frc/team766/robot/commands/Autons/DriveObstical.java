@@ -34,7 +34,7 @@ public class DriveObstical extends CommandBase{
 
 	protected boolean isFinished() {
 		//If it hasn't started moving
-		return (timer.get() >= 2.5 && Math.abs(totalVelocity/count) < .05) &&
+		return (timer.get() >= 2.5 && Math.abs(totalVelocity/count) < .05) ||
 				//Check if it has moved distance
 				(((totalVelocity/count) * timer.get()) >= RobotValues.AUTON_LINE_TO_BACK_DEFENSES);
 	}

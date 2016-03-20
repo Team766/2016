@@ -2,6 +2,8 @@ package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * The RobotValues holds all the constants used in the robot code
  */
@@ -39,7 +41,7 @@ public class RobotValues {
 	public static final double BALL_COMPRESSION_HEIGHT = 0.2286;
 	
 	//Winch
-	public static final int WINCH_POWER = 1;
+	public static final double WINCH_POWER = 0.7;
 	public static final double Catapult_RotationsToStop = 4; //Need Real Value
 	
 	//Find real values
@@ -88,9 +90,9 @@ public class RobotValues {
 	public static final double AngleKd = 0;
 	public static final double AngleThreshold = 1;
 	
-	public static final double IntakeKp = 0.05;
-	public static final double IntakeKi = 0;
-	public static final double IntakeKd = 0;
+	public static final double IntakeKp = 0.1;//SmartDashboard.getNumber("Intake P: ");
+	public static final double IntakeKi = SmartDashboard.getNumber("Intake I: ");
+	public static final double IntakeKd = 0.005;//SmartDashboard.getNumber("Intake D: ");
 	public static final double IntakeThreshold = 1;
 	
 	public static final double CameraKp = 1;

@@ -18,7 +18,11 @@ public class Buttons {
 							ARM_TOGGLE = 5,
 							BOXOP_FIRE = 6,
 							INTAKE_WHEELS_IN = 7,
-							INTAKE_WHEELS_OUT = 8;
+							INTAKE_WHEELS_OUT = 8,
+							ARM_DRAWBRIDGE = 9,
+							ARM_SALLY_PORT = 10,
+							ARM_SCALING = 11,
+							ManaulCatapult = 12;
 	//Axis
 	public static final int JOYSTICK_ARM = 0,
 							JOYSTICK_INTAKE = 1;

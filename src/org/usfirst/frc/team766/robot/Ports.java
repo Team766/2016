@@ -20,15 +20,16 @@ public class Ports {
 	
 	//Camera
 	public static final int PWM_Servo = 6;
+	public static final int Camera_Lights = 0;
+	public static final int TrackingLight = 1;
 
 	public static final int Sol_ArmS1 = 0;
 	public static final int Sol_ArmS2_Up = 1;
 	public static final int Sol_ArmS2_Down = 2;
 	public static final int Sol_ArmS3 = 3;
 	public static final int Sol_RightShifter = 0;
-	public static final int Sol_LeftShifter = 1;
-	public static final int Sol_Fire_A = 2;
-	public static final int Sol_Fire_B = 3;
+	public static final int Sol_Fire_A = 1;
+	public static final int Sol_Fire_B = 2;
 	
 	
 	//Encoders

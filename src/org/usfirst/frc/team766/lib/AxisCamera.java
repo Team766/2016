@@ -83,7 +83,7 @@ public class AxisCamera {
     private int m_brightness = 50;
     private WhiteBalance m_whiteBalance = WhiteBalance.kAutomatic;
     private int m_colorLevel = 50;
-    private ExposureControl m_exposureControl = ExposureControl.kAutomatic;
+    private ExposureControl m_exposureControl = ExposureControl.kHold;
     private int m_exposurePriority = 50;
     private int m_maxFPS = 0;
     private Resolution m_resolution = Resolution.k640x480;

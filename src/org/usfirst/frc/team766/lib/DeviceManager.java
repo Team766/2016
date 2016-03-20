@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -48,8 +49,7 @@ public class DeviceManager {
     private CounterBase travelDistance;
     
     //Solenoids
-	private Solenoid leftShifter;
-	private Solenoid rightShifter;
+	private Solenoid driveShifter;
 	
 	private Solenoid firstStage;
 	private Solenoid thirdStage;
@@ -67,6 +67,8 @@ public class DeviceManager {
 	private BuiltInAccelerometer accel;
 	
 	private AxisCamera cam;
+	private Relay cameraLights;
+	private Relay trackingLight;
 	
 	
 	private static DeviceManager instance_;
@@ -105,8 +107,7 @@ public class DeviceManager {
 			
 			travelDistance = new Encoder(Ports.DIO_WinchA, Ports.DIO_WinchB);
 			
-			leftShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_LeftShifter);
-			rightShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_RightShifter);
+			driveShifter = new Solenoid(Ports.PCM_REGULAR, Ports.Sol_RightShifter);
 			
 			firstStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS1);
 			thirdStage = new Solenoid(Ports.PCM_ARM, Ports.Sol_ArmS3);
@@ -124,6 +125,10 @@ public class DeviceManager {
 			accel = new BuiltInAccelerometer();
 			
 			cam = new AxisCamera("169.254.2.2");
+			
+			cameraLights = new Relay(Ports.Camera_Lights);
+			trackingLight = new Relay(Ports.TrackingLight);
+			
 		}else{
 			/*leftDrive = new BearlyVictor(Ports.PWM_Left_Drive);
 			leftDrive = new BearlyVictor(Ports.PWM_Left_Drive);
@@ -188,11 +193,8 @@ public class DeviceManager {
 	}
 
 	//Solenoid
-	public Solenoid getLeftShifter(){
-		return leftShifter;
-	}
-	public Solenoid getRightShifter(){
-		return rightShifter;
+	public Solenoid getDriveShifter(){
+		return driveShifter;
 	}
 	public Solenoid getFirstStage(){
 		return firstStage;
@@ -234,4 +236,13 @@ public class DeviceManager {
 	public AxisCamera getCam(){
 		return cam;
 	}
+	
+	public Relay getCamLights(){
+		return cameraLights;
+	}
+	
+	public Relay getTrackingLight(){
+		return trackingLight;
+	}
+	
 }

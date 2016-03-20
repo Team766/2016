@@ -20,7 +20,8 @@ package org.usfirst.frc.team766.lib;
  */
 
 public class PIDController {
-	private boolean print = false;
+	private int printCounter = 0;
+	private boolean print = true;
 
 	private double Kp = 0;
 	private double Ki = 0;
@@ -216,8 +217,11 @@ public class PIDController {
 	}
 
 	private void pr(Object text) {
-		if (print)
+		if (print && printCounter > 10){
 			System.out.println("PID: " + text);
+			printCounter = 0;
+		}
+		printCounter++;
 	}
 
 }

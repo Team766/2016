@@ -1,9 +1,5 @@
 package org.usfirst.frc.team766.lib;
 
-import edu.wpi.first.wpilibj.DriverStation;
-
-import java.io.IOException;
-import java.net.ServerSocket;
 import java.util.ArrayList;
 
 public class Looper implements Runnable{
@@ -14,20 +10,24 @@ public class Looper implements Runnable{
 	protected boolean locked = false;
 
 	public static Looper getInstance() {
-		if (instance_ == null)
+		if (instance_ == null){
 			instance_ = new Looper();
+			new Thread(instance_).start();
+		}
 		return instance_;
 	}
 	
 	
 	public void run() {
-		while(DriverStation.getInstance().isEnabled()){
+		int size;
+		while(true){
 			if(!locked){
-				for(Loopable i : commands){
-					i.run();
+				size = commands.size();
+				for(int i = 0; i < size; i++){
+					commands.get(i).run();
 					
-					if(i.isFinished())
-						remove(i);
+					if(commands.get(i).isFinished())
+						remove(commands.get(i));
 				}
 			}
 		}
@@ -36,7 +36,7 @@ public class Looper implements Runnable{
 	public void add(Loopable i){
 		locked = true;
 		if(!contains(i)){
-			i.initilize();
+			i.initialize();
 			commands.add(i);
 		}
 		locked = false;

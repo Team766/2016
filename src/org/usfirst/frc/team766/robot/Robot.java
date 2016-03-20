@@ -2,10 +2,6 @@ package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.Looper;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
-import org.usfirst.frc.team766.robot.commands.Arm.ManualAdjustment;
-import org.usfirst.frc.team766.robot.commands.Camera.FindErrors;
-import org.usfirst.frc.team766.robot.commands.Camera.TrackTarget;
-import org.usfirst.frc.team766.robot.commands.Catapult.CatapultControl;
 import org.usfirst.frc.team766.robot.commands.Drive.CheesyDrive;
 import org.usfirst.frc.team766.robot.commands.Drive.DriveDistance;
 import org.usfirst.frc.team766.robot.commands.Intake.IntakeControl;
@@ -41,8 +37,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drive I: ", RobotValues.DriveKi);
 		SmartDashboard.putNumber("Drive D: ", RobotValues.DriveKd);
 		
-		new Thread(new Looper()).start();
-		Looper.getInstance().add(new CatapultControl());
+//		Looper.getInstance().add(new CatapultControl());
 		Looper.getInstance().add(new IntakeControl());
 	}
 
@@ -51,8 +46,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-		new FindErrors().start();
-		new TrackTarget().start();
+		//new FindTarget().start();
 		
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -65,8 +59,8 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		//new FindErrors().start();
 		//new TrackTarget().start();
-		
-		new ManualAdjustment().start();
+	
+//		new ManualAdjustment().start();
 		new ManualIntakeControl().start();
 		new CheesyDrive().start();
 //		new MotorTester().start();

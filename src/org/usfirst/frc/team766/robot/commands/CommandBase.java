@@ -11,20 +11,20 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public abstract class CommandBase extends Command {
 	
-	public static OI OI;
 	public static Drive Drive;
 	public static Camera Camera;
 	public static Intake Intake;
 	public static Catapult Catapult;
 	public static Arm Arm;
+	public static OI OI;
 	
 	public static void init(){
-		OI = new OI();
 		Drive = new Drive();
 		//Camera = new Camera();
 		Intake = new Intake();
 		Catapult = new Catapult();
 		Arm = new Arm();
+		OI = new OI();
 			
 	}
 }

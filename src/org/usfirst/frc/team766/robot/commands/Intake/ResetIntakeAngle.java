@@ -1,12 +1,13 @@
 package org.usfirst.frc.team766.robot.commands.Intake;
 
+import org.usfirst.frc.team766.robot.RobotValues;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 public class ResetIntakeAngle extends CommandBase{
 
 	private int numNoMoves;
 	private boolean isFinished;
-	private final double VELOCITY_THRESHOLD = 0.03;
+	private final double VELOCITY_THRESHOLD = 20;
 	
 	protected void initialize() {
 		Intake.lockRotation(true);
@@ -21,8 +22,8 @@ public class ResetIntakeAngle extends CommandBase{
 		if (Math.abs(Intake.getVelocity()) < VELOCITY_THRESHOLD) {
 			numNoMoves++;
 		}
-
-		if (numNoMoves > 12) {
+		System.out.println("IntakeAngle:\t" + Intake.getAngle() + "\t IntakeValue:\t" + Intake.getVelocity());
+		if (numNoMoves > 10) {
 			Intake.resetEncoder();
 			isFinished = true;
 		}
@@ -33,6 +34,7 @@ public class ResetIntakeAngle extends CommandBase{
 	}
 
 	protected void end() {
+		Intake.setAngleSetpoint(RobotValues.INTAKE_FLOOR_ANGLE);
 		Intake.setRotationMotor(0.0);
 		Intake.lockRotation(false);
 	}

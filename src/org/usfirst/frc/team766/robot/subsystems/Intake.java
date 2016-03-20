@@ -12,13 +12,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
     
+	private final double REDUCTION = 4;
+	
     private Victor wheels;
     private Victor rotator;
 
     private Encoder intakeAngle;
     
     private double angleSetpoint;
-    private double angleError;
     
     private boolean lockRotation;
     
@@ -32,7 +33,7 @@ public class Intake extends Subsystem {
     	intakeAngle.setDistancePerPulse(0.0087);
     	lockRotation = false;
     	
-    	setAngleSetpoint(90);
+    	setAngleSetpoint(getAngleFromHeight(0));
     }
     
     public void initDefaultCommand() {	
@@ -43,15 +44,22 @@ public class Intake extends Subsystem {
     }
 
     public void setRotationMotor(double s){
-    	if(getAngle() < 52.4){
+    	if(getAngle() < getAngleFromHeight(0) && s < 0){
     		s = 0;
     		System.out.println("Intake: Angle too low");
     	}
-    	rotator.set(s);
+    	
+    	//Testing Saftey net
+    	if(s < -0.3)
+    		s = -0.3;
+    	else if(s > 0.3)
+    		s = 0.3;
+    	
+    	rotator.set(-s);
     }
 
     public double getAngle(){
-    	return (intakeAngle.get() * (360d/(256d*4d))) + 52.43;
+    	return (intakeAngle.get() * (360d/(1024.0*REDUCTION))) + getAngleFromHeight(0);
     }
 
 	public double getAngleSetpoint() {
@@ -68,21 +76,17 @@ public class Intake extends Subsystem {
 	
 	//Meters off the ground
 	public double getHeight(){
-		return .30 - .328*Math.cos(getAngle());
+		return .289 - .314*Math.cos(getAngle());
 	}
 	
 	public double getAngleFromHeight(double height){
-		return Math.toDegrees(Math.acos((.3 - height)/.328));
+		return Math.toDegrees(Math.acos((.3 - height)/.314));
 	}
 
 	public double getAngleError() {
-		return angleError;
+		return angleSetpoint - getAngle();
 	}
 
-	public void setAngleError(double angleError) {
-		this.angleError = angleError;
-	}
-	
 	public void resetEncoder(){
 		intakeAngle.reset();
 	}

@@ -1,27 +1,25 @@
-package org.usfirst.frc.team766.robot.commands.Intake;
+package org.usfirst.frc.team766.robot.commands.Camera;
 
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 
-public class SetWheels extends CommandBase{
+public class CameraLights extends CommandBase{
 
-	private double speed;
-	public SetWheels(double speed){
-		this.speed = speed;
+	public CameraLights(boolean on){
+		Camera.setCameraLights(on);
+		setTimeout(1);
 	}
 	
 	protected void initialize() {
-		Intake.setWheels(speed);
 	}
 
 	protected void execute() {
 	}
 
 	protected boolean isFinished() {
-		return false;
+		return isTimedOut();
 	}
 
 	protected void end() {
-		Intake.setWheels(0.0);
 	}
 
 	protected void interrupted() {

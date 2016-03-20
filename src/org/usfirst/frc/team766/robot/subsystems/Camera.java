@@ -4,6 +4,8 @@ import org.usfirst.frc.team766.lib.DeviceManager;
 import org.usfirst.frc.team766.robot.Ports;
 import org.usfirst.frc.team766.robot.RobotValues;
 
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
@@ -13,6 +15,9 @@ public class Camera extends Subsystem{
 	Servo vertical;
 	
 	AxisCamera cam;
+	
+	Relay cameraLights;
+	Relay trackingLight;
 	
 	private int pixelWidth;
 	private double xError;
@@ -28,6 +33,8 @@ public class Camera extends Subsystem{
 	public Camera(){
 		vertical = DeviceManager.getInstance().getVerticalServo();
 		cam = DeviceManager.getInstance().getCam();
+		cameraLights = DeviceManager.getInstance().getCamLights();
+		trackingLight = DeviceManager.getInstance().getTrackingLight();
 		
 		pixelWidth = 0;
 		angleError = focalDistance = 0;
@@ -102,6 +109,20 @@ public class Camera extends Subsystem{
 	
 	public int getTrackPoint(){
 		return trackTarget;
+	}
+	
+	public void setCameraLights(boolean on){
+		if(on)
+			cameraLights.set(Value.kOn);
+		else
+			cameraLights.set(Value.kOff);
+	}
+	
+	public void setTrackingLight(boolean on){
+		if(on)
+			trackingLight.set(Value.kOn);
+		else
+			trackingLight.set(Value.kOff);
 	}
 	
 	protected void initDefaultCommand() {

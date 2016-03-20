@@ -15,7 +15,7 @@ public class Winch extends Loopable{
 	private double power = 1.0;
 	private boolean done = false;
 	
-	protected void initilize() {
+	protected void initialize() {
 		if(CommandBase.Catapult.getReadyToFire())
 			done = true;
 		

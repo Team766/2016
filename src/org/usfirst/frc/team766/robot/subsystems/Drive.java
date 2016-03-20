@@ -28,8 +28,7 @@ public class Drive extends Subsystem {
 	private Encoder rightEncoder;
 	private Encoder leftEncoder;
 
-	private Solenoid leftShifter;
-	private Solenoid rightShifter;
+	private Solenoid driveShifter;
 
 	private ADXRS450_Gyro gyro;
 
@@ -45,8 +44,7 @@ public class Drive extends Subsystem {
 		rightEncoder = (Encoder)DeviceManager.getInstance().getRightEncoder();
 		leftEncoder = (Encoder)DeviceManager.getInstance().getLeftEncoder();
 		
-		leftShifter = DeviceManager.getInstance().getLeftShifter();
-		rightShifter = DeviceManager.getInstance().getRightShifter();
+		driveShifter = DeviceManager.getInstance().getDriveShifter();
 		
 		gyro = DeviceManager.getInstance().getGyro();
 		
@@ -108,16 +106,7 @@ public class Drive extends Subsystem {
 	}
 
 	public void setShifter(boolean on) {
-		setLeftShifter(on);
-		setRightShifter(on);
-	}
-
-	private void setLeftShifter(boolean on) {
-		leftShifter.set(on);
-	}
-
-	private void setRightShifter(boolean on) {
-		rightShifter.set(on);
+		driveShifter.set(on);
 	}
 
 	public double getLeftVelocity() {

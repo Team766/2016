@@ -6,7 +6,7 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 public class CatapultControl extends Loopable{
 
-	protected void initilize() {
+	protected void initialize() {
 		
 	}
 

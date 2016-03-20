@@ -10,7 +10,7 @@ public class MoveArmStage2 extends CommandBase{
 
 	private int angle;
 	
-	private MoveArmStage2(int angle){
+	public MoveArmStage2(int angle){
 		this.angle = angle;
 	}
 	

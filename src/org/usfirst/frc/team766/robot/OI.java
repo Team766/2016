@@ -2,8 +2,10 @@ package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.trajectory.Path;
 import org.usfirst.frc.team766.robot.commands.Arm.ExtendArmStage1;
+import org.usfirst.frc.team766.robot.commands.Arm.MoveArmStage2;
 import org.usfirst.frc.team766.robot.commands.Arm.Store;
 import org.usfirst.frc.team766.robot.commands.Catapult.Fire;
+import org.usfirst.frc.team766.robot.commands.Catapult.ManualWinchBack;
 import org.usfirst.frc.team766.robot.commands.Drive.FollowTarget;
 import org.usfirst.frc.team766.robot.commands.Intake.MoveIntake;
 import org.usfirst.frc.team766.robot.commands.Intake.SetWheels;
@@ -37,9 +39,15 @@ public class OI{
 		buttonBoxOpShoot = new JoystickButton(jBox, Buttons.BOXOP_FIRE),
 		
 		buttonArmToggle = new JoystickButton(jBox, Buttons.ARM_TOGGLE),
-	
+		buttonArmDrawbridge = new JoystickButton(jBox, Buttons.ARM_DRAWBRIDGE),
+		buttonArmSallyPort = new JoystickButton(jBox, Buttons.ARM_SALLY_PORT),
+
+		buttonArmScaling = new JoystickButton(jBox, Buttons.ARM_SCALING),
+		
 		buttonIntakeIn = new JoystickButton(jBox, Buttons.INTAKE_WHEELS_IN),
-		buttonIntakeOut = new JoystickButton(jBox, Buttons.INTAKE_WHEELS_OUT);
+		buttonIntakeOut = new JoystickButton(jBox, Buttons.INTAKE_WHEELS_OUT),
+		
+		buttonManualCatapult = new JoystickButton(jBox,Buttons.ManaulCatapult);
 		
 	
 	public Path path = null;
@@ -60,8 +68,14 @@ public class OI{
 		buttonArmToggle.whenReleased(new Store());
 		buttonArmToggle.whenPressed(new ExtendArmStage1(true));
 		
+		buttonArmDrawbridge.whenPressed(new MoveArmStage2(RobotValues.DRAWBRIDGE_ANGLE));
+		buttonArmSallyPort.whenPressed(new MoveArmStage2(RobotValues.SALLYPORT_ANGLE));
+		buttonArmScaling.whenPressed(new MoveArmStage2(RobotValues.STAGE2MAX_ANGLE));
+		
 		buttonIntakeIn.whileHeld(new SetWheels(1.0));
 		buttonIntakeOut.whileHeld(new SetWheels(-1.0));
+		
+		buttonManualCatapult.whileHeld(new ManualWinchBack());
 	}
 	
 	public double getLeftX(){

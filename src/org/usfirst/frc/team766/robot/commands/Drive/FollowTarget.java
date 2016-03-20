@@ -27,7 +27,7 @@ public class FollowTarget extends CommandBase{
 	}
 
 	protected boolean isFinished() {
-		return false;
+		return pidY.isDone() && pidX.isDone();
 	}
 
 	protected void end() {
