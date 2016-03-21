@@ -21,7 +21,7 @@ public class RobotValues {
 	//real values
 	public static final double TAPE_WIDTH = 0.5207;
 	public static final double TOWER_HEIGHT = 2.4638;
-	public static final double FIRE_DISTANCE = 10; //FIND REAL VALUE - may need to be an array of positions
+	public static final double FIRE_DISTANCE = 5.1816; //FIND REAL VALUE - may need to be an array of positions
 	public static final double AUTON_LINE_TO_BACK_DEFENSES = 3.007868;
 	
 	//Vision Values
@@ -39,6 +39,7 @@ public class RobotValues {
 	//Intake
 	public static final double INTAKE_LENGTH = 0.354;
 	public static final double BALL_COMPRESSION_HEIGHT = 0.2286;
+	public static final double IntakeCollisionAngle = 190; //The angle where the intake will hit the catapult's arc
 	
 	//Winch
 	public static final double WINCH_POWER = 0.7;
@@ -75,9 +76,9 @@ public class RobotValues {
 	public static final double ArmKd = 0;
 	public static final double ArmThreshold = 0.05;
 	
-	public static final double DriveKp = 1;
-	public static final double DriveKi = 0;
-	public static final double DriveKd = 0;
+	public static final double DriveKp = SmartDashboard.getNumber("Drive P: ");
+	public static final double DriveKi = SmartDashboard.getNumber("Drive I: ");;
+	public static final double DriveKd = SmartDashboard.getNumber("Drive D: ");;
 	public static final double DriveThreshold = 0.05;
 	
 	public static final double GyroKp = 1;

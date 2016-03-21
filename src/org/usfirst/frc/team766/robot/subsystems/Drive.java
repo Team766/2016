@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Drive extends Subsystem {
 
 	private static final double WHEEL_DIAMETER = 0.2032, // meters, 8 in
-			PULSES_PER_ROTATION = 256,
+			PULSES_PER_ROTATION = 360,
 			DISTANCE_PER_PULSE = (Math.PI * WHEEL_DIAMETER)
 					/ PULSES_PER_ROTATION;
 
@@ -102,7 +102,7 @@ public class Drive extends Subsystem {
 	}
 
 	public double getRightDistance() {
-		return rightEncoder.get() * DISTANCE_PER_PULSE;
+		return -rightEncoder.get() * DISTANCE_PER_PULSE;
 	}
 
 	public void setShifter(boolean on) {

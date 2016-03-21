@@ -2,6 +2,7 @@ package org.usfirst.frc.team766.robot.subsystems;
 
 import org.usfirst.frc.team766.lib.DeviceManager;
 import org.usfirst.frc.team766.robot.RobotValues;
+import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -26,7 +27,9 @@ public class Catapult extends Subsystem {
 	Solenoid closeShot;
 	
 	Encoder travelDistance;
-	DigitalInput atTop; 
+	DigitalInput atBottom; 
+	
+	private boolean winching;
 	
 	public Catapult(){
 		winchA = (Victor)DeviceManager.getInstance().getWinchA();
@@ -36,7 +39,9 @@ public class Catapult extends Subsystem {
 		closeShot = DeviceManager.getInstance().getCloseShot();
 		
 		travelDistance = (Encoder)DeviceManager.getInstance().getWinchTravel();
-		atTop = DeviceManager.getInstance().getAtTop();
+		atBottom = DeviceManager.getInstance().getAtBottom();
+		
+		setWinching(false);
 	}
 	
 	public RobotValues.RotationCounts getStopPosition(){
@@ -48,7 +53,7 @@ public class Catapult extends Subsystem {
 	}
 	
 	public boolean getReadyToFire(){
-		return readyToFire;
+		return readyToFire && CommandBase.Intake.getAngle() < RobotValues.IntakeCollisionAngle;
 	}
 	
 	public void setReadyToFire(boolean x){
@@ -68,8 +73,8 @@ public class Catapult extends Subsystem {
 		winchB.set(s);
 	}
 	
-	public boolean atTop(){
-		return atTop.get();
+	public boolean atBottom(){
+		return atBottom.get();
 	}
 	
 	public void firePiston(boolean fire){
@@ -85,5 +90,13 @@ public class Catapult extends Subsystem {
 	
     public void initDefaultCommand() {
     }
+
+	public boolean isWinching() {
+		return winching;
+	}
+
+	public void setWinching(boolean winching) {
+		this.winching = winching;
+	}
 }
 

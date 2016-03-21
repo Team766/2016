@@ -62,7 +62,7 @@ public class DeviceManager {
     
 	private ADXRS450_Gyro gyro;
 
-	private DigitalInput atTop;
+	private DigitalInput atBottom;
 	
 	private PowerDistributionPanel PDP;
 	
@@ -121,7 +121,7 @@ public class DeviceManager {
 
 			gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 
-			atTop = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 
+			atBottom = new DigitalInput(Ports.DIO_HallEffectSensorWinch); 
 			
 			PDP = new PowerDistributionPanel();
 			
@@ -221,8 +221,8 @@ public class DeviceManager {
 	}
 	
 	//Encoder
-	public DigitalInput getAtTop(){
-		return atTop;
+	public DigitalInput getAtBottom(){
+		return atBottom;
 	}
 	
 	//PDP

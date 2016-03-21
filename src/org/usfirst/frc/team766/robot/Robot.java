@@ -5,6 +5,7 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackingLight;
 import org.usfirst.frc.team766.robot.commands.Drive.CheesyDrive;
 import org.usfirst.frc.team766.robot.commands.Drive.DriveDistance;
+import org.usfirst.frc.team766.robot.commands.Drive.TurnAngle;
 import org.usfirst.frc.team766.robot.commands.Intake.IntakeControl;
 import org.usfirst.frc.team766.robot.commands.Intake.ManualIntakeControl;
 import org.usfirst.frc.team766.robot.commands.Intake.MoveIntake;
@@ -27,9 +28,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake I: ", RobotValues.IntakeKi);
 		SmartDashboard.putNumber("Intake D: ", RobotValues.IntakeKd);
 		
-		SmartDashboard.putNumber("Drive P: ", RobotValues.DriveKp);
-		SmartDashboard.putNumber("Drive I: ", RobotValues.DriveKi);
-		SmartDashboard.putNumber("Drive D: ", RobotValues.DriveKd);
+		SmartDashboard.putNumber("Drive P: ", 1);
+		SmartDashboard.putNumber("Drive I: ", 0);
+		SmartDashboard.putNumber("Drive D: ", 0);
 		CommandBase.init();
 		
 		//Test Commands
@@ -37,7 +38,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(new DriveDistance(2));
 		SmartDashboard.putData(new MoveIntake(90));
 		SmartDashboard.putData(new TrackingLight(true));
-		
+		SmartDashboard.putData(new TurnAngle(90));
 		
 //		Looper.getInstance().add(new CatapultControl());
 		Looper.getInstance().add(new IntakeControl());

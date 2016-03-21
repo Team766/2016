@@ -35,15 +35,15 @@ public class Ports {
 	
 	
 	//Encoders
-	public static final int DIO_LDriveEncA = 16,
+	public static final int DIO_LDriveEncA = 16,//Enc3
 							DIO_LDriveEncB = 17,
-							DIO_RDriveEncA = 14,
+							DIO_RDriveEncA = 14,//Enc2
 							DIO_RDriveEncB = 15,
-							DIO_ArmA = 18,
+							DIO_ArmA = 18,//Enc4
 							DIO_ArmB = 19,
-							DIO_IntakeA = 12,
+							DIO_IntakeA = 12, //Enc1
 							DIO_IntakeB = 13,
-							DIO_WinchA = 10,
+							DIO_WinchA = 10, //Enc0
 							DIO_WinchB = 11;
 	
 	//Hall Effect Sensor

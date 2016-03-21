@@ -20,6 +20,8 @@ public class Winch extends Loopable{
 			done = true;
 		
 		CommandBase.Catapult.firePiston(false);
+		
+		CommandBase.Catapult.setWinching(true);
 	}
 	
 	protected void run() {
@@ -41,11 +43,13 @@ public class Winch extends Loopable{
 	protected void end() {
 		CommandBase.Catapult.setWinch(0.0);
 		CommandBase.Catapult.setReadyToFire(true);
+		CommandBase.Catapult.setWinching(false);
 	}
 
 	protected void interrupted() {
 		CommandBase.Catapult.setWinch(0.0);
 		CommandBase.Catapult.setReadyToFire(false);
+		CommandBase.Catapult.setWinching(false);
 	}
 	
 	private double getDistanceToStop(double velocity){

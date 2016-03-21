@@ -4,12 +4,13 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 public class CameraLights extends CommandBase{
 
+	private boolean state;
 	public CameraLights(boolean on){
-		Camera.setCameraLights(on);
-		setTimeout(1);
 	}
 	
 	protected void initialize() {
+		Camera.setCameraLights(state);
+		setTimeout(1);
 	}
 
 	protected void execute() {
