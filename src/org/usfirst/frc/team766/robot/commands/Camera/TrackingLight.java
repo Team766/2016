@@ -10,17 +10,19 @@ public class TrackingLight extends CommandBase{
 	
 	protected void initialize() {
 		Camera.setTrackingLight(state);
-		setTimeout(1);
+//		setTimeout(1);
 	}
 
 	protected void execute() {
 	}
 
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
+//		return isTimedOut();
 	}
 
 	protected void end() {
+		Camera.setTrackingLight(!state);
 	}
 
 	protected void interrupted() {

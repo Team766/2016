@@ -2,6 +2,7 @@ package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.Looper;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
+import org.usfirst.frc.team766.robot.commands.Camera.ToggleStream;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackingLight;
 import org.usfirst.frc.team766.robot.commands.Drive.CheesyDrive;
 import org.usfirst.frc.team766.robot.commands.Drive.DriveDistance;
@@ -66,6 +67,7 @@ public class Robot extends IterativeRobot {
 //		new ManualAdjustment().start();
 		new ManualIntakeControl().start();
 		new CheesyDrive().start();
+		new ToggleStream().start();
 //		new MotorTester().start();
 //		new PrintWinchRotations().start();
 //		new TankDrive().start();

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.trajectory.Path;
+import org.usfirst.frc.team766.robot.commands.Camera.ToggleStream;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackingLight;
 import org.usfirst.frc.team766.robot.commands.Catapult.Fire;
 import org.usfirst.frc.team766.robot.commands.Catapult.ManualWinchBack;
@@ -28,6 +29,7 @@ public class OI{
 		buttonQuickTurn = new JoystickButton(jRight, Buttons.QUICKTURN),
 		buttonShifter = new JoystickButton(jLeft, Buttons.SHIFTER),
 		buttonAutoAllign = new JoystickButton(jLeft, Buttons.AUTOALLIGN),
+		buttonChangeCam = new JoystickButton(jLeft, Buttons.CHANGECAM),
 		
 		//Box Op
 		buttonIntakeUp = new JoystickButton(jBox, Buttons.INTAKE_UP),
@@ -103,6 +105,10 @@ public class OI{
 
 	public boolean getShifter() {
 		return buttonShifter.get();
+	}
+	
+	public boolean getCameraToggle(){
+		return buttonChangeCam.get();
 	}
 
 	public double getSteer() {

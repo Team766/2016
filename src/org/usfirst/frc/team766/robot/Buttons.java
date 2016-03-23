@@ -4,6 +4,7 @@ public class Buttons {
 	//Left Joystick
 	public static final int SHIFTER = 1;
 	public static final int AUTOALLIGN = 2;
+	public static final int CHANGECAM = 3;
 	
 	//Right Joystick
 	public static final int DRIVER_FIRE = 1;

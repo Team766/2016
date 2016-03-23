@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
+import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
  * I like to think of myself as Woodrow Wilson, making the world safe for simulators
@@ -69,6 +70,7 @@ public class DeviceManager {
 	private BuiltInAccelerometer accel;
 	
 	private AxisCamera cam;
+	private USBCamera usbCam;
 	private Relay cameraLights;
 	private Relay trackingLight;
 	
@@ -128,6 +130,7 @@ public class DeviceManager {
 			accel = new BuiltInAccelerometer();
 			
 			cam = new AxisCamera("10.7.66.11");
+			usbCam = new USBCamera("cam1");
 			
 			cameraLights = new Relay(Ports.Camera_Lights);
 			trackingLight = new Relay(Ports.TrackingLight);
@@ -241,6 +244,10 @@ public class DeviceManager {
 	//Axis Camera
 	public AxisCamera getCam(){
 		return cam;
+	}
+	
+	public USBCamera getUSBCam(){
+		return usbCam;
 	}
 	
 	public Relay getCamLights(){

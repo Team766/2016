@@ -17,7 +17,7 @@ public class Fire extends CommandBase{
 	}
 
 	protected boolean isFinished() {
-		return isTimedOut() || !Catapult.getReadyToFire();
+		return isTimedOut(); //|| !Catapult.getReadyToFire();
 	}
 
 	protected void end() {
