@@ -81,14 +81,14 @@ public class RobotValues {
 	public static final double DriveKd = SmartDashboard.getNumber("Drive D: ");;
 	public static final double DriveThreshold = 0.05;
 	
-	public static final double GyroKp = 1;
-	public static final double GyroKi = 0;
-	public static final double GyroKd = 0;
+	public static final double GyroKp = 0.01; //these values need to be tested
+	public static final double GyroKi = 0.00;
+	public static final double GyroKd = 0.03;
 	public static final double GyroThreshold = 0.05;
 	
-	public static final double AngleKp = 1;
+	public static final double AngleKp = 0.35;
 	public static final double AngleKi = 0;
-	public static final double AngleKd = 0;
+	public static final double AngleKd = 0.15;
 	public static final double AngleThreshold = 1;
 	
 	public static final double IntakeKp = 0.1;//SmartDashboard.getNumber("Intake P: ");
@@ -98,8 +98,8 @@ public class RobotValues {
 	
 	public static final double CameraKp = 1;
 	public static final double CameraKi = 0;
-	public static final double CameraKd = 0;
 	public static final double CameraThreshold = 0.05;
+	public static final double CameraKd = 0;
 	
 	//Intake
 	public static final double INTAKE_BALL_ANGLE = Intake.getAngleFromHeight(BALL_COMPRESSION_HEIGHT),

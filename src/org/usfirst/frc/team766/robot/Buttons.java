@@ -1,10 +1,9 @@
 package org.usfirst.frc.team766.robot;
 
-public class Buttons {
+public class Buttons {	
 	//Left Joystick
 	public static final int SHIFTER = 1;
 	public static final int AUTOALLIGN = 2;
-	public static final int CHANGECAM = 3;
 	
 	//Right Joystick
 	public static final int DRIVER_FIRE = 1;
@@ -12,19 +11,22 @@ public class Buttons {
 	
 	//Box Op
 	//Intake
-	public static final int INTAKE_UP = 1,
-							INTAKE_DOWN = 2,
-							INTAKE_COLLECT = 3,
-							INTAKE_STORE = 4,
-							ARM_TOGGLE = 5,
-							BOXOP_FIRE = 6,
-							INTAKE_WHEELS_IN = 7,
-							INTAKE_WHEELS_OUT = 8,
-							ARM_DRAWBRIDGE = 9,
-							ARM_SALLY_PORT = 10,
-							ARM_SCALING = 11,
+	public static final int INTAKE_UP = 8,
+							INTAKE_DOWN = 9,
+							INTAKE_COLLECT = 7,
+							INTAKE_STORE = 10,
+							ARM_TOGGLE = 13,
+							BOXOP_FIRE = 4,
+							INTAKE_WHEELS_IN = 12,
+							INTAKE_WHEELS_OUT = 11,
+							ARM_DRAWBRIDGE = 1,
+							ARM_SALLY_PORT = 2,
+							LIGHT = 5,
+							WINCH = 6,
 							ManaulCatapult = 12;
-	//Axis
-	public static final int JOYSTICK_ARM = 0,
-							JOYSTICK_INTAKE = 1;
+	//Hat
+	//Left:Arm Scaling
+	//Up: CloseShot
+	public static final int ARM_Scalling = 4,
+							CloseShot = 5;
 }

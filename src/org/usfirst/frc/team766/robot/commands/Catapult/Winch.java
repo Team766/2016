@@ -7,6 +7,8 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 public class Winch extends Loopable{
 
+	private final double WINCHING_TIME = 3; //seconds
+	
 	private final double MIN_ACCEL = -0.5;
 	private final double DECELERATION = -.05;
 	private final double MIN_POWER = 0.3;
@@ -14,10 +16,13 @@ public class Winch extends Loopable{
 	
 	private double power = 1.0;
 	private boolean done = false;
+	private long startTime = 0;
 	
 	protected void initialize() {
 		if(CommandBase.Catapult.getReadyToFire())
 			done = true;
+		
+		startTime = System.currentTimeMillis();
 		
 		CommandBase.Catapult.firePiston(false);
 		
@@ -25,19 +30,20 @@ public class Winch extends Loopable{
 	}
 	
 	protected void run() {
-		if(readyToRampDown())
-			power += DECELERATION;
-		else
-			power = 1.0;
-		
-		if(power <= MIN_POWER)
-			power = MIN_POWER;
+//		if(readyToRampDown())
+//			power += DECELERATION;
+//		else
+//			power = 1.0;
+//		
+//		if(power <= MIN_POWER)
+//			power = MIN_POWER;
 		
 		CommandBase.Catapult.setWinch(power);
 	}
 
 	protected boolean isFinished() {
-		return done || Math.abs(CommandBase.Catapult.getStopPosition().getNumVal() - CommandBase.Catapult.getRotations()) < STOP_THRESHOLD;
+		return (System.currentTimeMillis() - startTime) / 1000d >= WINCHING_TIME; //in seconds
+		//return done || Math.abs(CommandBase.Catapult.getStopPosition().getNumVal() - CommandBase.Catapult.getRotations()) < STOP_THRESHOLD;
 	}
 
 	protected void end() {

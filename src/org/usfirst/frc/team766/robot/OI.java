@@ -1,7 +1,9 @@
 package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.trajectory.Path;
-import org.usfirst.frc.team766.robot.commands.Camera.ToggleStream;
+import org.usfirst.frc.team766.robot.commands.Arm.ExtendArmStage1;
+import org.usfirst.frc.team766.robot.commands.Arm.MoveArmStage2;
+import org.usfirst.frc.team766.robot.commands.Arm.Store;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackingLight;
 import org.usfirst.frc.team766.robot.commands.Catapult.Fire;
 import org.usfirst.frc.team766.robot.commands.Catapult.ManualWinchBack;
@@ -12,6 +14,7 @@ import org.usfirst.frc.team766.robot.commands.Intake.SetWheels;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -24,12 +27,14 @@ public class OI{
 			jRight = new Joystick(1),
 			jBox = new Joystick(2);
 	
+	private InternalButton buttonArmScaling = new InternalButton();
+	private InternalButton buttonCloseShot = new InternalButton();
+	
 	public Button
 		buttonDriverShoot = new JoystickButton(jRight, Buttons.DRIVER_FIRE),
 		buttonQuickTurn = new JoystickButton(jRight, Buttons.QUICKTURN),
 		buttonShifter = new JoystickButton(jLeft, Buttons.SHIFTER),
 		buttonAutoAllign = new JoystickButton(jLeft, Buttons.AUTOALLIGN),
-		buttonChangeCam = new JoystickButton(jLeft, Buttons.CHANGECAM),
 		
 		//Box Op
 		buttonIntakeUp = new JoystickButton(jBox, Buttons.INTAKE_UP),
@@ -43,7 +48,7 @@ public class OI{
 		buttonArmDrawbridge = new JoystickButton(jBox, Buttons.ARM_DRAWBRIDGE),
 		buttonArmSallyPort = new JoystickButton(jBox, Buttons.ARM_SALLY_PORT),
 
-		buttonArmScaling = new JoystickButton(jBox, Buttons.ARM_SCALING),
+		buttonTrackingLight = new JoystickButton(jBox, Buttons.LIGHT),
 		
 		buttonIntakeIn = new JoystickButton(jBox, Buttons.INTAKE_WHEELS_IN),
 		buttonIntakeOut = new JoystickButton(jBox, Buttons.INTAKE_WHEELS_OUT),
@@ -66,16 +71,16 @@ public class OI{
 		
 		buttonBoxOpShoot.whenPressed(fire);
 		
-//		buttonArmToggle.whenReleased(new Store());
-//		buttonArmToggle.whenPressed(new ExtendArmStage1(true));
-//		
-//		buttonArmDrawbridge.whenPressed(new MoveArmStage2(RobotValues.DRAWBRIDGE_ANGLE));
-//		buttonArmSallyPort.whenPressed(new MoveArmStage2(RobotValues.SALLYPORT_ANGLE));
-//		buttonArmScaling.whenPressed(new MoveArmStage2(RobotValues.STAGE2MAX_ANGLE));
+		buttonArmToggle.whenReleased(new Store());
+		buttonArmToggle.whenPressed(new ExtendArmStage1(true));
+
+		buttonArmDrawbridge.whenPressed(new MoveArmStage2(RobotValues.DRAWBRIDGE_ANGLE));
+		buttonArmSallyPort.whenPressed(new MoveArmStage2(RobotValues.SALLYPORT_ANGLE));
+		buttonArmScaling.whenPressed(new MoveArmStage2(RobotValues.STAGE2MAX_ANGLE));
 		
 		//Repurposed buttons for testing purposes...lol
-		buttonArmToggle.toggleWhenPressed(new TrackingLight(true));
-		buttonArmScaling.toggleWhenPressed(new SetCloseShot(true));
+		buttonTrackingLight.toggleWhenPressed(new TrackingLight(true));
+		buttonCloseShot.toggleWhenPressed(new SetCloseShot(true));
 		
 		buttonIntakeIn.whileHeld(new SetWheels(1.0));
 		buttonIntakeOut.whileHeld(new SetWheels(-1.0));
@@ -108,7 +113,7 @@ public class OI{
 	}
 	
 	public boolean getCameraToggle(){
-		return buttonChangeCam.get();
+		return buttonTrackingLight.get();
 	}
 
 	public double getSteer() {
@@ -120,16 +125,22 @@ public class OI{
 	}
 	
 	public double getIntakeJoystick(){
-		return jBox.getRawAxis(Buttons.JOYSTICK_INTAKE);
+		return jBox.getY();
 	}
 	
 	public double getArmJoystick(){
-		return jBox.getRawAxis(Buttons.JOYSTICK_ARM);
+		return jBox.getX();
 	}
 	
 	//TEST -- DELETE AFTER TESTING!!!!!!!!
 	public double getCatapultAxis(){
 		return jBox.getY();
+	}
+	
+	//Update Hats
+	public void updatePOV(){
+		buttonArmScaling.setPressed(jBox.getRawAxis(Buttons.ARM_Scalling) > 0);
+		buttonCloseShot.setPressed(jBox.getRawAxis(Buttons.CloseShot) < 0);
 	}
 }
 

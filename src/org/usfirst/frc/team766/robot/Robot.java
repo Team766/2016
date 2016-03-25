@@ -78,8 +78,8 @@ public class Robot extends IterativeRobot {
 
 	public void disabledInit() {
 	}
-
 	public void teleopPeriodic() {
+		CommandBase.OI.updatePOV();
 		Scheduler.getInstance().run();
 	}
 
