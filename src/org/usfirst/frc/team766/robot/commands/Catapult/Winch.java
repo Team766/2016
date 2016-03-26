@@ -7,7 +7,7 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 public class Winch extends Loopable{
 
-	private final double WINCHING_TIME = 3; //seconds
+	private final double WINCHING_TIME = 2.25; //seconds
 	
 	private final double MIN_ACCEL = -0.5;
 	private final double DECELERATION = -.05;

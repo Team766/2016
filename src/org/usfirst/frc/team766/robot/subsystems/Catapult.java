@@ -69,8 +69,8 @@ public class Catapult extends Subsystem {
 	}
 	
 	public void setWinch(double s){
-		winchA.set(s);
-		winchB.set(s);
+		winchA.set(-s);
+		winchB.set(-s);
 	}
 	
 	public boolean atBottom(){

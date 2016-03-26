@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
     
 	private final double REDUCTION = 4;
+	private final double startingAngle = 180.0;//getAngleFromHeight(0);
 	
     private Victor wheels;
     private Victor rotator;
@@ -33,7 +34,8 @@ public class Intake extends Subsystem {
     	intakeAngle.setDistancePerPulse(0.0087);
     	lockRotation = false;
     	
-    	setAngleSetpoint(getAngleFromHeight(0));
+    	setAngleSetpoint(180.0);
+    	//setAngleSetpoint(getAngleFromHeight(0));
     }
     
     public void initDefaultCommand() {	
@@ -63,7 +65,7 @@ public class Intake extends Subsystem {
     }
 
     public double getAngle(){
-    	return (intakeAngle.get() * (360d/(1024.0*REDUCTION))) + getAngleFromHeight(0);
+    	return (intakeAngle.get() * (360d/(1024.0*REDUCTION))) + startingAngle;
     }
 
 	public double getAngleSetpoint() {

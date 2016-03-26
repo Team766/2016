@@ -4,7 +4,6 @@ import org.usfirst.frc.team766.lib.Looper;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 import org.usfirst.frc.team766.robot.commands.Camera.ToggleStream;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackingLight;
-import org.usfirst.frc.team766.robot.commands.Catapult.CatapultControl;
 import org.usfirst.frc.team766.robot.commands.Drive.CheesyDrive;
 import org.usfirst.frc.team766.robot.commands.Drive.DriveDistance;
 import org.usfirst.frc.team766.robot.commands.Drive.TurnAngle;
@@ -42,7 +41,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(new TrackingLight(true));
 		SmartDashboard.putData(new TurnAngle(90));
 		
-		Looper.getInstance().add(new CatapultControl());
+//		Looper.getInstance().add(new CatapultControl());
 		Looper.getInstance().add(new IntakeControl());
 	}
 

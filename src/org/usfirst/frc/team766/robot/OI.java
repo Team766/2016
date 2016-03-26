@@ -80,8 +80,8 @@ public class OI{
 //		buttonArmScaling.whenPressed(new MoveArmStage2(RobotValues.STAGE2MAX_ANGLE));
 		
 		//Repurposed buttons for testing purposes...lol
-		buttonTrackingLight.toggleWhenPressed(new TrackingLight(true));
-		buttonCloseShot.toggleWhenPressed(new SetCloseShot(true));
+		buttonTrackingLight.whileHeld(new TrackingLight(true));
+		buttonCloseShot.whileHeld(new SetCloseShot(true));
 		
 		buttonIntakeIn.whileHeld(new SetWheels(1.0));
 		buttonIntakeOut.whileHeld(new SetWheels(-1.0));
@@ -122,11 +122,11 @@ public class OI{
 	}
 
 	public double getThrottle() {
-		return -jLeft.getY();
+		return jLeft.getY();
 	}
 	
 	public double getIntakeJoystick(){
-		return jBox.getY();
+		return -jBox.getY();
 	}
 	
 	public double getArmJoystick(){
@@ -135,7 +135,7 @@ public class OI{
 	
 	//TEST -- DELETE AFTER TESTING!!!!!!!!
 	public double getCatapultAxis(){
-		return jBox.getY();
+		return jBox.getX();
 	}
 	
 	//Update Hats

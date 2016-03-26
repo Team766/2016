@@ -5,6 +5,7 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 public class PrintWinchRotations extends CommandBase{
 
 	protected void initialize() {
+		Catapult.firePiston(false);
 	}
 
 	protected void execute() {
