@@ -5,7 +5,7 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 public class Fire extends CommandBase{
 	
 	protected void initialize() {
-		if(Catapult.getReadyToFire()){
+		if(Catapult.getReadyToFire() && !Catapult.isWinching()){
 			Catapult.firePiston(true);
 		}
 		else

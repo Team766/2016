@@ -15,7 +15,7 @@ public class Buttons {
 							INTAKE_DOWN = 9,
 							INTAKE_COLLECT = 7,
 							INTAKE_STORE = 10,
-							ARM_TOGGLE = 13,
+							//ARM_TOGGLE = 13,
 							BOXOP_FIRE = 4,
 							INTAKE_WHEELS_IN = 12,
 							INTAKE_WHEELS_OUT = 11,
@@ -23,10 +23,10 @@ public class Buttons {
 							ARM_SALLY_PORT = 2,
 							LIGHT = 5,
 							WINCH = 6,
-							ManaulCatapult = 12;
+//							ManaulCatapult = 12,
+							CloseShot = 13;
 	//Hat
 	//Left:Arm Scaling
 	//Up: CloseShot
-	public static final int ARM_Scalling = 4,
-							CloseShot = 5;
+//	public static final int ARM_Scalling = 4;
 }

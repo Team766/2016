@@ -8,6 +8,7 @@ public class ManualWinchBack extends CommandBase{
 	protected void initialize() {
 		Catapult.firePiston(false);
 		Catapult.setWinch(RobotValues.WINCH_POWER);
+		Catapult.setWinching(true);
 	}
 
 	protected void execute() {
@@ -20,6 +21,7 @@ public class ManualWinchBack extends CommandBase{
 	protected void end() {
 		Catapult.setWinch(0.0);
 		Catapult.setReadyToFire(true);
+		Catapult.setWinching(false);
 	}
 
 	protected void interrupted() {

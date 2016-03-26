@@ -13,11 +13,9 @@ public class ToggleStream extends CommandBase{
 	
 	private Image img;
 	private boolean usb;
-	private boolean lastPress;
 	
 	public ToggleStream(){
 		usb = true;
-		lastPress = false;
 		DeviceManager.getInstance().getUSBCam().startCapture();
 		img = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 //		CameraServer.getInstance().startAutomaticCapture("cam1");
@@ -27,16 +25,20 @@ public class ToggleStream extends CommandBase{
 	}
 
 	protected void execute() {
+		
+		usb = !OI.getCameraToggle();
+		
+		if(!usb && !DeviceManager.getInstance().getCam().isFreshImage()){
+			System.out.println("Failing to grab image!");
+			return;
+		}
+		
 		if(!usb)
 			DeviceManager.getInstance().getCam().getImage(img);
 		else
 			DeviceManager.getInstance().getUSBCam().getImage(img);
 	
 		CameraServer.getInstance().setImage(img);
-		
-		if(!lastPress && OI.getCameraToggle())
-			usb = !usb;
-		lastPress = OI.getCameraToggle();
 	}
 
 	protected boolean isFinished() {

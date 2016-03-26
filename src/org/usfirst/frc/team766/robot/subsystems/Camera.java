@@ -1,7 +1,6 @@
 package org.usfirst.frc.team766.robot.subsystems;
 
 import org.usfirst.frc.team766.lib.DeviceManager;
-import org.usfirst.frc.team766.robot.Ports;
 import org.usfirst.frc.team766.robot.RobotValues;
 
 import edu.wpi.first.wpilibj.Relay;

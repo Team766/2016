@@ -27,8 +27,7 @@ public class OI{
 			jRight = new Joystick(1),
 			jBox = new Joystick(2);
 	
-	private InternalButton buttonArmScaling = new InternalButton();
-	private InternalButton buttonCloseShot = new InternalButton();
+//	private InternalButton buttonArmScaling = new InternalButton();
 	
 	public Button
 		buttonDriverShoot = new JoystickButton(jRight, Buttons.DRIVER_FIRE),
@@ -44,7 +43,7 @@ public class OI{
 		
 		buttonBoxOpShoot = new JoystickButton(jBox, Buttons.BOXOP_FIRE),
 		
-		buttonArmToggle = new JoystickButton(jBox, Buttons.ARM_TOGGLE),
+//		buttonArmToggle = new JoystickButton(jBox, Buttons.ARM_TOGGLE),
 		buttonArmDrawbridge = new JoystickButton(jBox, Buttons.ARM_DRAWBRIDGE),
 		buttonArmSallyPort = new JoystickButton(jBox, Buttons.ARM_SALLY_PORT),
 
@@ -53,7 +52,9 @@ public class OI{
 		buttonIntakeIn = new JoystickButton(jBox, Buttons.INTAKE_WHEELS_IN),
 		buttonIntakeOut = new JoystickButton(jBox, Buttons.INTAKE_WHEELS_OUT),
 		
-		buttonManualCatapult = new JoystickButton(jBox,Buttons.ManaulCatapult);
+		buttonCloseShot = new JoystickButton(jBox, Buttons.CloseShot),
+		
+		buttonManualCatapult = new JoystickButton(jBox,Buttons.WINCH);
 		
 	
 	public Path path = null;
@@ -71,12 +72,12 @@ public class OI{
 		
 		buttonBoxOpShoot.whenPressed(fire);
 		
-		buttonArmToggle.whenReleased(new Store());
-		buttonArmToggle.whenPressed(new ExtendArmStage1(true));
+//		buttonArmToggle.whenReleased(new Store());
+//		buttonArmToggle.whenPressed(new ExtendArmStage1(true));
 
 		buttonArmDrawbridge.whenPressed(new MoveArmStage2(RobotValues.DRAWBRIDGE_ANGLE));
 		buttonArmSallyPort.whenPressed(new MoveArmStage2(RobotValues.SALLYPORT_ANGLE));
-		buttonArmScaling.whenPressed(new MoveArmStage2(RobotValues.STAGE2MAX_ANGLE));
+//		buttonArmScaling.whenPressed(new MoveArmStage2(RobotValues.STAGE2MAX_ANGLE));
 		
 		//Repurposed buttons for testing purposes...lol
 		buttonTrackingLight.toggleWhenPressed(new TrackingLight(true));
@@ -93,7 +94,7 @@ public class OI{
 	}
 	
 	public double getLeftY(){
-		return jLeft.getY();
+		return -jLeft.getY();
 	}
 	
 	public double getRightX(){
@@ -138,9 +139,12 @@ public class OI{
 	}
 	
 	//Update Hats
+	/**
+	 * @deprecated
+	 */
 	public void updatePOV(){
-		buttonArmScaling.setPressed(jBox.getRawAxis(Buttons.ARM_Scalling) > 0);
-		buttonCloseShot.setPressed(jBox.getRawAxis(Buttons.CloseShot) < 0);
+//		buttonArmScaling.setPressed(jBox.getRawAxis(Buttons.ARM_Scalling) > 0);
+//		buttonCloseShot.setPressed(jBox.getRawAxis(Buttons.CloseShot) < 0);
 	}
 }
 

@@ -78,7 +78,7 @@ public class Catapult extends Subsystem {
 	}
 	
 	public void firePiston(boolean fire){
-		if(fire)
+		if(!fire)
 			launch.set(Value.kForward);
 		else
 			launch.set(Value.kReverse);
