@@ -18,6 +18,9 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 
+import com.ni.vision.NIVision.Image;
+import static com.ni.vision.NIVision.Priv_ReadJPEGString_C;
+
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.highgui.Highgui;
@@ -112,7 +115,28 @@ public class AxisCamera {
     public boolean isFreshImage() {
         return m_freshImage;
     }
+    
+    /**
+     * Get an image from the camera and store it in the provided image.
+     *
+     * @param image The imaq image to store the result in. This must be an HSL or
+     *        RGB image.
+     * @return <code>true</code> upon success, <code>false</code> on a failure
+     */
+    public boolean getImage(Image image) {
+      if (m_imageData.limit() == 0) {
+        return false;
+      }
 
+      synchronized (m_imageDataLock) {
+        Priv_ReadJPEGString_C(image, m_imageData.array());
+      }
+
+      m_freshImage = false;
+
+      return true;
+    }
+    
     /**
      * Grabs an image from the axis IP camera and returns it as a Mat object that can be easily used with openCV.
      *

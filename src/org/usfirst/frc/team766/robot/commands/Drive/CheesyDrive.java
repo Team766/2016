@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.robot.commands.Drive;
 
+import org.usfirst.frc.team766.lib.PIDController;
 import org.usfirst.frc.team766.robot.OI;
 import org.usfirst.frc.team766.robot.RobotValues;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
@@ -15,17 +16,24 @@ import edu.wpi.first.wpilibj.DriverStation;
  * 
  */
 public class CheesyDrive extends CommandBase {
+	
+	private boolean HEADING__CONTROL = true;
+	
   private double oldWheel = 0.0;
   private double quickStopAccumulator;
   private double throttleDeadband = 0.02;
   private double wheelDeadband = 0.02;
 
+  private PIDController headingPID = new PIDController(RobotValues.GyroKp,
+			RobotValues.GyroKi, RobotValues.GyroKd,
+			RobotValues.GyroThreshold);
+  
   public CheesyDrive() {
 	  requires(Drive);
   }
 
   protected void initialize() {
-    //drive.disableControllers() ;
+	  headingPID.setSetpoint(Drive.getGyroAngle());
   }
 
   protected void execute() {
@@ -148,10 +156,20 @@ public class CheesyDrive extends CommandBase {
       rightPwm = -1.0;
     }
 
-    //drive.setLeftRightPower(leftPwm, rightPwm);
-    Drive.setLeftPower(leftPwm);
-    Drive.setRightPower(rightPwm);
+
     Drive.setShifter(isHighGear);
+    
+    if(HEADING__CONTROL && !isQuickTurn && Math.abs(OI.getSteer()) < 0.02 && Math.abs(OI.getThrottle()) > 0){
+    	headingPID.calculate(Drive.getGyroAngle(), false);
+    	
+    	Drive.setLeftPower(leftPwm - headingPID.getOutput());
+	    Drive.setRightPower(rightPwm + headingPID.getOutput());
+    }else{
+	    Drive.setLeftPower(leftPwm);
+	    Drive.setRightPower(rightPwm);
+	    
+	    headingPID.setSetpoint(Drive.getGyroAngle());
+    }
   }
 
   protected boolean isFinished() {

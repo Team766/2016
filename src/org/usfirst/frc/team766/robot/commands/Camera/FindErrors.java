@@ -12,6 +12,7 @@ import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team766.lib.AxisCamera;
+import org.usfirst.frc.team766.lib.DeviceManager;
 import org.usfirst.frc.team766.robot.RobotValues;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 
@@ -55,7 +56,7 @@ public class FindErrors extends CommandBase {
 	}
 
 	protected void initialize() {
-		cam = new AxisCamera("169.254.2.2");
+		cam = DeviceManager.getInstance().getCam();
 	}
 
 	protected void execute() {

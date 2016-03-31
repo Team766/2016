@@ -27,8 +27,8 @@ public class DriveDistance extends CommandBase{
 		drivePID.calculate((Drive.getLeftDistance() + Drive.getRightDistance())/2, false);
 		AnglePID.calculate(Drive.getGyroAngle(), false);
 		
-		Drive.setLeftPower(drivePID.getOutput()); //+ AnglePID.getOutput());
-		Drive.setRightPower(drivePID.getOutput()); //- AnglePID.getOutput());
+		Drive.setLeftPower(drivePID.getOutput()); //- AnglePID.getOutput());
+		Drive.setRightPower(drivePID.getOutput()); //+ AnglePID.getOutput());
 		System.out.println("Output:\t"  + drivePID.getOutput() + "\tError:\t" + drivePID.getError() + "\tSetpoint:\t" + drivePID.getSetpoint() + "\tAvgDist:\t" + (Drive.getLeftDistance() + Drive.getRightDistance())/2);
 	}
 

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.robot.subsystems;
 
+import org.usfirst.frc.team766.lib.AxisCamera;
 import org.usfirst.frc.team766.lib.DeviceManager;
 import org.usfirst.frc.team766.robot.RobotValues;
 
@@ -7,7 +8,6 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.vision.AxisCamera;
 
 public class Camera extends Subsystem{
 	
