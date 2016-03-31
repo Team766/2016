@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.robot;
 
+import org.usfirst.frc.team766.lib.LogFactory;
 import org.usfirst.frc.team766.lib.Looper;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 import org.usfirst.frc.team766.robot.commands.Camera.ToggleStream;
@@ -13,6 +14,7 @@ import org.usfirst.frc.team766.robot.commands.Intake.IntakeControl;
 import org.usfirst.frc.team766.robot.commands.Intake.ManualIntakeControl;
 import org.usfirst.frc.team766.robot.commands.Intake.MoveIntake;
 import org.usfirst.frc.team766.robot.commands.Intake.ResetIntakeAngle;
+import org.usfirst.frc.team766.robot.commands.Intake.ZeroIntakeAngle;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,6 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
+	private boolean done;
 
 	public void robotInit() {
 		//PIDS
@@ -35,6 +38,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drive I: ", 0);
 		SmartDashboard.putNumber("Drive D: ", 0);
 		CommandBase.init();
+		done = false;
 		
 		//Test Commands
 		SmartDashboard.putData(new ResetIntakeAngle());
@@ -43,6 +47,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(new TrackingLight(true));
 		SmartDashboard.putData(new TurnAngle(90));
 		SmartDashboard.putData(new Fire());
+		SmartDashboard.putData(new ZeroIntakeAngle());
 		
 		Looper.getInstance().add(new CatapultControl());
 		Looper.getInstance().add(new IntakeControl());
@@ -53,12 +58,15 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
+		LogFactory.getInstance("General").print("Auton Init?");
 		//new FindTarget().start();
 		
 //		CommandBase.Catapult.setReadyToFire(true);
 		
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+		
+		done = true;
 	}
 
 	public void autonomousPeriodic() {
@@ -79,9 +87,14 @@ public class Robot extends IterativeRobot {
 		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
+		done = true;
 	}
 
 	public void disabledInit() {
+		if(done){
+			LogFactory.closeFiles();
+		}
 	}
 	public void teleopPeriodic() {
 //		CommandBase.OI.updatePOV();

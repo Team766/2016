@@ -5,25 +5,36 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 public class ResetIntakeAngle extends CommandBase{
 
+	/**
+	 * Intake should start above ground
+	 * 	otherwise use ZeroIntakeAngle
+	 */
+	
 	private int numNoMoves;
 	private boolean isFinished;
 	private final double VELOCITY_THRESHOLD = 0.4;
+	private boolean hasMoved;
 	
 	protected void initialize() {
 		Intake.lockRotation(true);
 		
 		numNoMoves = 0;
 		isFinished = false;
+		hasMoved = false;
 
 		Intake.setRawRotationMotor(-0.5);
 	}
 
 	protected void execute() {
-		if(Math.abs(Intake.getVelocity()) < VELOCITY_THRESHOLD) {
+		
+		if(Intake.getVelocity() > VELOCITY_THRESHOLD && !hasMoved)
+			hasMoved = true;
+		
+		if(Math.abs(Intake.getVelocity()) < VELOCITY_THRESHOLD && hasMoved) 
 			numNoMoves++;
-		}
 			
-		System.out.println("IntakeAngle:\t" + Intake.getAngle() + "\t IntakeValue:\t" + Intake.getVelocity());
+		System.out.println("IntakeAngle:\t" + Intake.getAngle() + "\tIntakeValue:\t" + Intake.getVelocity() + "\tHas Moved:t" + hasMoved);
+		
 		if (numNoMoves > 25) {
 			Intake.resetEncoder();
 			isFinished = true;

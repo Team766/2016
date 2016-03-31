@@ -6,6 +6,7 @@ import org.usfirst.frc.team766.robot.subsystems.Catapult;
 import org.usfirst.frc.team766.robot.subsystems.Drive;
 import org.usfirst.frc.team766.robot.subsystems.Intake;
 import org.usfirst.frc.team766.robot.subsystems.Arm;
+import org.usfirst.frc.team766.lib.LogFactory;
 import org.usfirst.frc.team766.lib.Looper;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -25,6 +26,7 @@ public abstract class CommandBase extends Command {
 		Catapult = new Catapult();
 		Arm = new Arm();
 		OI = new OI();
-			
+		
+		LogFactory.createInstance("General");
 	}
 }
