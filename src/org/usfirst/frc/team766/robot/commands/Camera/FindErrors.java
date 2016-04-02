@@ -118,7 +118,7 @@ public class FindErrors extends CommandBase {
 		//Find distance
 		for(Rect r : boundingRects)
 			if(r.contains(trackPoint)){
-				Camera.setFocalDistance((RobotValues.TAPE_WIDTH * RobotValues.FOCAL_LENGTH) / r.width);
+				Camera.setFocalDistance(Math.cos(Math.toRadians(Camera.getVerticalAngle())) * ((RobotValues.TAPE_WIDTH * RobotValues.FOCAL_LENGTH) / r.width));
 				Camera.setAngleError(Math.toDegrees(2 * Math.atan(((binaryImage.height()/2) - trackPoint.y)/RobotValues.FOCAL_LENGTH)));
 			}
 		

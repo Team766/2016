@@ -45,6 +45,12 @@ public class RobotValues {
 	public static final double WINCH_POWER = 0.7;
 	public static final double Catapult_RotationsToStop = 4; //Need Real Value
 	
+	//Catapult
+	public static final double INITIAL_LAUNCH_VELOCITY = 7.62,//	m/s
+							   LAUNCH_ANGLE = 67, //	degrees
+							   INITIAL_BALL_HEIGHT = 0.7366, //	meters
+							   GRAVITATIONAL_STRENGTH = 9.8;  //	m/s^2
+	
 	//Find real values
 	public enum RotationCounts{
 	    Bottom(7), Middle(3.5);

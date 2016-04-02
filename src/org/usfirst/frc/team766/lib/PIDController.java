@@ -1,5 +1,7 @@
 package org.usfirst.frc.team766.lib;
 
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  * When attempting to move something with a control loop, a PID controller can 
  * smoothly decrease the error.  This class is used for the elevator, driving during
@@ -37,6 +39,8 @@ public class PIDController {
 	private double total_error = 0;
 
 	private double output_value = 0;
+	
+	private double lastTime = System.currentTimeMillis();;
 
 	/**
 	 * 
@@ -139,10 +143,8 @@ public class PIDController {
 				total_error = -1 / Ki;
 		}
 
-		// double out = Kp * cur_error;
-
 		double out = Kp * cur_error + Ki * total_error + Kd
-				* (cur_error - prev_error);
+				* ((cur_error - prev_error) / System.currentTimeMillis() - lastTime);
 		prev_error = cur_error;
 
 		pr("Pre-clip output: " + out);
@@ -152,6 +154,8 @@ public class PIDController {
 		else
 			output_value = out;
 
+		lastTime = System.currentTimeMillis();
+		
 		pr("	Total Eror: " + total_error + "		Current Error: " + cur_error
 				+ "	Output: " + output_value + " 	Setpoint: " + setpoint);
 	}

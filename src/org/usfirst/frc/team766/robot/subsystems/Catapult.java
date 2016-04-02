@@ -98,5 +98,20 @@ public class Catapult extends Subsystem {
 	public void setWinching(boolean winching) {
 		this.winching = winching;
 	}
+	
+	public double[] firingDistances(double currVelocity){
+		double[] out = new double[2];
+		out[0] = ((RobotValues.INITIAL_LAUNCH_VELOCITY*Math.sin(Math.toRadians(RobotValues.LAUNCH_ANGLE)) + Math.sqrt(Math.pow(RobotValues.INITIAL_LAUNCH_VELOCITY*Math.sin(Math.toRadians(RobotValues.LAUNCH_ANGLE)),2) + 2*RobotValues.GRAVITATIONAL_STRENGTH*(RobotValues.INITIAL_BALL_HEIGHT-RobotValues.TOWER_HEIGHT)))*(RobotValues.INITIAL_LAUNCH_VELOCITY*Math.cos(Math.toRadians(RobotValues.LAUNCH_ANGLE))+currVelocity))/(-RobotValues.GRAVITATIONAL_STRENGTH);
+		out[1] = ((RobotValues.INITIAL_LAUNCH_VELOCITY*Math.sin(Math.toRadians(RobotValues.LAUNCH_ANGLE)) - Math.sqrt(Math.pow(RobotValues.INITIAL_LAUNCH_VELOCITY*Math.sin(Math.toRadians(RobotValues.LAUNCH_ANGLE)),2) + 2*RobotValues.GRAVITATIONAL_STRENGTH*(RobotValues.INITIAL_BALL_HEIGHT-RobotValues.TOWER_HEIGHT)))*(RobotValues.INITIAL_LAUNCH_VELOCITY*Math.cos(Math.toRadians(RobotValues.LAUNCH_ANGLE))+currVelocity))/(-RobotValues.GRAVITATIONAL_STRENGTH);
+		return out;
+	}
+	
+	public double maxHeight(){
+		return (Math.pow(RobotValues.INITIAL_LAUNCH_VELOCITY * Math.sin(Math.toRadians(RobotValues.LAUNCH_ANGLE)), 2)/(2*RobotValues.GRAVITATIONAL_STRENGTH))+RobotValues.INITIAL_LAUNCH_VELOCITY;
+	}
+	
+	public double posOfMaxHeight(double currVelocity){
+		return ((RobotValues.INITIAL_LAUNCH_VELOCITY*Math.cos(Math.toRadians(RobotValues.LAUNCH_ANGLE)) + currVelocity)*(RobotValues.INITIAL_LAUNCH_VELOCITY*Math.sin(Math.toRadians(RobotValues.LAUNCH_ANGLE))))/RobotValues.GRAVITATIONAL_STRENGTH;
+	}
 }
 
