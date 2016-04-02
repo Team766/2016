@@ -13,7 +13,7 @@ public class Logger {
 	private boolean INDENT = false;
 	private String name;
 
-	private String html = "<body style=\"background-color:rgba(180, 28, 28, 0.8)\">";
+	private String html = "<head><meta http-equiv=\"refresh\" content=\"1\"></head><body style=\"background-color:rgba(180, 28, 28, 0.8)\">";
 
 	public Logger(String fileName) {
 		name = fileName;

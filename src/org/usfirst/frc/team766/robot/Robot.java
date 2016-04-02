@@ -49,6 +49,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(new Fire());
 		SmartDashboard.putData(new ZeroIntakeAngle());
 		
+		//HTTP Server
+		new Thread(CommandBase.OI.HttpServer).start();
+		
+		//Control Loops
 		Looper.getInstance().add(new CatapultControl());
 		Looper.getInstance().add(new IntakeControl());
 	}

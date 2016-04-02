@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.robot;
 
+import org.usfirst.frc.team766.lib.HTTPServer;
 import org.usfirst.frc.team766.lib.trajectory.Path;
 import org.usfirst.frc.team766.robot.commands.Arm.ExtendArmStage1;
 import org.usfirst.frc.team766.robot.commands.Arm.MoveArmStage2;
@@ -56,6 +57,11 @@ public class OI{
 		
 		buttonManualCatapult = new JoystickButton(jBox,Buttons.WINCH);
 		
+	
+	public int AutonMode = 0;
+	
+	//HTTP server
+	public HTTPServer HttpServer = new HTTPServer();
 	
 	public Path path = null;
 	
