@@ -7,6 +7,7 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 import org.usfirst.frc.team766.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Controls the robot drive train using the standard Team 254 scheme.
@@ -158,10 +159,9 @@ public class CheesyDrive extends CommandBase {
 
 
     Drive.setShifter(isHighGear);
-    
+    headingPID.setConstants(SmartDashboard.getNumber("Heading P: "), SmartDashboard.getNumber("Heading I: "), SmartDashboard.getNumber("Heading D: "));
     if(HEADING__CONTROL && !isQuickTurn && Math.abs(OI.getSteer()) < 0.02 && Math.abs(OI.getThrottle()) > 0){
     	headingPID.calculate(Drive.getGyroAngle(), false);
-    	
     	Drive.setLeftPower(leftPwm - headingPID.getOutput());
 	    Drive.setRightPower(rightPwm + headingPID.getOutput());
     }else{
@@ -170,6 +170,8 @@ public class CheesyDrive extends CommandBase {
 	    
 	    headingPID.setSetpoint(Drive.getGyroAngle());
     }
+    
+    SmartDashboard.putNumber("HeadingError", headingPID.getSetpoint() - Drive.getGyroAngle());
   }
 
   protected boolean isFinished() {

@@ -1,8 +1,11 @@
 package org.usfirst.frc.team766.lib;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -12,15 +15,19 @@ public class Logger {
 	private Timer timer = new Timer();
 	private boolean INDENT = false;
 	private String name;
+	
+	private String LogFolder = getLogFolderName();
 
 	private String html = "<head><meta http-equiv=\"refresh\" content=\"1\"></head><body style=\"background-color:rgba(180, 28, 28, 0.8)\">";
 
 	public Logger(String fileName) {
 		name = fileName;
 		try {
-			pw = new PrintWriter(new FileWriter("/tmp/logs/" + name + ".txt"));
+			System.out.println(new File("/media/sda1/" + LogFolder).mkdir());
+			pw = new PrintWriter(new FileWriter("/media/sda1/" + LogFolder + "/" + name + ".txt"));
 			timer.start();
 		} catch (IOException e) {
+			System.out.println(e.getMessage());
 			System.out.println("Something went wrong in the log's constructor");
 			timer.stop();
 		}
@@ -31,10 +38,10 @@ public class Logger {
 		try {
 			if (INDENT) {
 				pw.println(getTime() + "\t\t" + message);
-				html += getTime() + "\t\t" + message + "<br>";
+				html += getHtmlTime() + "\t\t" + message + "<br>";
 			} else {
 				pw.println(getTime() + "\t" + message);
-				html += getTime() + "\t\t" + message + "<br>";
+				html += getHtmlTime() + "\t\t" + message + "<br>";
 			}
 		} catch (NullPointerException e) {
 			System.out.println("Null Pointer alert!");
@@ -54,12 +61,12 @@ public class Logger {
 		try {
 			if (INDENT) {
 				pw.println(getTime() + "\t\t" + message + value);
-				html += getTime() + "\t\t" + message + value + "<br>";
+				html += getHtmlTime() + "\t\t" + message + value + "<br>";
 			}
 
 			else {
 				pw.println(getTime() + "\t" + message + value);
-				html += getTime() + "\t" + message + value + "<br>";
+				html += getHtmlTime() + "\t" + message + value + "<br>";
 			}
 		} catch (NullPointerException e) {
 			System.out.println("Can't save log!");
@@ -81,7 +88,11 @@ public class Logger {
 		int seconds = totalSeconds % 60;
 		int minutes = (totalSeconds / 60) % 60;
 		int hours = totalSeconds / 3600;
-		return "<p1 style = \"color: white\">" + hours + ":" + minutes + ":" + seconds + "</p1>";
+		return hours + ":" + minutes + ":" + seconds;
+	}
+	
+	private String getHtmlTime(){
+		return "<p1 style = \"color: white\">" + getTime() + "</p1>";
 	}
 
 	public boolean isIndent() {
@@ -98,5 +109,11 @@ public class Logger {
 
 	public String getHTML() {
 		return html;
+	}
+	
+	@SuppressWarnings("deprecation")
+	private static String getLogFolderName(){
+		Date date = new Date(System.currentTimeMillis());
+		return new SimpleDateFormat("dd-MM-yyyy").format(date) + "_" + date.getHours() + "~" + date.getMinutes() + "~" + date.getSeconds();
 	}
 }

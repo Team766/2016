@@ -7,7 +7,7 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriveObstical extends CommandBase{
+public class DriveRamparts extends CommandBase{
 	
 	private PIDController headingPID = new PIDController(RobotValues.GyroKp, RobotValues.GyroKi, RobotValues.GyroKd, RobotValues.GyroThreshold);
 	
@@ -15,6 +15,7 @@ public class DriveObstical extends CommandBase{
 	private double totalVelocity;
 	private Timer timer = new Timer();
 	
+	private double MIN_POWER = 0.5;
 	private double heading;
 	
 	protected void initialize() {
@@ -36,9 +37,16 @@ public class DriveObstical extends CommandBase{
 		
 		headingPID.calculate(Drive.getGyroAngle(), false);
 		
-		Drive.setLeftPower(RobotValues.DEAD_RECK_POWER - headingPID.getOutput());
-		Drive.setRightPower(RobotValues.DEAD_RECK_POWER + headingPID.getOutput());
-
+		//Min Power test
+		if(Math.abs(RobotValues.DEAD_RECK_POWER - headingPID.getOutput()) < MIN_POWER)
+			Drive.setLeftPower(((RobotValues.DEAD_RECK_POWER - headingPID.getOutput()) / Math.abs(RobotValues.DEAD_RECK_POWER - headingPID.getOutput())) * MIN_POWER);
+		else if(Math.abs(RobotValues.DEAD_RECK_POWER + headingPID.getOutput()) < MIN_POWER)
+			Drive.setRightPower(((RobotValues.DEAD_RECK_POWER + headingPID.getOutput()) / Math.abs(RobotValues.DEAD_RECK_POWER + headingPID.getOutput())) * MIN_POWER);
+		else{
+			Drive.setLeftPower(RobotValues.DEAD_RECK_POWER - headingPID.getOutput());
+			Drive.setRightPower(RobotValues.DEAD_RECK_POWER + headingPID.getOutput());
+		}
+		
 		count++;
 	}
 

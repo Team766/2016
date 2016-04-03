@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class OneBallAuton extends CommandGroup{
 	public OneBallAuton(){
-		addSequential(new DriveObstical());
+		addSequential(new DriveRamparts());
 		addSequential(new TurnAngle(30));
 		addSequential(new FindTarget());
 		addSequential(new Fire());

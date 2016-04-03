@@ -15,7 +15,7 @@ public class RobotValues {
 	public static final double INCHES_TO_METERS = 0.0254;
 	
 	//Auton
-	public static final String[] Autons = {"Vision Drive", "22 Points"};
+	public static final String[] Autons = {"None", "Drive Obstical", "Drive Ramparts"};
 	public static final double DEAD_RECK_POWER = 1;
 	
 	//real values
@@ -109,7 +109,7 @@ public class RobotValues {
 	
 	//Intake
 	public static final double INTAKE_BALL_ANGLE = Intake.getAngleFromHeight(BALL_COMPRESSION_HEIGHT) + 5.0,
-							   INTAKE_FLOOR_ANGLE = Intake.getAngleFromHeight(0),
+							   INTAKE_FLOOR_ANGLE = 63.0,//Intake.getAngleFromHeight(0),
 							   INTAKE_STRAIGHTUP_ANGLE = 180,
 							   INTAKE_STORE_ANGLE = 248;
 }

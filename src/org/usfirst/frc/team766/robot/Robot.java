@@ -3,8 +3,7 @@ package org.usfirst.frc.team766.robot;
 import org.usfirst.frc.team766.lib.LogFactory;
 import org.usfirst.frc.team766.lib.Looper;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
-import org.usfirst.frc.team766.robot.commands.Autons.DriveObstical;
-import org.usfirst.frc.team766.robot.commands.Camera.ToggleStream;
+import org.usfirst.frc.team766.robot.commands.Autons.AutonSelector;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackingLight;
 import org.usfirst.frc.team766.robot.commands.Catapult.CatapultControl;
 import org.usfirst.frc.team766.robot.commands.Catapult.Fire;
@@ -39,7 +38,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drive I: ", 0);
 		SmartDashboard.putNumber("Drive D: ", 0);
 		
-		SmartDashboard.putNumber("Heading P: ", 0.01);
+		SmartDashboard.putNumber("Heading P: ", 0.05);
 		SmartDashboard.putNumber("Heading I: ", 0);
 		SmartDashboard.putNumber("Heading D: ", 0.03);
 		CommandBase.init();
@@ -71,7 +70,7 @@ public class Robot extends IterativeRobot {
 
 		//new FindTarget().start();
 		
-		autonomousCommand = new DriveObstical();
+		autonomousCommand = new AutonSelector(CommandBase.OI.AutonMode);;
 		
 //		CommandBase.Catapult.setReadyToFire(true);
 		
@@ -86,6 +85,10 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
+		try{
+			LogFactory.getInstance("General").print("Teleop Init");
+		}catch(NullPointerException e){}
+		
 		//new FindErrors().start();
 		//new TrackTarget().start();
 	
@@ -110,7 +113,7 @@ public class Robot extends IterativeRobot {
 	}
 	public void teleopPeriodic() {
 //		CommandBase.OI.updatePOV();
-//		System.out.println("Angle:\t" + CommandBase.Intake.getAngle());
+		System.out.println("Angle:\t" + CommandBase.Intake.getAngle());
 		Scheduler.getInstance().run();
 	}
 
