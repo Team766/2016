@@ -16,7 +16,7 @@ public class RobotValues {
 	
 	//Auton
 	public static final String[] Autons = {"Vision Drive", "22 Points"};
-	public static final double DEAD_RECK_POWER = 1.0;
+	public static final double DEAD_RECK_POWER = 1;
 	
 	//real values
 	public static final double TAPE_WIDTH = 0.5207;
@@ -83,13 +83,13 @@ public class RobotValues {
 	public static final double ArmThreshold = 0.05;
 	
 	public static final double DriveKp = SmartDashboard.getNumber("Drive P: ");
-	public static final double DriveKi = SmartDashboard.getNumber("Drive I: ");;
-	public static final double DriveKd = SmartDashboard.getNumber("Drive D: ");;
+	public static final double DriveKi = SmartDashboard.getNumber("Drive I: ");
+	public static final double DriveKd = SmartDashboard.getNumber("Drive D: ");
 	public static final double DriveThreshold = 0.05;
 	
-	public static final double GyroKp = 0.01; //these values need to be tested
-	public static final double GyroKi = 0.00;
-	public static final double GyroKd = 0.03;
+	public static final double GyroKp = SmartDashboard.getNumber("Heading P: ");
+	public static final double GyroKi = SmartDashboard.getNumber("Heading I: ");
+	public static final double GyroKd = SmartDashboard.getNumber("Heading D: ");
 	public static final double GyroThreshold = 0.05;
 	
 	public static final double AngleKp = 0.35;
@@ -108,8 +108,8 @@ public class RobotValues {
 	public static final double CameraKd = 0;
 	
 	//Intake
-	public static final double INTAKE_BALL_ANGLE = Intake.getAngleFromHeight(BALL_COMPRESSION_HEIGHT),
+	public static final double INTAKE_BALL_ANGLE = Intake.getAngleFromHeight(BALL_COMPRESSION_HEIGHT) + 5.0,
 							   INTAKE_FLOOR_ANGLE = Intake.getAngleFromHeight(0),
 							   INTAKE_STRAIGHTUP_ANGLE = 180,
-							   INTAKE_STORE_ANGLE = 210;
+							   INTAKE_STORE_ANGLE = 248;
 }

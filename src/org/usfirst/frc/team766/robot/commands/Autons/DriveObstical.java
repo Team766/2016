@@ -15,10 +15,13 @@ public class DriveObstical extends CommandBase{
 	private Timer timer = new Timer();
 	
 	protected void initialize() {
+		headingPID.setConstants(RobotValues.GyroKp, RobotValues.GyroKi, RobotValues.GyroKd);
 		timer.reset();
 		
 		headingPID.setSetpoint(Drive.getGyroAngle());
 		timer.start();
+		
+		Intake.setAngleSetpoint(RobotValues.INTAKE_STORE_ANGLE);
 	}
 
 	protected void execute() {

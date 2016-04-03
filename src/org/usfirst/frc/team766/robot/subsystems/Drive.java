@@ -98,7 +98,7 @@ public class Drive extends Subsystem {
 	}
 
 	public double getLeftDistance() {
-		return leftEncoder.get() * DISTANCE_PER_PULSE;
+		return -leftEncoder.get() * DISTANCE_PER_PULSE;
 	}
 
 	public double getRightDistance() {
@@ -106,11 +106,11 @@ public class Drive extends Subsystem {
 	}
 
 	public void setShifter(boolean on) {
-		driveShifter.set(on);
+		driveShifter.set(!on);
 	}
 
 	public double getLeftVelocity() {
-		return leftEncoder.getRate();
+		return -leftEncoder.getRate();
 	}
 
 	public double getRightVelocity() {

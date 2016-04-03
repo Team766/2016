@@ -128,7 +128,7 @@ public class OI{
 	}
 
 	public double getThrottle() {
-		return jLeft.getY();
+		return -jLeft.getY();
 	}
 	
 	public double getIntakeJoystick(){

@@ -144,7 +144,8 @@ public class PIDController {
 		}
 
 		double out = Kp * cur_error + Ki * total_error + Kd
-				* ((cur_error - prev_error) / System.currentTimeMillis() - lastTime);
+				//* ((cur_error - prev_error) / System.currentTimeMillis() - lastTime);
+				* (cur_error - prev_error);
 		prev_error = cur_error;
 
 		pr("Pre-clip output: " + out);

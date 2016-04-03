@@ -3,6 +3,7 @@ package org.usfirst.frc.team766.robot;
 import org.usfirst.frc.team766.lib.LogFactory;
 import org.usfirst.frc.team766.lib.Looper;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
+import org.usfirst.frc.team766.robot.commands.Autons.DriveObstical;
 import org.usfirst.frc.team766.robot.commands.Camera.ToggleStream;
 import org.usfirst.frc.team766.robot.commands.Camera.TrackingLight;
 import org.usfirst.frc.team766.robot.commands.Catapult.CatapultControl;
@@ -37,6 +38,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drive P: ", 1);
 		SmartDashboard.putNumber("Drive I: ", 0);
 		SmartDashboard.putNumber("Drive D: ", 0);
+		
+		SmartDashboard.putNumber("Heading P: ", 0.01);
+		SmartDashboard.putNumber("Heading I: ", 0);
+		SmartDashboard.putNumber("Heading D: ", 0.03);
 		CommandBase.init();
 		done = false;
 		
@@ -62,8 +67,11 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-		LogFactory.getInstance("General").print("Auton Init?");
+//		LogFactory.getInstance("General").print("Auton Init?");
+
 		//new FindTarget().start();
+		
+		autonomousCommand = new DriveObstical();
 		
 //		CommandBase.Catapult.setReadyToFire(true);
 		
@@ -84,7 +92,7 @@ public class Robot extends IterativeRobot {
 //		new ManualAdjustment().start();
 		new ManualIntakeControl().start();
 		new CheesyDrive().start();
-		new ToggleStream().start();
+//		new ToggleStream().start();
 //		new MotorTester().start();
 //		new PrintWinchRotations().start();
 //		new TankDrive().start();
@@ -102,6 +110,7 @@ public class Robot extends IterativeRobot {
 	}
 	public void teleopPeriodic() {
 //		CommandBase.OI.updatePOV();
+//		System.out.println("Angle:\t" + CommandBase.Intake.getAngle());
 		Scheduler.getInstance().run();
 	}
 

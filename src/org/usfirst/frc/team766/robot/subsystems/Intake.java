@@ -50,13 +50,7 @@ public class Intake extends Subsystem {
     		s = 0;
     		System.out.println("Intake: Angle too low");
     	}
-    	
-    	//Testing Saftey net
-    	if(s < -0.3)
-    		s = -0.3;
-    	else if(s > 0.3)
-    		s = 0.3;
-    	
+    	    	
     	setRawRotationMotor(s);
     }
     
