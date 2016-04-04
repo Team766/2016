@@ -10,7 +10,8 @@ public class LogFactory {
 	}
 	
 	public static void createInstance(String key){
-		logs.put(key, new Logger(key));
+		Logger adding = new Logger(key);
+		logs.put(key, (adding == null)?	new Logger() : logs.get(key));
 	}
 	
 	public static void closeFile(String key){

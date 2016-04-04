@@ -16,10 +16,18 @@ public class Logger {
 	private boolean INDENT = false;
 	private String name;
 	
+	private boolean htmlOnly;
+	
 	private String LogFolder = getLogFolderName();
 
 	private String html = "<head><meta http-equiv=\"refresh\" content=\"1\"></head><body style=\"background-color:rgba(180, 28, 28, 0.8)\">";
-
+	
+	public Logger(){
+		htmlOnly = true;
+		html += "<h2 style = \"color: white\">" + name + "</h2>  <p style = \"color: #fc4\">";
+		timer.start();
+	}
+	
 	public Logger(String fileName) {
 		name = fileName;
 		try {
@@ -32,44 +40,63 @@ public class Logger {
 			timer.stop();
 		}
 		html += "<h2 style = \"color: white\">" + name + "</h2>  <p style = \"color: #fc4\">";
+		htmlOnly = false;
 	}
 
 	public void print(String message) {
-		try {
-			if (INDENT) {
-				pw.println(getTime() + "\t\t" + message);
+		if(htmlOnly){
+			if(INDENT)
 				html += getHtmlTime() + "\t\t" + message + "<br>";
-			} else {
-				pw.println(getTime() + "\t" + message);
+			else
 				html += getHtmlTime() + "\t\t" + message + "<br>";
+		}else{
+			try {
+				if (INDENT) {
+					pw.println(getTime() + "\t\t" + message);
+					html += getHtmlTime() + "\t\t" + message + "<br>";
+				} else {
+					pw.println(getTime() + "\t" + message);
+					html += getHtmlTime() + "\t\t" + message + "<br>";
+				}
+			} catch (NullPointerException e) {
+				System.out.println("Null Pointer alert!");
 			}
-		} catch (NullPointerException e) {
-			System.out.println("Null Pointer alert!");
 		}
 	}
 
 	public void printRaw(String in) {
-		try {
-			pw.println(in);
+		if(htmlOnly)
 			html += in + "<br>";
-		} catch (NullPointerException e) {
-			System.out.println("Can't print raw value: " + in);
+		else{
+			try {
+				pw.println(in);
+				html += in + "<br>";
+			} catch (NullPointerException e) {
+				System.out.println("Can't print raw value: " + in);
+			}
 		}
 	}
 
 	public void print(String message, int value) {
-		try {
-			if (INDENT) {
-				pw.println(getTime() + "\t\t" + message + value);
+		if(htmlOnly){
+			if(INDENT)
 				html += getHtmlTime() + "\t\t" + message + value + "<br>";
-			}
-
-			else {
-				pw.println(getTime() + "\t" + message + value);
+			else
 				html += getHtmlTime() + "\t" + message + value + "<br>";
+		}else{
+			try {
+				if (INDENT) {
+					pw.println(getTime() + "\t\t" + message + value);
+					html += getHtmlTime() + "\t\t" + message + value + "<br>";
+				}
+	
+				else {
+					pw.println(getTime() + "\t" + message + value);
+					html += getHtmlTime() + "\t" + message + value + "<br>";
+				}
+			} catch (NullPointerException e) {
+				System.out.println("Can't save log!");
 			}
-		} catch (NullPointerException e) {
-			System.out.println("Can't save log!");
 		}
 	}
 
@@ -112,7 +139,7 @@ public class Logger {
 	}
 	
 	@SuppressWarnings("deprecation")
-	private static String getLogFolderName(){
+	private String getLogFolderName(){
 		Date date = new Date(System.currentTimeMillis());
 		return new SimpleDateFormat("dd-MM-yyyy").format(date) + "_" + date.getHours() + "~" + date.getMinutes() + "~" + date.getSeconds();
 	}
