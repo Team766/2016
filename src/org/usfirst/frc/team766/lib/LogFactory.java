@@ -1,5 +1,6 @@
 package org.usfirst.frc.team766.lib;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class LogFactory {
@@ -10,8 +11,13 @@ public class LogFactory {
 	}
 	
 	public static void createInstance(String key){
-		Logger adding = new Logger(key);
-		logs.put(key, (adding == null)?	new Logger() : logs.get(key));
+		Logger adding;
+		try {
+			adding = new Logger(key);
+		} catch (IOException e) {
+			adding = new Logger();
+		}
+		logs.put(key, adding);
 	}
 	
 	public static void closeFile(String key){

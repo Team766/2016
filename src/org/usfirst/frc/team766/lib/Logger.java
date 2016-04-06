@@ -28,7 +28,7 @@ public class Logger {
 		timer.start();
 	}
 	
-	public Logger(String fileName) {
+	public Logger(String fileName) throws IOException {
 		name = fileName;
 		try {
 			System.out.println(new File("/media/sda1/" + LogFolder).mkdir());
@@ -38,6 +38,7 @@ public class Logger {
 			System.out.println(e.getMessage());
 			System.out.println("Something went wrong in the log's constructor");
 			timer.stop();
+			throw e;
 		}
 		html += "<h2 style = \"color: white\">" + name + "</h2>  <p style = \"color: #fc4\">";
 		htmlOnly = false;

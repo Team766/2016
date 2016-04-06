@@ -4,7 +4,7 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 public class ManualIntakeControl extends CommandBase{
 	
-	private final double JOYSTICK_TO_ANGLE = 1.0;
+	private final double JOYSTICK_TO_ANGLE = 3.0;
 	
 	protected void initialize() {
 	}
