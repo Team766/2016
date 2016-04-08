@@ -7,7 +7,7 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 
 public class Winch extends Loopable{
 
-	private final double WINCHING_TIME = 2.25; //seconds
+	private final double WINCHING_TIME = 6.75; //seconds
 	
 	private final double MIN_ACCEL = -0.5;
 	private final double DECELERATION = -.05;
@@ -38,7 +38,7 @@ public class Winch extends Loopable{
 //		if(power <= MIN_POWER)
 //			power = MIN_POWER;
 		
-		CommandBase.Catapult.setWinch(power);
+		CommandBase.Catapult.setWinch(RobotValues.WINCH_POWER);
 	}
 
 	protected boolean isFinished() {

@@ -89,8 +89,8 @@ public class OI{
 		buttonTrackingLight.whileHeld(new TrackingLight(true));
 		buttonCloseShot.whileHeld(new SetCloseShot(true));
 		
-		buttonIntakeIn.whileHeld(new SetWheels(1.0));
-		buttonIntakeOut.whileHeld(new SetWheels(-1.0));
+		buttonIntakeIn.whileHeld(new SetWheels(-1.0));
+		buttonIntakeOut.whileHeld(new SetWheels(1.0));
 		
 		buttonManualCatapult.whileHeld(new ManualWinchBack());
 	}
@@ -128,7 +128,7 @@ public class OI{
 	}
 
 	public double getThrottle() {
-		return -jLeft.getY();
+		return jLeft.getY();
 	}
 	
 	public double getIntakeJoystick(){

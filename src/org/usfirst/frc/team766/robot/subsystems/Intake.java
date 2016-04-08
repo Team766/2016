@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
     
-	private final double REDUCTION = 4;
+	private final double REDUCTION = 3.0;
 	private final double startingAngle = 180.0;//getAngleFromHeight(0);
 	
     private Victor wheels;
@@ -50,6 +50,12 @@ public class Intake extends Subsystem {
     		s = 0;
     		System.out.println("Intake: Angle too low");
     	}
+    	
+    	//Clamp speed for Intake
+    	if(s > 0.5)
+    		s = 0.5;
+    	else if(s < -0.5)
+    		s = -0.5;
     	    	
     	setRawRotationMotor(s);
     }

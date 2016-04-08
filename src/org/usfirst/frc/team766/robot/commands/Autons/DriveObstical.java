@@ -16,6 +16,8 @@ public class DriveObstical extends CommandBase{
 	private Timer timer = new Timer();
 	
 	private double heading;
+	private boolean timerStarted;
+	private boolean doneWinching;
 	
 	protected void initialize() {
 		headingPID.setConstants(RobotValues.GyroKp, RobotValues.GyroKi, RobotValues.GyroKd);
@@ -24,27 +26,41 @@ public class DriveObstical extends CommandBase{
 		heading = Drive.getGyroAngle();
 		
 		headingPID.setSetpoint(heading);
-		timer.start();
-		
-		Intake.setAngleSetpoint(RobotValues.INTAKE_STORE_ANGLE);
+//		timer.start();
+		timerStarted = false;
+		doneWinching = false;
+		Catapult.setReadyToFire(false);
 	}
 
 	protected void execute() {
-		totalVelocity += Drive.getAccel();
 		
-		SmartDashboard.putNumber("HeadingError", heading - Drive.getGyroAngle());
+		if(Catapult.getReadyToFire()){
+			Intake.setAngleSetpoint(RobotValues.INTAKE_STORE_ANGLE);
+			doneWinching = true;
+		}
 		
-		headingPID.calculate(Drive.getGyroAngle(), false);
-		
-		Drive.setLeftPower(RobotValues.DEAD_RECK_POWER - headingPID.getOutput());
-		Drive.setRightPower(RobotValues.DEAD_RECK_POWER + headingPID.getOutput());
-
-		count++;
+		if(Catapult.getReadyToFire() && Intake.atAnglePosition()){
+			if(!timerStarted){
+				timer.start();
+				timerStarted = true;
+			}
+			
+			totalVelocity += Drive.getAccel();
+			
+			SmartDashboard.putNumber("HeadingError", heading - Drive.getGyroAngle());
+			
+			headingPID.calculate(Drive.getGyroAngle(), false);
+			
+			Drive.setLeftPower(RobotValues.DEAD_RECK_POWER - headingPID.getOutput());
+			Drive.setRightPower(RobotValues.DEAD_RECK_POWER + headingPID.getOutput());
+	
+			count++;
+		}
 	}
 
 	protected boolean isFinished() {
 		//If it hasn't started moving
-		return (timer.get() >= 2.5 && Math.abs(totalVelocity/count) < .05) ||
+		return //(timer.get() >= 2.5 && Math.abs(totalVelocity/count) < .05) ||
 				//Check if it has moved distance
 				(((totalVelocity/count) * timer.get()) >= RobotValues.AUTON_LINE_TO_BACK_DEFENSES);
 	}

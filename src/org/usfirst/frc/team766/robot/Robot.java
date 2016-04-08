@@ -114,7 +114,8 @@ public class Robot extends IterativeRobot {
 	}
 	public void teleopPeriodic() {
 //		CommandBase.OI.updatePOV();
-		System.out.println("Angle:\t" + CommandBase.Intake.getAngle());
+//		System.out.println("Angle:\t" + CommandBase.Intake.getAngle());
+		System.out.println("Catapult Rotations:\t" + CommandBase.Catapult.getRotations());
 		Scheduler.getInstance().run();
 	}
 

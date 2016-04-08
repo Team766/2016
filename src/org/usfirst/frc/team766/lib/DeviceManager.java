@@ -129,7 +129,7 @@ public class DeviceManager {
 			accel = new BuiltInAccelerometer();
 			
 			cam = new AxisCamera("10.7.66.11");
-			usbCam = new USBCamera("cam2");
+			usbCam = new USBCamera("cam0");
 			
 			cameraLights = new Relay(Ports.Camera_Lights);
 			trackingLight = new Relay(Ports.TrackingLight);

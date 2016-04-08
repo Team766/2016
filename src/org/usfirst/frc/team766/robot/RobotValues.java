@@ -39,10 +39,10 @@ public class RobotValues {
 	//Intake
 	public static final double INTAKE_LENGTH = 0.354;
 	public static final double BALL_COMPRESSION_HEIGHT = 0.2286;
-	public static final double IntakeCollisionAngle = 190; //The angle where the intake will hit the catapult's arc
+	public static final double IntakeCollisionAngle = 195; //The angle where the intake will hit the catapult's arc
 	
 	//Winch
-	public static final double WINCH_POWER = 0.7;
+	public static final double WINCH_POWER = 0.2;
 	public static final double Catapult_RotationsToStop = 4; //Need Real Value
 	
 	//Catapult
@@ -97,10 +97,10 @@ public class RobotValues {
 	public static final double AngleKd = 0.15;
 	public static final double AngleThreshold = 1;
 	
-	public static final double IntakeKp = 0.1;//SmartDashboard.getNumber("Intake P: ");
+	public static final double IntakeKp = 0.07;//SmartDashboard.getNumber("Intake P: "); //0.1
 	public static final double IntakeKi = 0;//SmartDashboard.getNumber("Intake I: ");
 	public static final double IntakeKd = 0.005;//SmartDashboard.getNumber("Intake D: ");
-	public static final double IntakeThreshold = 1;
+	public static final double IntakeThreshold = 3.0;
 	
 	public static final double CameraKp = 1;
 	public static final double CameraKi = 0;

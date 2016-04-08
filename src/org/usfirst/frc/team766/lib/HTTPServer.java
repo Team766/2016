@@ -44,7 +44,7 @@ public class HTTPServer extends Filter implements Runnable{
 	public void run(){
 		HttpServer server;
 		try {
-			server = HttpServer.create(new InetSocketAddress(8000), 0);
+			server = HttpServer.create(new InetSocketAddress(5800), 0);
 		
 		
 		@SuppressWarnings("unused")
