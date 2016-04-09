@@ -7,7 +7,7 @@ import org.usfirst.frc.team766.robot.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriveObstical extends CommandBase{
+public class DriveLowBar extends CommandBase{
 	
 	private PIDController headingPID = new PIDController(RobotValues.GyroKp, RobotValues.GyroKi, RobotValues.GyroKd, RobotValues.GyroThreshold);
 	
@@ -58,7 +58,9 @@ public class DriveObstical extends CommandBase{
 			
 			Drive.setLeftPower(RobotValues.DEAD_RECK_POWER + headingPID.getOutput());
 			Drive.setRightPower(RobotValues.DEAD_RECK_POWER - headingPID.getOutput());
-						
+			
+//			System.out.println("DRIVING!" + ((totalDistance/count) * timer.get()));
+			
 			count++;
 		}
 	}
@@ -67,9 +69,7 @@ public class DriveObstical extends CommandBase{
 		//If it hasn't started moving
 		return //(timer.get() >= 2.5 && Math.abs(totalDistance/count) < .05) ||
 				//Check if it has moved distance
-//				(totalDistance >= RobotValues.AUTON_LINE_TO_BACK_DEFENSES);
-				
-				false;
+				(totalDistance >= RobotValues.AUTON_LINE_TO_BACK_DEFENSES);
 	}
 
 	protected void end() {

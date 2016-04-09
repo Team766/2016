@@ -124,11 +124,11 @@ public class OI{
 	}
 
 	public double getSteer() {
-		return -jRight.getX();
+		return jRight.getX();
 	}
 
 	public double getThrottle() {
-		return jLeft.getY();
+		return -jLeft.getY();
 	}
 	
 	public double getIntakeJoystick(){

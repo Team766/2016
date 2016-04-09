@@ -22,7 +22,7 @@ public class LogFactory {
 	
 	public static void closeFile(String key){
 		logs.get(key).closeFile();
-		logs.remove(key);
+//		logs.remove(key);
 	}
 	
 	public static void closeFiles(){

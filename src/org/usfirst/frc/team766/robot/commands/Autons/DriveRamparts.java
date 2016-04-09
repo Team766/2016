@@ -12,7 +12,7 @@ public class DriveRamparts extends CommandBase{
 	private PIDController headingPID = new PIDController(RobotValues.GyroKp, RobotValues.GyroKi, RobotValues.GyroKd, RobotValues.GyroThreshold);
 	
 	private double count = 0;
-	private double totalVelocity;
+	private double totalDistance;
 	private Timer timer = new Timer();
 	
 	private double MIN_POWER = 0.5;
@@ -20,6 +20,8 @@ public class DriveRamparts extends CommandBase{
 	
 	private boolean timerStarted;
 	private boolean doneWinching;
+	
+	private double lastTime;
 	
 	protected void initialize() {
 		headingPID.setConstants(RobotValues.GyroKp, RobotValues.GyroKi, RobotValues.GyroKd);
@@ -46,9 +48,12 @@ public class DriveRamparts extends CommandBase{
 			if(!timerStarted){
 				timer.start();
 				timerStarted = true;
+				lastTime = timer.get();
 			}
 			
-			totalVelocity += Drive.getAccel();
+			double currTime = timer.get();
+			totalDistance += Drive.getAccel() * (0.5 * Math.pow(currTime - lastTime, 2));
+			lastTime = currTime;
 			
 			SmartDashboard.putNumber("HeadingError", heading - Drive.getGyroAngle());
 			
@@ -60,8 +65,8 @@ public class DriveRamparts extends CommandBase{
 			else if(Math.abs(RobotValues.DEAD_RECK_POWER + headingPID.getOutput()) < MIN_POWER)
 				Drive.setRightPower(((RobotValues.DEAD_RECK_POWER + headingPID.getOutput()) / Math.abs(RobotValues.DEAD_RECK_POWER + headingPID.getOutput())) * MIN_POWER);
 			else{
-				Drive.setLeftPower(RobotValues.DEAD_RECK_POWER - headingPID.getOutput());
-				Drive.setRightPower(RobotValues.DEAD_RECK_POWER + headingPID.getOutput());
+				Drive.setLeftPower(RobotValues.DEAD_RECK_POWER + headingPID.getOutput());
+				Drive.setRightPower(RobotValues.DEAD_RECK_POWER - headingPID.getOutput());
 			}
 			
 			count++;
@@ -70,9 +75,9 @@ public class DriveRamparts extends CommandBase{
 
 	protected boolean isFinished() {
 		//If it hasn't started moving
-		return (timerStarted && timer.get() >= 2.5 && Math.abs(totalVelocity/count) < .05) ||
+		return //(timerStarted && timer.get() >= 2.5 && Math.abs(totalVelocity/count) < .05) ||
 				//Check if it has moved distance
-				(timerStarted && ((totalVelocity/count) * timer.get()) >= RobotValues.AUTON_LINE_TO_BACK_DEFENSES);
+				(timerStarted && (totalDistance >= RobotValues.AUTON_LINE_TO_BACK_DEFENSES));
 	}
 
 	protected void end() {

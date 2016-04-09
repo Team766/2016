@@ -15,8 +15,8 @@ public class RobotValues {
 	public static final double INCHES_TO_METERS = 0.0254;
 	
 	//Auton
-	public static final String[] Autons = {"None", "Drive Obstical", "Drive Ramparts"};
-	public static final double DEAD_RECK_POWER = 1;
+	public static final String[] Autons = {"None", "Drive Obstical", "Drive Ramparts", "Drive Low Bar", "High Goal Shot"};
+	public static final double DEAD_RECK_POWER = 1.0;
 	
 	//real values
 	public static final double TAPE_WIDTH = 0.5207;

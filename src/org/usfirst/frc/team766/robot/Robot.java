@@ -1,6 +1,7 @@
 package org.usfirst.frc.team766.robot;
 
 import org.usfirst.frc.team766.lib.LogFactory;
+import org.usfirst.frc.team766.lib.LogUpdater;
 import org.usfirst.frc.team766.lib.Looper;
 import org.usfirst.frc.team766.robot.commands.CommandBase;
 import org.usfirst.frc.team766.robot.commands.Autons.AutonSelector;
@@ -27,7 +28,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
-	private boolean done;
+	LogUpdater logCommand;
+	private boolean autonDone, teleopDone;
 
 	public void robotInit() {
 		//PIDS
@@ -43,7 +45,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Heading I: ", 0);
 		SmartDashboard.putNumber("Heading D: ", 0.03);
 		CommandBase.init();
-		done = false;
+		autonDone = false;
+		teleopDone = false;
 		
 		//Test Commands
 		SmartDashboard.putData(new ResetIntakeAngle());
@@ -67,6 +70,14 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
+		
+		LogFactory.getInstance("General").print("Auton Init");
+		
+		logCommand = new LogUpdater();
+		
+		if(!logCommand.isRunning())
+			logCommand.start();
+		
 //		LogFactory.getInstance("General").print("Auton Init?");
 
 		//new FindTarget().start();
@@ -78,7 +89,7 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 		
-		done = true;
+		autonDone = true;
 	}
 
 	public void autonomousPeriodic() {
@@ -86,9 +97,13 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
-		try{
-			LogFactory.getInstance("General").print("Teleop Init");
-		}catch(NullPointerException e){}
+		if(logCommand == null)
+			logCommand = new LogUpdater();
+		
+		if(!logCommand.isRunning())
+			logCommand.start();
+		
+		LogFactory.getInstance("General").print("Teleop Init");
 		
 		//new FindErrors().start();
 		//new TrackTarget().start();
@@ -104,18 +119,19 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
-		done = true;
+		teleopDone = true;
 	}
 
 	public void disabledInit() {
-		if(done){
+		if(autonDone && teleopDone){
 			LogFactory.closeFiles();
 		}
 	}
 	public void teleopPeriodic() {
 //		CommandBase.OI.updatePOV();
 //		System.out.println("Angle:\t" + CommandBase.Intake.getAngle());
-		System.out.println("Catapult Rotations:\t" + CommandBase.Catapult.getRotations());
+//		System.out.println("Heading:\t" + CommandBase.Drive.getGyroAngle());
+//		System.out.println("Accel:\t" + CommandBase.Drive.getAccel());
 		Scheduler.getInstance().run();
 	}
 

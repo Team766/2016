@@ -18,12 +18,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class CheesyDrive extends CommandBase {
 	
-	private boolean HEADING__CONTROL = true;
+	private boolean HEADING__CONTROL = false;
+	private double NEG_INTERIA_DAMPER = 0.0;
 	
   private double oldWheel = 0.0;
   private double quickStopAccumulator;
   private double throttleDeadband = 0.02;
   private double wheelDeadband = 0.02;
+  
 
   private PIDController headingPID = new PIDController(RobotValues.GyroKp,
 			RobotValues.GyroKi, RobotValues.GyroKd,
@@ -100,7 +102,7 @@ public class CheesyDrive extends CommandBase {
        // sensitivity = 1.0 - (1.0 - sensitivity) / Math.abs(throttle);
       }
     }
-    double negInertiaPower = negInertia * negInertiaScalar;
+    double negInertiaPower = negInertia * negInertiaScalar * NEG_INTERIA_DAMPER;
     negInertiaAccumulator += negInertiaPower;
 
     wheel = wheel + negInertiaAccumulator;
@@ -117,8 +119,8 @@ public class CheesyDrive extends CommandBase {
     if (isQuickTurn) {
       if (Math.abs(linearPower) < 0.2) {
         double alpha = 0.1;
-        quickStopAccumulator = (1 - alpha) * quickStopAccumulator + alpha *
-            limit(wheel, 1.0) * 5;
+        //quickStopAccumulator = (1 - alpha) * quickStopAccumulator + alpha *
+          //  limit(wheel, 1.0) * 5;
       }
       overPower = 1.0;
       if (isHighGear) {
