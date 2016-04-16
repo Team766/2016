@@ -11,6 +11,10 @@ public class SetCloseShot extends CommandBase{
 	}
 	
 	protected void initialize() {
+		if(!state)
+			Camera.setVerticalAngle(80);//130
+		else
+			Camera.setVerticalAngle(165);
 		Catapult.closeShot(state);
 	}
 

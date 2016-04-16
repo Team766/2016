@@ -97,6 +97,8 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
+		CommandBase.Camera.setVerticalAngle(140);
+		
 		if(logCommand == null)
 			logCommand = new LogUpdater();
 		

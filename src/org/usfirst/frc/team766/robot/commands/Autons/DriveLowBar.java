@@ -60,7 +60,8 @@ public class DriveLowBar extends CommandBase{
 			Drive.setRightPower(RobotValues.DEAD_RECK_POWER - headingPID.getOutput());
 			
 //			System.out.println("DRIVING!" + ((totalDistance/count) * timer.get()));
-			
+
+			System.out.println(totalDistance);
 			count++;
 		}
 	}
@@ -69,7 +70,8 @@ public class DriveLowBar extends CommandBase{
 		//If it hasn't started moving
 		return //(timer.get() >= 2.5 && Math.abs(totalDistance/count) < .05) ||
 				//Check if it has moved distance
-				(totalDistance >= RobotValues.AUTON_LINE_TO_BACK_DEFENSES);
+//				(totalDistance >= RobotValues.AUTON_LINE_TO_BACK_DEFENSES);
+				(timerStarted && totalDistance*1000 >= 3.5);
 	}
 
 	protected void end() {
