@@ -62,9 +62,10 @@ public class HTTPServer extends Filter implements Runnable{
 		for(Logger log : LogFactory.getLogs().values()){
 			server.createContext("/logs/" + log.getName(), new HttpHandler(){
 				public void handle(HttpExchange exchange) throws IOException {
-					exchange.sendResponseHeaders(200, log.getHTML().getBytes().length);
+					String response = log.getHTML() + "<form action=\"values\"><button name=\"subject\" type=\"submit\" value=\"clearLog" + log.getName() + "\">Clear</button></form></html>";
+					exchange.sendResponseHeaders(200, response.getBytes().length);
 					OutputStream os = exchange.getResponseBody();
-					os.write(log.getHTML().getBytes());
+					os.write(response.getBytes());
 					os.close();
 				}
 			});
@@ -112,6 +113,9 @@ public class HTTPServer extends Filter implements Runnable{
 		        		values.put((String)pair.getKey(), (String)pair.getValue());
 		        		 it.remove(); // avoids a ConcurrentModificationException
 	        		}
+    	        }else if(params.size() == 1 && params.values().toArray()[0].toString().contains("clearLog")){
+    	        	LogFactory.getInstance(params.values().toArray()[0].toString().substring(8)).clearHTML();
+    	        	System.out.println("HTTP Server:\tClearing log - " + params.values().toArray()[0].toString().substring(8));
     	        }
 	        	else {
 	        		System.out.println("ERROR: Did not recive enough parameters: " + params.size());

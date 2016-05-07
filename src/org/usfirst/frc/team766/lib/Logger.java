@@ -139,6 +139,12 @@ public class Logger {
 		return html;
 	}
 	
+	public void clearHTML(){
+		html = "<head><meta http-equiv=\"refresh\" content=\"1\"></head><body style=\"background-color:rgba(180, 28, 28, 0.8)\">";
+		html += "<h2 style = \"color: white\">" + name + "</h2>  <p style = \"color: #fc4\">";
+		print("Sucessfully cleared HTML log");
+	}
+	
 	@SuppressWarnings("deprecation")
 	private String getLogFolderName(){
 		Date date = new Date(System.currentTimeMillis());

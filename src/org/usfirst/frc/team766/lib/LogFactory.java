@@ -10,6 +10,10 @@ public class LogFactory {
 		return logs.get(key);
 	}
 	
+	/**
+	 * Only call in CommandBase init()
+	 * @param key The name of the new log
+	 */
 	public static void createInstance(String key){
 		Logger adding;
 		try {
