@@ -5,6 +5,7 @@ import org.usfirst.frc.team766.robot.RobotValues;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -16,7 +17,7 @@ public class Intake extends Subsystem {
 	private final double startingAngle = 180.0;//getAngleFromHeight(0);
 	
     private Victor wheels;
-    private Victor rotator;
+    private VictorSP rotator;
 
     private Encoder intakeAngle;
     
@@ -26,7 +27,7 @@ public class Intake extends Subsystem {
     
     public Intake(){
     	wheels = (Victor)DeviceManager.getInstance().getIntakeWheels();
-    	rotator = (Victor)DeviceManager.getInstance().getRotatorWheels();
+    	rotator = (VictorSP)DeviceManager.getInstance().getRotatorWheels();
     	
     	intakeAngle = (Encoder)DeviceManager.getInstance().getIntakeAngle();
     	

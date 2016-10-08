@@ -64,12 +64,12 @@ public class DriveObstical extends CommandBase{
 	}
 
 	protected boolean isFinished() {
+		System.out.println("Dist: " + totalDistance + "\t Accel: " + Drive.getAccel());
 		//If it hasn't started moving
 		return //(timer.get() >= 2.5 && Math.abs(totalDistance/count) < .05) ||
 				//Check if it has moved distance
-//				(totalDistance >= RobotValues.AUTON_LINE_TO_BACK_DEFENSES);
-				
-				false;
+				(totalDistance >= RobotValues.AUTON_LINE_TO_BACK_DEFENSES);
+				//false;
 	}
 
 	protected void end() {

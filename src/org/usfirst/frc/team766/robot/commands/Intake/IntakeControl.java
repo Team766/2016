@@ -22,7 +22,7 @@ public class IntakeControl extends Loopable{
 	}
 	
 	protected void run() {
-		IntakePID.setConstants(SmartDashboard.getNumber("Intake P: "), RobotValues.IntakeKi, RobotValues.IntakeKd);
+		IntakePID.setConstants(SmartDashboard.getNumber("Intake P: "), SmartDashboard.getNumber("Intake I: "), SmartDashboard.getNumber("Intake D: "));
 		if(CommandBase.Intake.isLocked() || DriverStation.getInstance().isDisabled())
 			return;
 		

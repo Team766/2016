@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
@@ -94,7 +95,7 @@ public class DeviceManager {
 			rightDrive = new Victor(Ports.PWM_Right_Drive);
 			
 			wheels = new Victor(Ports.PWM_IntakeWheels);
-		    rotator = new Victor(Ports.PWM_IntakeRotator);
+		    rotator = new VictorSP(Ports.PWM_IntakeRotator);
 		    
 		    winchA = new Victor(Ports.PWM_Winch1);
 			winchB = new Victor(Ports.PWM_Winch2);

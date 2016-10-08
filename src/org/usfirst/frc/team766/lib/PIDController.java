@@ -159,8 +159,8 @@ public class PIDController {
 		
 		pr("	Total Eror: " + total_error + "		Current Error: " + cur_error
 				+ "	Output: " + output_value + " 	Setpoint: " + setpoint);
-		LogFactory.getInstance("PIDController").print("Total Eror: " + total_error + "		Current Error: " + cur_error
-				+ "	Output: " + output_value + " 	Setpoint: " + setpoint);
+//		LogFactory.getInstance("PIDController").print("Total Eror: " + total_error + "		Current Error: " + cur_error
+//				+ "	Output: " + output_value + " 	Setpoint: " + setpoint);
 	}
 
 	public void basicCalculate(double cur_input) {
